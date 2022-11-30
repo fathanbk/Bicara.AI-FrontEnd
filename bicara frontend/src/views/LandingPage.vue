@@ -8,15 +8,15 @@
       <div class="top-gradient">
         <div class="top-empty"></div>
         <div class="top-content">
-          <ion-text class="title-top" color="dark">Improve your<br></ion-text>
-          <ion-text class="title-top" color="secondary">communication skills <br></ion-text>
+          <ion-text class="title-top1">Improve your<br></ion-text>
+          <ion-text class="title-top2" color="secondary">communication skills <br></ion-text>
           <div class="desc-top">
             <ion-text>Bicara.ai is an education platform. Bicara.ai aim to improve indviduals comunication skills with judgement free feedback from our AI-powered speech coach.</ion-text>
           </div>
           <div class="email-regist">
             <ion-img src="assets/icon/email.svg"></ion-img>
             <ion-input class="email-input" placeholder="Your email address"></ion-input>
-            <ion-button color="primary" size="large" class="notify">Notify me</ion-button>
+            <ion-button size="large" color="notify" class="notify">Notify me</ion-button>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
               </div>
           </ion-text>
           <div class="kucing">
-              <ion-button class="to-top" size="large" color="tertiary" href="#top">
+              <ion-button class="to-top" size="large" color="im-in" href="#top">
                 Yes I'm in
               </ion-button>
           </div>
@@ -163,10 +163,17 @@ export default defineComponent({
   height: 76px;
 }
 
-.title-top {
+.title-top1 {
   font-style: normal;
   font-weight: 700;
   font-size: 40px;
+  color: black;
+}
+.title-top2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  color: #3F54D1;
 }
 
 .desc-top {
@@ -174,6 +181,7 @@ export default defineComponent({
   font-size: 20px;
   font-weight: 500;
   width: 550px;
+  color: #6e7071;
 }
 
 .email-regist {
@@ -210,6 +218,7 @@ export default defineComponent({
   --border-radius: 30px;
   --offset-top: -10px;
   --line-height: 56px;
+  --background-color: ;
 }
 
 .one {
@@ -343,9 +352,10 @@ export default defineComponent({
 
  .card-three {
   background-color: #c8d6da;
-  width: 82px;
-  height: 78px;
+  width: 90px;
+  height: 84px;
   border-radius: 25px;
+  align-self: center;
  }
 
  .kucing {
