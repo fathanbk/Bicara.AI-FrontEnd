@@ -11,7 +11,9 @@
           <span class="material-symbols-outlined"> search </span>
         </ion-button>
         <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <a href="">
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" style="border-radius:50%;"/>
+          </a>
         </ion-avatar>
       </ion-toolbar>
     </ion-header>

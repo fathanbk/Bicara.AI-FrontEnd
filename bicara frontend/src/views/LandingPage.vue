@@ -186,12 +186,10 @@ export default defineComponent({
 
 .email-regist {
   display: flex;
-  height: 56px;
   width: 468px;
   box-shadow: none;
   background-color: white;
   border-radius: 30px;
-  padding-top: 12px;
   margin-top: 45px;
   padding-left: 24px;
   margin-left: 0px;
@@ -201,22 +199,26 @@ export default defineComponent({
 
 .email-regist ion-img {
   height: 20px;
-  margin-top: 7px;
+  margin:auto;
 }
 
 .email-input {
-  width: 260px;
+  margin : 0px;
+  height: 56px;
   font-size: 20px;
-  margin-bottom: 10px;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   color: black;
+  z-index: 0;
 }
 
 .notify {
-  --top: -20px!important;
+  position: absolute;
+  margin: 0 auto;
+  left:60%;
+  height: 56px;
+  width: 216px;
   --border-radius: 30px;
-  --offset-top: -10px;
   --line-height: 56px;
   --background-color: ;
 }
