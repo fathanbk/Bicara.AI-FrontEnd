@@ -6,89 +6,150 @@
       </div>
 
       <div class="top-gradient">
-        <div class="top-empty"></div>
         <div class="top-content">
-          <ion-text class="title-top1">Improve your<br></ion-text>
-          <ion-text class="title-top2" color="secondary">communication skills <br></ion-text>
-          <div class="desc-top">
-            <ion-text>Bicara.ai is an education platform. Bicara.ai aim to improve indviduals comunication skills with judgement free feedback from our AI-powered speech coach.</ion-text>
-          </div>
-          <div class="email-regist">
-            <ion-img src="assets/icon/email.svg"></ion-img>
-            <ion-input class="email-input" placeholder="Your email address"></ion-input>
-            <ion-button size="large" color="notify" class="notify">Notify me</ion-button>
-          </div>
+          <ion-row>
+            <ion-col size="12" size-lg="5" class="title-top1">Improve your</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="" size-lg="6" class="title-top2" color="secondary">communication skills</ion-col></ion-row>
+          <ion-row class="half">
+            <ion-col size="12" class="desc-top">Bicara.ai is an education platform. Bicara.ai aim to improve indviduals comunication skills with judgement free feedback from our AI-powered speech coach.</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-md="8" size-lg="5" class="email">
+              <div class="email-regist">
+                <ion-img src="assets/icon/email.svg"></ion-img>
+                <ion-input class="email-input" placeholder="Your email address"></ion-input>
+                <ion-button size="large" color="notify" class="notify">Notify me</ion-button>
+              </div>
+            </ion-col>
+          </ion-row>
         </div>
       </div>
 
       <div class="one">
         <h1>Why use Bicara.ai</h1>
-        <ion-img id="num-backg" src="assets/img/1.svg" alt=""></ion-img>
-        <ion-row>
-          <ion-col size="2"></ion-col>
-          <ion-col size="2">
+        <ion-img class="num-back" src="assets/img/1.svg"></ion-img>
+        <ion-row class="for-landscape">
+          <ion-col size="12" size-lg="2"></ion-col>
+          <ion-col size="6" size-lg="2">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/pronunciation.svg"></ion-img>
+              <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
               <ion-card-title>Pronunciation</ion-card-title></ion-card>
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/intonation.svg" class="small"></ion-img>
+              <ion-img src="assets/icon/intonation.svg" class="small-icon"></ion-img>
               <ion-card-title>Intonation</ion-card-title>
             </ion-card>
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/eye.svg"></ion-img>
+              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
               <ion-card-title>Eye Detection</ion-card-title>
             </ion-card>            
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/grammar.svg"></ion-img>
+              <ion-img class="small-icon" src="assets/icon/grammar.svg"></ion-img>
               <ion-card-title>Grammar</ion-card-title>
             </ion-card>
           </ion-col>
-          <ion-col size="2"></ion-col>
+          <ion-col size="12" size-lg="2"></ion-col>
         </ion-row>
+
+        <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 10vh;"></ion-img>
+        
+        <ion-img src="assets/icon/arrow-right.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; right: 3vh; margin-top: 10vh;"></ion-img>
+
+        <ion-slides class="for-portrait">          
+          <ion-slide size="6" size-lg="2">
+            <ion-card class="card-one">
+              <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
+              <ion-card-title>Pronunciation</ion-card-title></ion-card>
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <ion-card class="card-one">
+              <ion-img class="small-icon" src="assets/icon/intonation.svg"></ion-img>
+              <ion-card-title>Intonation</ion-card-title>
+            </ion-card>
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <ion-card class="card-one">
+              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
+              <ion-card-title>Eye Detection</ion-card-title>
+            </ion-card>            
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <ion-card class="card-one">
+              <ion-img class="small-icon" src="assets/icon/grammar.svg"></ion-img>
+              <ion-card-title>Grammar</ion-card-title>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
       </div>
 
       <div class="two">
         <h1>See our analysis example</h1>
+        <ion-img class="num-back" src="assets/img/2.svg"></ion-img>
         <div>
-          <ion-img id="num-backg" src="assets/img/2.svg" alt=""></ion-img>
           <div class="video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/fpI8Jx65W18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/fpI8Jx65W18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </div>
       </div>
 
       <div class="three">
-          <ion-img id="num-backg" src="assets/img/3.svg" alt=""></ion-img>
-          <h1>How it works</h1>
-          <div class="green-bar">
-            <ion-img src="assets/img/Union.png"></ion-img>
-          </div>
-          <ion-row>
-          <ion-col size="2"></ion-col>
-          <ion-col size="2">
+        <h1>How it works</h1>
+        <ion-img class="num-back" src="assets/img/3.svg"></ion-img>
+        <div class="green-bar">
+          <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
+        </div>
+        
+        <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 5vh;"></ion-img>
+      
+        <ion-img src="assets/icon/arrow-right.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; right: 3vh; margin-top: 5vh;"></ion-img>
+
+        <ion-row class="for-landscape">
+          <ion-col size="12" size-lg="2"></ion-col>
+          <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 1</p>
             <ion-card class="card-three"></ion-card>
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 2</p>
             <ion-card class="card-three"></ion-card>
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 3</p>
             <ion-card class="card-three"></ion-card>            
           </ion-col>
-          <ion-col size="2">
+          <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 4</p>
             <ion-card class="card-three"></ion-card>
           </ion-col>
-          <ion-col size="2"></ion-col>
+          <ion-col size="12" size-lg="2"></ion-col>
         </ion-row>
+
+        <ion-slides class="for-portrait">
+          <ion-slide size="6" size-lg="2">
+            <p class="card-desc">Step 1</p>
+            <ion-card class="card-three"></ion-card>
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <p class="card-desc">Step 2</p>
+            <ion-card class="card-three"></ion-card>
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <p class="card-desc">Step 3</p>
+            <ion-card class="card-three"></ion-card>            
+          </ion-slide>
+          <ion-slide size="6" size-lg="2">
+            <p class="card-desc">Step 4</p>
+            <ion-card class="card-three"></ion-card>
+          </ion-slide>
+        </ion-slides>
+
         <div class="center">
           <ion-text class="kucing">
               Are you ready to be <br>
@@ -99,25 +160,25 @@
           </ion-text>
           <div class="kucing">
               <ion-button class="to-top" size="large" color="im-in" href="#top">
-                Yes I'm in
+                Yes I'm in!
               </ion-button>
           </div>
         </div>
       </div>
 
-      <div class="footer">
-        <ion-text class="bicara-ai-bot">Bicara.ai</ion-text>
-        <ion-text class="copyright">
+      <ion-row class="footer">
+        <ion-col size="12" size-lg="6" class="bicara-ai-bot">Bicara.ai</ion-col>
+        <ion-col size="12" size-lg="6" class="copyright">
           © 2022 Bicara.ai
-        </ion-text>
-      </div>
+        </ion-col>
+      </ion-row>
 
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides } from '@ionic/vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -132,80 +193,92 @@ export default defineComponent({
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Krona+One&display=swap');
 
-.bicara-ai-top {
+@media (orientation: landscape) {
+  .bicara-ai-top {
   background: #3F54D1;
   background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-family: 'Krona One', sans-serif;
   align-self: center;
-  font-size: 30px;
-  line-height: 100px;
+  font-size: 4.5vh;
 }
 
 .top-bar {
-  line-height: 56px;
-  height: 100px;
+  line-height: 10vh;
+  height: 10vh;
   text-align: center;
 }
 
 .top-gradient {
-  background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 100%);
-  height: 562px;
+  background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
+  height: 90vh;
   font-family: 'Inter', sans-serif;
 }
 
 .top-content {
-  padding-left: 50px;
-}
-
-.top-empty {
-  height: 76px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 6vh;
+  padding-bottom: 6vh;
 }
 
 .title-top1 {
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 6vh;
   color: black;
 }
 .title-top2 {
+  margin-top: -3vh;
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 6vh;
   color: #3F54D1;
 }
 
-.desc-top {
-  padding-top: 20px;
-  font-size: 20px;
-  font-weight: 500;
-  width: 550px;
-  color: #6e7071;
+.half {
+  width: 40vw;
 }
 
+.desc-top {
+  padding-top: 2.5vh;
+  font-size: 3vh;
+  font-weight: 500;
+  color: #6e7071;
+  width: 40vw;
+}
+
+.email {
+  width: 50vw;
+}
 .email-regist {
   display: flex;
-  width: 468px;
+  width: 30vw;
+  height: 7vh;
   box-shadow: none;
   background-color: white;
-  border-radius: 30px;
-  margin-top: 45px;
-  padding-left: 24px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right: 0px;
+  border-bottom-right: 0px;
+  margin-top: 2vh;
+  padding-left: 2.7vh;
   margin-left: 0px;
-  font-size: 20px;
+  font-size: 1.25rem;
   position: absolute;
 }
 
 .email-regist ion-img {
-  height: 20px;
+  background-color: white;
+  height: 2.7vh;
   margin:auto;
 }
 
 .email-input {
   margin : 0px;
-  height: 56px;
-  font-size: 20px;
+  height: 7vh;
+  font-size: 2.7vh;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   color: black;
@@ -214,18 +287,21 @@ export default defineComponent({
 
 .notify {
   position: absolute;
-  margin: 0 auto;
-  left:60%;
-  height: 56px;
-  width: 216px;
+  margin-top: -0.1vh;
+  right:-8vw;
+  height: 7vh;
+  width: 10vw;
+  font-size: 2.5vh;
+  font-family: 'Inter';
+  text-transform: none;
   --border-radius: 30px;
-  --line-height: 56px;
-  --background-color: ;
+  --line-height: 7vh;
+  --box-shadow: none;
 }
 
 .one {
   background-color: #f3f4f8;
-  height: 800px;
+  height: 90vh;
 }
 
 .one h1 {
@@ -233,14 +309,21 @@ export default defineComponent({
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   text-align: center;
-  padding-top: 64px;
-  z-index: 5;  
+  padding-top: 4rem;
+  padding-bottom: 2.5em;
+  margin-top: -1rem;
+  font-size: 6vh;
+  position: relative;
+  z-index: 2;
 }
 
-#num-backg {
-  margin-top: 25px;
-  height: 300px;
-  z-index: -1;
+.num-back {
+  margin-top: -30vh;
+  height: 65vh;
+  position:absolute;
+  margin-left: 35vw;
+  margin-right: 35vw;
+  z-index: 0;
 }
 
 .one ion-row {
@@ -253,20 +336,26 @@ export default defineComponent({
   justify-content: center;
 }
 
-.card-one {
-  background-color: white;
-  width: 156px;
-  height: 248px;
-  border-radius: 30px;
+.for-portrait {
+  display: none;
 }
 
-.card-one.small {
-  margin-top: 84px;
-  height: 150px;
+.card-one {
+  background-color: white;
+  width: 30vw;
+  height: 20vw;
+  border-radius: 40px;
 }
-.card-one ion-img {
-  margin-top: 84px;
-  height: 25px;
+
+.small-icon {
+  margin-top: 12vh;
+  margin-bottom: 2vh;
+  height: 8vh;
+}
+.big-icon {
+  margin-top: 14vh;
+  margin-bottom: 1.5vh;
+  height: 5vh;
 }
 
 .card-one ion-card-title {
@@ -274,14 +363,14 @@ export default defineComponent({
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
   text-align: center;
-  font-size: 20px;
-  margin-top: 12px;
+  font-size: 2vw;
+  margin-top: 0.75rem;
 }
 
 .two {
   background:#2c3b93;
-  height: 800px;
-  padding-top: 90px;
+  height: 110vh;
+  padding-top: 20vh;
 }
 
 .two h1 {
@@ -289,17 +378,27 @@ export default defineComponent({
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   text-align: center;
+  font-size: 6vh;
+  position: relative;
   z-index: 1;
+  padding-bottom: 8vh;
 }
 
  .video{
   display: flex;
   justify-content: center;
+  position: relative;
   z-index: 1;
  }
 
+ iframe{
+  margin-top: 10vh;
+  height: 50vh;
+  width: 85vh;
+ }
+
  .three {
-  height: 1156px;
+  height: 120vh;
  }
 
  .three-content {
@@ -311,20 +410,28 @@ export default defineComponent({
   position: relative;
   color: #2c3b93;
   font-family: 'Inter', sans-serif;
+  margin-top: 20vh;
+  margin-bottom: 10vh;
   font-weight: 700;
+  font-size: 6vh;
   text-align: center;
+  position: relative;
+  z-index: 1;
  }
 
  .green-bar  {
-  width: 650px;
+  width: 52vw;
   display: block;
+  margin-top: 10vh;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  z-index: 1;
  }
 
  .three ion-text {
   font-family: 'Inter', sans-serif;
-  font-size: 40px;
+  font-size: 5vh;
   font-weight: 700;
   color: black;
  }
@@ -346,7 +453,7 @@ export default defineComponent({
  }
 
  .card-desc {
-  font-size: 24px;
+  font-size: 4vh;
   font-weight: 700;
   color: black;
   text-align: center;
@@ -354,9 +461,312 @@ export default defineComponent({
 
  .card-three {
   background-color: #c8d6da;
-  width: 90px;
-  height: 84px;
+  width: 8vw;
+  height: 8vw;
+  border-radius: 3vw;
+  align-self: center;
+  margin-bottom: 10vh;
+ }
+
+ .kucing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1.25rem;
+  text-align: center;
+ }
+
+ .kelinci {
+  text-align: center;
+  margin-bottom: 1.25rem;
+ }
+
+.to-top {
+  --color: white;
+  --background-color: #41dcbb;
+  --border-radius: 5vh;
+  --position: absolute;
+  --right: 0px;
+  --box-shadow: none;
+  --margin: 0 auto;
+  --display: block;
+  font-size: 3vh;
+  font-family: 'Inter';
+  text-transform: none;
+}
+
+ .footer {
+  background: linear-gradient(90deg, #2c3b93 57%, #33629c 81%, #0f908e 99.9%);
+  height: 28vh;
+ }
+
+ .copyright {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  text-align: right;
+  font-size: 3vh;
+  line-height: 25vh;
+  position: absolute;
+  right: 5vw;
+ }
+
+ .bicara-ai-bot {
+  color: white;
+  font-family: 'Krona One', sans-serif;
+  font-size: 4.5vh;
+  line-height: 25vh;
+  padding-left: 5vw;
+ }
+}
+
+@media (orientation: portrait) {
+  .bicara-ai-top {
+  background: #3F54D1;
+  background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Krona One', sans-serif;
+  align-self: center;
+  font-size: 2vh;
+}
+
+.top-bar {
+  line-height: 6vh;
+  height: 6vh;
+  text-align: center;
+}
+
+.top-gradient {
+  background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
+  height: 55vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.top-content {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+}
+
+.title-top1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vh;
+  color: black;
+  text-align: center;
+  margin-bottom: -2vh;
+}
+.title-top2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vh;
+  color: #3F54D1;
+  text-align: center;
+}
+
+.desc-top {
+  padding-top: 1.5vh;
+  font-size: 2vh;
+  font-weight: 500;
+  color: #6e7071;
+  text-align: center;
+}
+
+.email {
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+}
+.email-regist {
+  display: flex;
+  width: 90%;
+  height: 4vh;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 1.875rem;
+  margin-top: 1vh;
+  padding-left: 2.7vh;
+  margin-left: 0px;
+  font-size: 1.25rem;
+  position: absolute;
+}
+
+.email-regist ion-img {
+  background-color: white;
+  height: 2vh;
+  margin:auto;
+}
+
+.email-input {
+  margin : 0px;
+  height: 4vh;
+  font-size: 2vh;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: black;
+  z-index: 0;
+}
+
+.notify {
+  position: absolute;
+  margin: 0 auto;
+  right:-3vw;
+  height: 4vh;
+  width: 20vw;
+  font-family: 'Inter';
+  font-size: 1.5vh;
+  text-transform: none;
+  --border-radius: 1.875rem;
+  --line-height: 7vh;
+  --box-shadow: none;
+  --font-size: 2vh;
+}
+
+.one {
+  background-color: #f3f4f8;
+  height: 45vh;
+}
+
+.one h1 {
+  color: #2c3b93;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
+  margin-top: -2vh;
+  font-size: 2.8vh;
+  position: relative;
+  z-index: 1;
+}
+
+.one ion-row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.one ion-col {
+  display: flex;
+  justify-content: center;
+}
+
+.for-landscape {
+  display: none;
+}
+
+
+.card-one {
+  background-color: white;
+  width: 35vw;
+  height: 20vh;
   border-radius: 25px;
+}
+
+.big-icon {
+  margin-top: 5.5vh;
+  height: 6vw;
+}
+.small-icon {
+  margin-top: 5vh;
+  height: 9vw;
+}
+
+.card-one ion-card-title {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 4vw;
+  margin-top: 0.75rem;
+}
+
+.two {
+  background:#2c3b93;
+  height: 50vh;
+  padding-top: 3vh;
+}
+
+.two h1 {
+  color: #15cdcb;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  z-index: 1;
+  padding-bottom: 2.8vh;
+  position: relative;
+  z-index: 1;
+}
+
+ .video{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+ }
+
+ .three {
+  height: 55vh;
+ }
+
+ .three-content {
+  display: flex;
+  justify-content: center;
+ }
+
+ .three h1 {
+  color: #2c3b93;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+ }
+
+ .green-bar  {
+  width: 40.625rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+ .three ion-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.8vh;
+  font-weight: 700;
+  color: black;
+ }
+
+ .highlight {
+  background-color: #92ecd1;
+ }
+
+ .center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+ }
+
+ .three ion-slide ion-slides {
+  flex-direction: row;
+  display:contents;
+ }
+
+ .card-desc {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+ }
+
+ .card-three {
+  background-color: #c8d6da;
+  width: 5.625rem;
+  height: 10vh;
+  border-radius: 1.5625rem;
   align-self: center;
  }
 
@@ -365,46 +775,62 @@ export default defineComponent({
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   text-align: center;
  }
 
  .kelinci {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
  }
 
 .to-top {
-  --color: white;
-  --background-color: #41dcbb;
   --border-radius: 30px;
   --position: absolute;
-  --right: 0px;
   --box-shadow: none;
   --font-family: 'Inter', sans-serif;
   --margin: 0 auto;
   --display: block;
+  height: 3vh;
+  width: 25vw;
+  font-size: 1.5vh;
+  text-transform: none;
 }
 
  .footer {
   background: linear-gradient(90deg, #2c3b93 57%, #33629c 81%, #0f908e 99.9%);
-  height: 250px;
+  height: 10vh;
+  margin-bottom: -10px;
  }
 
  .copyright {
   color: white;
   font-family: 'Inter', sans-serif;
   text-align: right;
-  font-size: 20px;
-  line-height: 250px;
+  font-size: 1.5vh;
+  line-height: 8vh;
   position: absolute;
-  right: 160px;
+  right: 10vw;
  }
 
  .bicara-ai-bot {
   color: white;
   font-family: 'Krona One', sans-serif;
-  font-size: 40px;
-  line-height: 250px;
-  padding-left: 160px;
- }</style>
+  font-size: 2vh;
+  line-height: 8vh;
+  padding-left: 10vw;
+ }
+
+ .num-back {
+  margin-top: -17vh;
+  height: 55vh;
+  position: absolute;
+  margin-right: 20vw;
+  margin-left: 20vw;
+  z-index: 0;
+}
+
+}
+
+
+</style>
