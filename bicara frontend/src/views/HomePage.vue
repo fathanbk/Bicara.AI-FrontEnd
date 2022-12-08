@@ -20,7 +20,7 @@
                   <ion-text>Password<br></ion-text>
                   <ion-input type=password placeholder="Enter password"></ion-input>
                 </ion-card>
-                <ion-button @click="setSignInOpen(false)">klos</ion-button>
+                <ion-button href="/dashboard">Sign in</ion-button>
               </ion-content>
             </ion-modal>
           </ion-row>

@@ -2,100 +2,125 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
+        <button slot="start" v-on:click="open_side()" id="menu">
+          <span class="material-symbols-rounded menu"> menu </span>
+        </button>
         <ion-title>Bicara.ai</ion-title>
         <ion-button slot="end">
-          <span class="material-symbols-outlined" style="margin-right: 10px"> video_call </span>
-          Upload Video
+          <span class="material-symbols-outlined"> video_call </span>
+          <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
         </ion-button>
         <ion-button slot="end">
           <span class="material-symbols-outlined"> search </span>
         </ion-button>
         <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-          <a href="">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" style="border-radius:50%;"/>
-          </a>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
 
     <ion-content :fullscreen="true">
+      <!--Mobile -->
+      <div class="background-mobile"></div>
+      <div class="intro-mobile-2">
+        <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
+        <button slot="end" v-on:click="open_side()" id="menu">
+          <span class="material-symbols-rounded menu"> menu </span>
+        </button>
+      </div>
       <div class="dashboard">
-        <div class="aside"></div>
-        <div class="aside" style="position: fixed">
-          <h1>Hi, Jake!</h1>
+        <!-- Sidebar Dashboard-->
+        <div class="aside w3-animate-left" id="aside" style="position: fixed">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <h1 slot="start">Hi, Jake!</h1>
+            <button slot="end" v-on:click="close_side()" id="close">
+              <span class="material-symbols-rounded close"> close </span>
+            </button>
+          </div>
           <h4>What would you like to do today?</h4>
           <a href="#">
             <span class="material-symbols-outlined">home</span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Home</p>
+            <p>Home</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> video_library </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Library</p>
+            <p>Library</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> summarize </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Report</p>
+            <p>Report</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> group </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Contact Support</p>
+            <p>Contact Support</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> settings </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Settings</p>
+            <p>Settings</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> help_center </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Help</p>
+            <p>Help</p>
           </a>
           <a href="#">
             <span class="material-symbols-outlined"> logout </span>
-            <p style="margin: 3px 0 0 5px; padding: 0">Sign Out</p>
+            <p>Sign Out</p>
           </a>
         </div>
-        <div class="content" style="">
-          <h1>Rating Result</h1>
+
+        <!-- Content Dashboard -->
+        <div class="content">
+          <!-- Mobile -->
+          <div class="intro-mobile" style="margin-top: 78px">
+            <div class="search-mobile">
+              <span class="material-symbols-outlined"> search </span>
+              <ion-input class="search-mobile2" placeholder="Search"></ion-input>
+            </div>
+            <h4>Hi, Jake! What would you like to do today?</h4>
+          </div>
+          <!-- Bagian Rating Result -->
+          <h1 class="title-rat">Rating Result</h1>
           <ion-grid>
             <ion-row class="ion-justify-content-end">
-              <ion-col size="4">
+              <ion-col size="12" size-sm="6" size-lg="4">
                 <div class="card">
-                  <p>Uploaded 11 November 2022</p>
+                  <p class="upload-rating">Uploaded 11 November 2022</p>
                 </div>
               </ion-col>
             </ion-row>
             <!-- score, filler, pacing -->
             <ion-row>
-              <ion-col size="6">
+              <ion-col size="12" size-sm="12" size-lg="6">
                 <div class="card">
-                  <p style="margin-top: 2px; margin-right: 10px; font-size: 24px">Score</p>
+                  <p style="margin-top: 5px; margin-right: 10px; font-size: 20px">Score</p>
                   <p>
-                    <span class="material-symbols-rounded"> star </span>
-                    <span class="material-symbols-rounded"> star </span>
-                    <span class="material-symbols-rounded"> star </span>
-                    <span class="material-symbols-rounded"> star </span>
-                    <span class="material-symbols-rounded"> star </span>
+                    <span class="material-symbols-rounded" style="color: #3f54d1"> star </span>
+                    <span class="material-symbols-rounded" style="color: #3f54d1"> star </span>
+                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
+                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
+                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
                   </p>
                 </div>
               </ion-col>
-              <ion-col size="3">
-                <ion-card>
+              <ion-col class="filler-word" size="6" size-sm="6" size-lg="3">
+                <ion-card class="filler-word">
                   <ion-row class="ion-justify-content-between">
-                    <ion-col size="7">
-                      <ion-card-content>Filler Word</ion-card-content>
+                    <ion-col size="8" size-sm="7">
+                      <ion-card-content style="padding-right: 0px">Filler Word</ion-card-content>
                     </ion-col>
-                    <ion-col size="4">
-                      <ion-card-content>40%</ion-card-content>
+                    <ion-col size="4" size-sm="4">
+                      <ion-card-content style="padding-left: 0px">40%</ion-card-content>
                     </ion-col>
                   </ion-row>
                 </ion-card>
               </ion-col>
-              <ion-col size="3">
-                <ion-card>
+              <ion-col class="pacing-word" size="6" size-sm="6" size-lg="3">
+                <ion-card class="pacing-word">
                   <ion-row class="ion-justify-content-between">
-                    <ion-col size="5">
+                    <ion-col size="7" size-sm="5">
                       <ion-card-content>Pacing</ion-card-content>
                     </ion-col>
-                    <ion-col size="4">
+                    <ion-col size="5" size-sm="4">
                       <ion-card-content>250</ion-card-content>
                     </ion-col>
                   </ion-row>
@@ -105,46 +130,70 @@
             <!-- detail -->
             <ion-row>
               <ion-col>
-                <ion-card>
+                <!-- Tampilan detail di mobile -->
+                <ion-card class="mobile-rating">
+                  <div style="display: flex">
+                    <div style="background-color: #3f54d1; width: 50%">
+                      <p class="detail-title">Intonation</p>
+                      <p class="detail-persen">75%</p>
+                    </div>
+                    <div style="background-color: #5280e2; width: 50%">
+                      <p class="detail-title">Pronunciation</p>
+                      <p class="detail-persen">65.7%</p>
+                    </div>
+                  </div>
+                  <div style="display: flex">
+                    <div style="background-color: #15cdcb; width: 50%">
+                      <p class="detail-title">Grammar</p>
+                      <p class="detail-persen">80%</p>
+                    </div>
+                    <div style="background-color: #4fe0b5; width: 50%">
+                      <p class="detail-title">Eye Contact</p>
+                      <p class="detail-persen">50%</p>
+                    </div>
+                  </div>
+                </ion-card>
+                <!-- Tampilan detail di desktop -->
+                <ion-card class="detail-rating">
                   <ion-row>
-                    <ion-col class="detailborder">
+                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder">
                       <div class="detail">
                         <p><span class="dot inton"></span></p>
                         <p>Intonation</p>
                       </div>
                       <p class="val">75%</p>
                       <div class="progessline">
-                        <div class="progessvalue IntonLine"></div>
+                        <div class="progessvalue inton" style="width: 75%"></div>
                       </div>
                     </ion-col>
-                    <ion-col class="detailborder">
+                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
                       <div class="detail">
                         <p><span class="dot pronun"></span></p>
                         <p>Pronunciation</p>
                       </div>
                       <p class="val">65.7%</p>
                       <div class="progessline">
-                        <div class="progessvalue PronunLine"></div>
+                        <div class="progessvalue pronun" style="width: 65.7%"></div>
                       </div>
                     </ion-col>
-                    <ion-col class="detailborder">
+                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none2">
                       <div class="detail">
                         <p><span class="dot grammar"></span></p>
                         <p>Grammar</p>
                       </div>
                       <p class="val">80%</p>
                       <div class="progessline">
-                        <div class="progessvalue GrammarLine"></div>
+                        <div class="progessvalue grammar" style="width: 80%"></div>
                       </div>
                     </ion-col>
-                    <ion-col class="">
+                    <ion-col size="6" size-sm="6" size-lg="3">
                       <div class="detail">
                         <p><span class="dot eyecontact"></span></p>
                         <p>Eye Contact</p>
                       </div>
                       <p class="val">50%</p>
                       <div class="progessline">
-                        <div class="progessvalue EyeconLine"></div>
+                        <div class="progessvalue eyecontact" style="width: 50%"></div>
                       </div>
                     </ion-col>
                   </ion-row>
@@ -152,131 +201,131 @@
               </ion-col>
             </ion-row>
           </ion-grid>
+          <!-- Bagian Progess Report -->
           <h1>Progress Report</h1>
-          <ion-grid>
-            <ion-row class="ion-justify-content-end">
-              <ion-col size="4">
-                <div class="card progressreport" style="padding-bottom: 0px; display: flex; justify-content: space-between">
-                  <p>
-                    <span class="material-symbols-outlined" style="margin: 0px 10px 0px 0px"> chevron_left </span>
-                  </p>
-                  <p style="margin-top: 3px">November 2022</p>
-                  <p>
-                    <span class="material-symbols-outlined" style="margin: 0px 0px 0px 10px"> chevron_right </span>
-                  </p>
+          <div class="ProgressReport2" style="margin-top: 30px">
+            <!-- Navigasi Tanggal -->
+            <div class="card progressreport" id="prke1">
+              <p>
+                <span class="material-symbols-outlined" style="margin: 0px 10px 0px 0px"> chevron_left </span>
+              </p>
+              <p style="margin-top: 3px">November 2022</p>
+              <p>
+                <span class="material-symbols-outlined" style="margin: 0px 0px 0px 10px"> chevron_right </span>
+              </p>
+            </div>
+            <!-- Grafik Chart -->
+            <div class="chart" id="prke2">
+              <div class="grafik">
+                <div class="starline">
+                  <p>5 star</p>
                 </div>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <div class="chart">
-                  <div class="grafik">
-                    <div class="starline">
-                      <p>5 star</p>
-                    </div>
-                    <div class="starline">
-                      <p>4 star</p>
-                    </div>
-                    <div class="starline">
-                      <p>3 star</p>
-                    </div>
-                    <div class="starline">
-                      <p>2 star</p>
-                    </div>
-                    <div class="starline s1">
-                      <p>1 star</p>
-                    </div>
-                  </div>
-                  <div class="grafiky">
-                    <div class="fillline" style="margin-top: 30%">
-                      <p>12/11</p>
-                    </div>
-                    <div class="fillline" style="margin-top: 20%">
-                      <p>13/11</p>
-                    </div>
-                    <div class="fillline" style="margin-top: 10%">
-                      <p>16/11</p>
-                    </div>
-                    <div class="fillline" style="margin-top: 20%">
-                      <p>17/11</p>
-                    </div>
-                    <div class="fillline" style="margin-top: 0%">
-                      <p>19/11</p>
-                    </div>
-                    <div class="fillline" style="margin-top: 10%">
-                      <p>21/11</p>
-                    </div>
-                  </div>
+                <div class="starline">
+                  <p>4 star</p>
                 </div>
-              </ion-col>
-              <ion-col size="4">
-                <ion-row>
-                  <ion-card class="progress-count">
-                    <ion-card-content class="progress-title">Filler Word Count</ion-card-content>
-                    <ion-grid>
-                      <ion-row class="progress-table progress-title2 ion-justify-content-between">
-                        <ion-col size="5">Date</ion-col>
-                        <ion-col size="5">%Count</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="5">'uh', 'hm' - 40%</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="5">'uh', 'hm' - 40%</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="5">'uh', 'hm' - 40%</ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-card>
+                <div class="starline">
+                  <p>3 star</p>
+                </div>
+                <div class="starline">
+                  <p>2 star</p>
+                </div>
+                <div class="starline s1">
+                  <p>1 star</p>
+                </div>
+              </div>
+              <div class="grafiky">
+                <div class="fillline" style="margin-top: 30%">
+                  <p>12/11</p>
+                </div>
+                <div class="fillline" style="margin-top: 20%">
+                  <p>13/11</p>
+                </div>
+                <div class="fillline" style="margin-top: 10%">
+                  <p>16/11</p>
+                </div>
+                <div class="fillline" style="margin-top: 20%">
+                  <p>17/11</p>
+                </div>
+                <div class="fillline" style="margin-top: 0%">
+                  <p>19/11</p>
+                </div>
+                <div class="fillline" style="margin-top: 10%">
+                  <p>21/11</p>
+                </div>
+              </div>
+            </div>
+            <!-- Filler Word Count -->
+            <ion-card class="progress-count" id="prke3">
+              <ion-card-content class="progress-title">Filler Word Count</ion-card-content>
+              <ion-grid>
+                <ion-row class="progress-table progress-title2 ion-justify-content-between">
+                  <ion-col size="5" size-sm="6" size-lg="5">Date</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="5">%Count</ion-col>
                 </ion-row>
-                <ion-row>
-                  <ion-card class="progress-count pacing-count">
-                    <ion-card-content class="progress-title">Pacing Count</ion-card-content>
-                    <ion-grid>
-                      <ion-row class="progress-table progress-title2 ion-justify-content-between">
-                        <ion-col size="5">Date</ion-col>
-                        <ion-col size="6">Pacing (word/min)</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="6">205</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="6">205</ion-col>
-                      </ion-row>
-                      <ion-row class="progress-table ion-justify-content-between">
-                        <ion-col size="5">11:11 / 12 Nov</ion-col>
-                        <ion-col size="6">205</ion-col>
-                      </ion-row>
-                    </ion-grid>
-                  </ion-card>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
                 </ion-row>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
+                </ion-row>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+            <!-- Pacing Count -->
+            <ion-card class="progress-count pacing-count" id="prke4">
+              <ion-card-content class="progress-title">Pacing Count</ion-card-content>
+              <ion-grid>
+                <ion-row class="progress-table progress-title2 ion-justify-content-between">
+                  <ion-col size="5" size-sm="4" size-lg="5">Date</ion-col>
+                  <ion-col size="6" size-sm="7" size-lg="6">Pacing (word/min)</ion-col>
+                </ion-row>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="6">205</ion-col>
+                </ion-row>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="6">205</ion-col>
+                </ion-row>
+                <ion-row class="progress-table ion-justify-content-between">
+                  <ion-col size="5">11:11 / 12 Nov</ion-col>
+                  <ion-col size="6">205</ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+          </div>
+          <!-- Bagian Samplespeech -->
           <h1>Sample Speech</h1>
           <div class="samplespeech">
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
+            <ion-slides>
+              <ion-slide id="Slide1">
+                <ion-card>
+                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+                </ion-card>
+              </ion-slide>
+              <ion-slide id="Slide2">
+                <ion-card>
+                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+                </ion-card>
+              </ion-slide>
+              <ion-slide id="Slide3">
+                <ion-card>
+                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+                </ion-card>
+              </ion-slide>
+            </ion-slides>
           </div>
           <ion-footer class="ion-no-border">
             <ion-toolbar>
-              <ion-title>© 2022 Bicara.ai | Policy</ion-title>
+              <ion-title> <span style="color: #3f54d1"> © 2022 Bicara.ai </span> | Policy</ion-title>
             </ion-toolbar>
           </ion-footer>
         </div>
@@ -286,7 +335,7 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar } from "@ionic/vue";
+import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput } from "@ionic/vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -298,17 +347,26 @@ export default defineComponent({
     IonHeader,
     IonTitle,
     IonToolbar,
+    IonInput,
+  },
+  methods: {
+    close_side() {
+      (document.getElementById("aside") as HTMLInputElement).style.display = "none";
+      (document.getElementById("close") as HTMLInputElement).style.display = "none";
+      (document.getElementById("menu") as HTMLInputElement).style.display = "inline-block";
+    },
+    open_side() {
+      (document.getElementById("menu") as HTMLInputElement).style.display = "none";
+      (document.getElementById("aside") as HTMLInputElement).style.display = "block";
+      (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
+    },
   },
 });
 </script>
 
 <style scoped>
-@media (max-width: 480px) {
-}
-
 #container {
   text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -324,9 +382,7 @@ export default defineComponent({
 #container p {
   font-size: 16px;
   line-height: 22px;
-
   color: #8c8c8c;
-
   margin: 0;
 }
 
@@ -334,13 +390,11 @@ export default defineComponent({
   text-decoration: none;
 }
 
-.ion-content {
-  background-color: rgb(122, 104, 104);
-}
-
 ion-page {
   --ion-background-color: #ffffff;
 }
+
+/* CSS HEADER/NAVBAR */
 
 ion-header ion-toolbar ion-title {
   font-family: "Krona One", sans-serif;
@@ -369,11 +423,6 @@ ion-header ion-toolbar ion-button {
   --background-focused: #dddddd;
   --color: rgb(0, 0, 0);
   --border-radius: 10px;
-  /*
-  --border-color: #000;
-  --border-style: solid;
-  --border-width: 1px; 
-  */
   --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
   --ripple-color: var(--ion-color-template2);
   --padding-top: 0px;
@@ -388,14 +437,39 @@ ion-header ion-toolbar ion-button {
   font-size: 18px;
 }
 
+ion-header ion-toolbar button .menu {
+  font-size: 30px;
+  margin-left: 15px;
+}
+ion-header ion-toolbar button .close {
+  font-size: 30px;
+  margin-left: 15px;
+  display: none;
+}
+
 ion-button i {
   width: 10px;
   margin-right: 15px;
 }
 
+#menu {
+  background-color: #3f54d1;
+}
+
+#close {
+  background-color: #ffffff;
+  color: black;
+}
+
+/* CSS SIDEBAR */
+
 .dashboard {
-  display: grid;
-  grid-template-columns: 320px auto;
+  display: flex;
+}
+
+.intro-mobile,
+.intro-mobile-2 {
+  display: none;
 }
 
 .aside {
@@ -404,7 +478,24 @@ ion-button i {
   padding-left: 25px;
   padding-right: 25px;
   width: 310px;
-  height: 870px;
+  height: 100%;
+  display: none;
+  z-index: 200;
+}
+
+.w3-animate-left {
+  position: relative;
+  animation: animateleft 0.4s;
+}
+@keyframes animateleft {
+  from {
+    left: -200px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
 }
 
 .aside ion-button {
@@ -424,6 +515,13 @@ ion-button i {
 
 .aside h4 {
   position: relative;
+}
+.aside h1 {
+  margin: 9px 0;
+}
+
+.aside div {
+  padding-top: 20px;
 }
 
 .aside ion-button span {
@@ -473,7 +571,7 @@ ion-button i {
 
 .aside a:last-child {
   position: absolute;
-  bottom: 40px;
+  bottom: 100px;
 }
 
 .aside a span {
@@ -485,12 +583,18 @@ ion-button i {
   color: black;
 }
 
+.aside a p {
+  margin: 3px 0 0 5px;
+  padding: 0;
+}
+
+/* CSS Content Dashboard */
+
 .content {
-  /* padding-left: 50px;
-  padding-right: 50px; */
   width: 1000px;
   margin: 0 auto;
   padding-top: 10px;
+  transition: all 0.2 s;
 }
 
 .content h1 {
@@ -510,24 +614,19 @@ ion-button i {
   margin: 0;
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 
 .card p {
   padding-top: 5px;
-  padding-bottom: 5px;
+  padding-bottom: 3px;
   margin: 0;
 }
 
-.card p span:first-child {
-  color: #3f54d1;
-}
-.card p span:nth-child(2) {
-  color: #3f54d1;
-}
 .card p span {
-  color: #a8b9be;
-  font-size: 37px !important;
+  font-size: 1.7em !important;
   margin-left: 20px;
+  margin-top: 3px;
 }
 
 /* .isicontent */
@@ -544,7 +643,7 @@ ion-card-content {
   font-family: "Segoe UI";
   font-style: normal;
   font-weight: 600;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 27px;
 }
 
@@ -576,6 +675,41 @@ ion-col p {
   margin-right: 13px;
 }
 
+.mobile-rating {
+  display: none;
+  padding: 10px;
+}
+
+.detail-title {
+  font-size: 18px;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  margin: 5px;
+  text-align: left;
+}
+
+.detail-persen {
+  font-size: 24px;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+  margin: 5px;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.mobile-rating div div {
+  text-align: left;
+  color: #ffffff;
+  border-radius: 14px;
+  margin: 8px;
+  padding: 5px 10px;
+  background-color: #4fe0b5;
+}
+
 .detail {
   display: flex;
   justify-content: left;
@@ -597,7 +731,7 @@ ion-col p {
 
 .progessline {
   margin: 20px auto;
-  width: 180px;
+  width: 70%;
   height: 16px;
   background-color: #ababab;
   border-radius: 10px;
@@ -607,44 +741,27 @@ ion-col p {
   border-radius: 10px;
 }
 
-.IntonLine {
-  width: 75%;
-  background-color: #3f54d1;
-}
-
 .inton {
   background-color: #3f54d1;
 }
-.PronunLine {
-  width: 65.7%;
-  background-color: #5280e2;
-}
-
 .pronun {
   background-color: #5280e2;
 }
 
-.GrammarLine {
-  width: 80%;
-  background-color: #15cdcb;
-}
 .grammar {
   background-color: #15cdcb;
 }
 
-.EyeconLine {
-  width: 50%;
-  background-color: #4fe0b5;
-}
 .eyecontact {
   background-color: #4fe0b5;
 }
 
+/* CSS CHART */
 .chart {
   font-family: "Segoe UI";
   font-style: normal;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.2rem;
   background-color: #e4eaeffe;
   color: black;
   border-radius: 10px;
@@ -708,29 +825,14 @@ ion-col p {
   margin-left: -13px;
 }
 
-/* ion-list {
-  --background: #e4eaeffe;
-  --color: black;
-  border-radius: 10px;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
-  border: none;
+.progressreport {
+  padding-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
 }
-
-ion-list ion-item {
-  --background: #e4eaeffe;
-  --color: black;
-  height: 30px;
+.progressreport p {
+  font-size: 20px;
 }
-
-ion-list ion-item ion-label {
-  --background: #e4eaeffe;
-  --color: black;
-  margin: 3px 0px;
-  padding: 0px;
-} 
-*/
 
 .progress-count {
   --background: #e4eaeffe;
@@ -749,39 +851,344 @@ ion-list ion-item ion-label {
 }
 
 .progress-title {
+  font-size: 20px;
   text-align: center;
   font-family: "Segoe UI", Arial, sans-serif;
+  padding: 12px;
 }
 
 .progress-title2 {
   color: #ababab;
 }
 
-.pacing-count {
-  margin-top: 10px;
-}
-
-.samplespeech{
-  margin: 30px auto;
-  display: flex;
-}
-
-.samplespeech ion-card{
+.samplespeech ion-card {
   width: 360px;
   height: 310px;
   margin: auto 10px;
 }
+.samplespeech {
+  margin: 30px auto;
+  display: flex;
+}
 
-ion-footer ion-toolbar{
+ion-footer ion-toolbar {
   --background: white;
   margin: 20px;
+  width: auto;
 }
-ion-footer ion-toolbar ion-title{
+ion-footer ion-toolbar ion-title {
   font-size: 15px;
   text-align: center;
 }
 
-.samplespeech ion-card ion-card-content{
+.samplespeech ion-card ion-card-content {
   text-align: center;
+}
+
+/* Progress Report Grid*/
+#prke1 {
+  grid-area: prke1;
+}
+#prke2 {
+  grid-area: prke2;
+}
+#prke3 {
+  grid-area: prke3;
+}
+#prke4 {
+  grid-area: prke4;
+}
+.ProgressReport2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". . prke1"
+    "prke2 prke2 prke3"
+    "prke2 prke2 prke4";
+  grid-gap: 12px;
+  margin: 10px;
+}
+
+@media (max-width: 992px) {
+
+  .content {
+    width: 576px;
+  }
+
+  .upload-rating {
+    font-size: 18px;
+  }
+  .upload-nav {
+    display: none;
+  }
+  .none {
+    border-right: none;
+  }
+
+  .detailborder {
+    border-bottom: 1px solid rgb(191, 187, 187);
+  }
+  .none2 {
+    border-bottom: none;
+  }
+
+  .ProgressReport2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "prke2 prke2"
+      "prke3 prke4";
+    grid-gap: 12px;
+    margin: 10px;
+  }
+
+  .progressreport {
+    display: none;
+  }
+
+  .card p span {
+    font-size: 1.7em !important;
+    margin-left: 30px;
+  }
+
+  .chart {
+    width: 556px;
+    height: 313px;
+  }
+
+  .grafik {
+    margin: auto;
+    margin-left: 50px;
+    z-index: 0;
+  }
+  .starline {
+    border-top: 2px solid rgb(182, 182, 182);
+    width: 400px;
+    height: 41px;
+  }
+
+  .s1 {
+    border-bottom: 2px solid rgb(182, 182, 182);
+  }
+  .starline p {
+    right: 5px;
+    margin: 0px;
+    margin-right: -480px;
+    margin-top: -15px;
+  }
+
+  .grafiky {
+    position: absolute;
+    margin: 55px auto;
+    width: 400px;
+    height: 204px;
+    z-index: 100;
+    display: flex;
+    gap: 48px;
+  }
+
+  .fillline {
+    width: 15px;
+    border-radius: 10px;
+    bottom: 5;
+  }
+
+  .fillline p {
+    position: absolute;
+    bottom: -58px;
+    margin-left: -13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .background-mobile {
+    position: absolute;
+    z-index: -1000;
+    background-color: #3f54d1;
+    border-radius: 50%;
+    width: 2000px;
+    height: 480px;
+    left: -800px;
+    top: -90px;
+    background: linear-gradient(180deg, #3f54d1 56.78%, rgba(63, 84, 209, 0.26) 100%);
+  }
+
+  .intro-mobile {
+    z-index: 0;
+    width: 90%;
+    margin: 20px 20px 25px;
+    font-family: "Segoe UI";
+    font-size: 24px;
+    display: block;
+    color: #ffffff;
+  }
+
+  .intro-mobile-2 {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f54d1;
+    padding: 10px 20px;
+    padding-bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    z-index: 200;
+  }
+  .intro-mobile-2 h1 {
+    margin-top: 2px;
+    color: #ffffff;
+    font-family: "Krona One", sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+  }
+
+  .search-mobile {
+    box-shadow: none;
+    background-color: white;
+    border-radius: 30px;
+    font-size: 20px;
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .search-mobile span {
+    color: black;
+    margin: 4px 10px;
+  }
+
+  .aside a:last-child {
+    position: absolute;
+    bottom: 20px;
+  }
+
+  ion-input {
+    font-family: "Segoe UI";
+    font-size: 18px;
+    z-index: 10;
+    width: 55vw;
+    height: 33px;
+    --background: #ffffff;
+    --color: rgb(0, 0, 0);
+    --placeholder-opacity: 0.8;
+    --padding-bottom: 10px;
+    --padding-end: 10px;
+    --padding-start: 10px;
+    --padding-top: 10px;
+    margin-right: 20px;
+  }
+
+  .dashboard {
+    z-index: 0;
+  }
+  ion-header {
+    display: none;
+  }
+  .detail-rating,
+  ion-header ion-toolbar ion-button,
+  ion-header ion-toolbar ion-avatar,
+  #asidee {
+    display: none;
+  }
+
+  .content {
+    width: 97vw;
+  }
+
+  .content h1 {
+    font-size: 25px;
+  }
+
+  .content .title-rat {
+    margin-top: 0px;
+    color: #ffffff;
+  }
+
+  .upload-rating {
+    display: none;
+  }
+
+  .ProgressReport2 {
+    display: grid;
+    grid-template-columns: 93vw;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "prke2"
+      "prke3"
+      "prke4";
+    grid-gap: 12px;
+    margin: 9px;
+  }
+
+  .card p span {
+    font-size: 1.7em !important;
+    margin-left: 10px;
+  }
+
+  ion-card-content {
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .filler-word,
+  .pacing-word {
+    display: none;
+  }
+
+  .mobile-rating {
+    display: block;
+  }
+
+  .chart {
+    width: 93vw;
+    height: 60vw;
+    font-size: 14px;
+  }
+
+  .grafik {
+    margin: auto;
+    margin-left: 7vw;
+    z-index: 0;
+  }
+  .starline {
+    border-top: 2px solid rgb(182, 182, 182);
+    width: 70vw;
+    height: 8vw;
+  }
+
+  .s1 {
+    border-bottom: 2px solid rgb(182, 182, 182);
+  }
+  .starline p {
+    right: 5px;
+    margin: 0px;
+    margin-right: -85vw;
+    margin-top: -3.8vw;
+  }
+
+  .grafiky {
+    position: absolute;
+    margin: 9.8vw auto;
+    margin-left: 6vw;
+    width: 75vw;
+    height: 40vw;
+    z-index: 100;
+    display: flex;
+    gap: 8vw;
+  }
+
+  .fillline {
+    width: 3vw;
+    border-radius: 10px;
+    bottom: 5;
+  }
+
+  .fillline p {
+    position: absolute;
+    bottom: -9.9vw;
+    margin-left: -3vw;
+  }
 }
 </style>
