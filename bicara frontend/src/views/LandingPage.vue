@@ -19,8 +19,8 @@
             <ion-col size="12" size-md="8" size-lg="5" class="email">
               <div class="email-regist">
                 <ion-img src="assets/icon/email.svg"></ion-img>
-                <ion-input class="email-input" placeholder="Your email address"></ion-input>
-                <ion-button size="large" color="notify" class="notify">Notify me</ion-button>
+                <ion-input class="email-input" placeholder="Your email address" v-model="email"></ion-input>
+                <ion-button size="large" color="notify" class="notify" @click="emailSubmit" href="/">Notify me</ion-button>
               </div>
             </ion-col>
           </ion-row>
@@ -178,14 +178,37 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides,IonInput,IonButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import axios from "axios";
+import { email } from '@vee-validate/rules';
 
 export default defineComponent({
   name: 'LandingPage',
+  data() {
+    return {
+      email: ''
+    }
+  },
   components: {
     IonContent,
     IonPage,
+    IonInput,
+    IonButton
+  },
+  methods:{
+    emailSubmit(){
+      axios
+      .post('http://127.0.0.1:5000/', {
+        email: this.email
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 });
 </script>
