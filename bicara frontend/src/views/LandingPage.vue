@@ -16,7 +16,7 @@
             <ion-col size="12" class="desc-top">Bicara.ai is an education platform. Bicara.ai aim to improve indviduals comunication skills with judgement free feedback from our AI-powered speech coach.</ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="12" size-md="8" size-lg="5" class="email">
+            <ion-col size="12" size-md="12" size-lg="5" class="email">
               <div class="email-regist">
                 <ion-img src="assets/icon/email.svg"></ion-img>
                 <ion-input class="email-input" placeholder="Your email address" v-model="email"></ion-input>
@@ -28,70 +28,49 @@
       </div>
 
       <div class="one">
-        <h1>Why use Bicara.ai</h1>
-        <ion-img class="num-back" src="assets/img/1.svg"></ion-img>
+        <!-- ganti icon-->
+        <h1>Why you should use Bicara.ai</h1>
+        <div class="num-back"><ion-img src="assets/img/1.svg"></ion-img></div>
         <ion-row class="for-landscape">
-          <ion-col size="12" size-lg="2"></ion-col>
-          <ion-col size="6" size-lg="2">
+          <ion-col size="3"></ion-col>
+          <ion-col size="3">
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
-              <ion-card-title>Pronunciation</ion-card-title></ion-card>
-          </ion-col>
-          <ion-col size="6" size-lg="2">
-            <ion-card class="card-one">
-              <ion-img src="assets/icon/intonation.svg" class="small-icon"></ion-img>
-              <ion-card-title>Intonation</ion-card-title>
+              <ion-img src="assets/icon/pronunciation.svg" class="big-icon"></ion-img>
+              <ion-card-title>Filler words detection</ion-card-title>
             </ion-card>
           </ion-col>
-          <ion-col size="6" size-lg="2">
+          <ion-col size="3">
             <ion-card class="card-one">
               <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Eye Detection</ion-card-title>
+              <ion-card-title>Body language</ion-card-title>
             </ion-card>            
           </ion-col>
-          <ion-col size="6" size-lg="2">
-            <ion-card class="card-one">
-              <ion-img class="small-icon" src="assets/icon/grammar.svg"></ion-img>
-              <ion-card-title>Grammar</ion-card-title>
-            </ion-card>
-          </ion-col>
-          <ion-col size="12" size-lg="2"></ion-col>
+          <ion-col size="3"></ion-col>
         </ion-row>
 
         <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 10vh;"></ion-img>
         
         <ion-img src="assets/icon/arrow-right.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; right: 3vh; margin-top: 10vh;"></ion-img>
 
-        <ion-slides class="for-portrait">          
-          <ion-slide size="6" size-lg="2">
+        <ion-slides class="for-portrait">
+          <ion-slide>
             <ion-card class="card-one">
               <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
-              <ion-card-title>Pronunciation</ion-card-title></ion-card>
-          </ion-slide>
-          <ion-slide size="6" size-lg="2">
-            <ion-card class="card-one">
-              <ion-img class="small-icon" src="assets/icon/intonation.svg"></ion-img>
-              <ion-card-title>Intonation</ion-card-title>
+              <ion-card-title>Filler words detection</ion-card-title>
             </ion-card>
           </ion-slide>
-          <ion-slide size="6" size-lg="2">
+          <ion-slide>
             <ion-card class="card-one">
               <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Eye Detection</ion-card-title>
+              <ion-card-title>Body language</ion-card-title>
             </ion-card>            
-          </ion-slide>
-          <ion-slide size="6" size-lg="2">
-            <ion-card class="card-one">
-              <ion-img class="small-icon" src="assets/icon/grammar.svg"></ion-img>
-              <ion-card-title>Grammar</ion-card-title>
-            </ion-card>
           </ion-slide>
         </ion-slides>
       </div>
 
       <div class="two">
         <h1>See our analysis example</h1>
-        <ion-img class="num-back" src="assets/img/2.svg"></ion-img>
+        <div class="num-back"><ion-img src="assets/img/2.svg"></ion-img></div>
         <div>
           <div class="video">
             <iframe src="https://www.youtube.com/embed/fpI8Jx65W18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -101,7 +80,7 @@
 
       <div class="three">
         <h1>How it works</h1>
-        <ion-img class="num-back" src="assets/img/3.svg"></ion-img>
+        <div class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
         <div class="green-bar">
           <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
         </div>
@@ -216,7 +195,7 @@ export default defineComponent({
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Krona+One&display=swap');
 
-@media (orientation: landscape) {
+@media (min-width: 992px) {
   .bicara-ai-top {
   background: #3F54D1;
   background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
@@ -341,11 +320,13 @@ export default defineComponent({
 }
 
 .num-back {
+  display: flex;
+  margin-left: 35vw;
+  text-align: center;
+  width: 50%;
   margin-top: -30vh;
   height: 65vh;
-  position:absolute;
-  margin-left: 35vw;
-  margin-right: 35vw;
+  position: absolute;
   z-index: 0;
 }
 
@@ -370,13 +351,8 @@ export default defineComponent({
   border-radius: 40px;
 }
 
-.small-icon {
-  margin-top: 12vh;
-  margin-bottom: 2vh;
-  height: 8vh;
-}
 .big-icon {
-  margin-top: 14vh;
+  margin-top: 10vh;
   margin-bottom: 1.5vh;
   height: 5vh;
 }
@@ -543,7 +519,7 @@ export default defineComponent({
  }
 }
 
-@media (orientation: portrait) {
+@media (max-width: 576px) {
   .bicara-ai-top {
   background: #3F54D1;
   background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
@@ -683,19 +659,14 @@ export default defineComponent({
 .card-one {
   background-color: white;
   width: 35vw;
-  height: 20vh;
+  height: 10vh;
   border-radius: 25px;
 }
 
 .big-icon {
-  margin-top: 5.5vh;
+  margin-top: 5vh;
   height: 6vw;
 }
-.small-icon {
-  margin-top: 5vh;
-  height: 9vw;
-}
-
 .card-one ion-card-title {
   color: black;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -851,6 +822,321 @@ export default defineComponent({
   margin-right: 20vw;
   margin-left: 20vw;
   z-index: 0;
+  display: flex;
+  justify-content: center;
+}
+
+}
+
+@media (max-width: 992px) {
+  .bicara-ai-top {
+  background: #3F54D1;
+  background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'Krona One', sans-serif;
+  align-self: center;
+  font-size: 2vh;
+}
+
+.top-bar {
+  line-height: 6vh;
+  height: 6vh;
+  text-align: center;
+}
+
+.top-gradient {
+  background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
+  height: 50vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.top-content {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  padding-top: 3vh;
+  padding-bottom: 1vh;
+}
+
+.title-top1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vh;
+  color: black;
+  text-align: center;
+  margin-bottom: -1vh;
+}
+.title-top2 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2.8vh;
+  color: #3F54D1;
+  text-align: center;
+}
+
+.desc-top {
+  padding-top: 1.5vh;
+  font-size: 2vh;
+  font-weight: 500;
+  color: #6e7071;
+  text-align: center;
+}
+
+.email {
+  width: 50vh;
+  display: flex;
+  justify-content: center;
+}
+.email-regist {
+  display: flex;
+  width: 80%;
+  height: 4vh;
+  box-shadow: none;
+  background-color: white;
+  border-radius: 1.875rem;
+  margin-top: 1vh;
+  padding-left: 2.7vh;
+  margin-left: 0px;
+  font-size: 1.25rem;
+  position: absolute;
+}
+
+.email-regist ion-img {
+  background-color: white;
+  height: 2vh;
+  margin:auto;
+}
+
+.email-input {
+  margin : 0px;
+  height: 4vh;
+  font-size: 2vh;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: black;
+  z-index: 0;
+}
+
+.notify {
+  position: absolute;
+  margin: 0 auto;
+  right:-3vw;
+  height: 4vh;
+  width: 20vw;
+  font-family: 'Inter';
+  font-size: 1.5vh;
+  text-transform: none;
+  --border-radius: 1.875rem;
+  --line-height: 7vh;
+  --box-shadow: none;
+  --font-size: 2vh;
+}
+
+.one {
+  background-color: #f3f4f8;
+  height: 45vh;
+}
+
+.one h1 {
+  color: #2c3b93;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 4vh;
+  padding-bottom: 2vh;
+  margin-top: -2vh;
+  font-size: 2.8vh;
+  position: relative;
+  z-index: 1;
+}
+
+.one ion-row {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.one ion-col {
+  display: flex;
+  justify-content: center;
+}
+
+.for-landscape {
+  display: none;
+}
+
+
+.card-one {
+  background-color: white;
+  width: 35vw;
+  height: 25vh;
+  border-radius: 25px;
+}
+
+.big-icon {
+  margin-top: 5.5vh;
+  height: 6vw;
+}
+.card-one ion-card-title {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 4vw;
+  margin-top: 0.75rem;
+}
+
+.two {
+  background:#2c3b93;
+  height: 50vh;
+  padding-top: 3vh;
+}
+
+.two h1 {
+  color: #15cdcb;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  z-index: 1;
+  padding-bottom: 2.8vh;
+  position: relative;
+  z-index: 1;
+}
+
+ .video{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+ }
+
+ .iframe {
+  width: 90vw;
+ }
+
+ .three {
+  height: 55vh;
+ }
+
+ .three-content {
+  display: flex;
+  justify-content: center;
+ }
+
+ .three h1 {
+  color: #2c3b93;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  position: relative;
+  z-index: 1;
+ }
+
+ .green-bar  {
+  width: 40.625rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+
+ .three ion-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.8vh;
+  font-weight: 700;
+  color: black;
+ }
+
+ .highlight {
+  background-color: #92ecd1;
+ }
+
+ .center {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+ }
+
+ .three ion-slide ion-slides {
+  flex-direction: row;
+  display:contents;
+ }
+
+ .card-desc {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+ }
+
+ .card-three {
+  background-color: #c8d6da;
+  width: 5.625rem;
+  height: 10vh;
+  border-radius: 1.5625rem;
+  align-self: center;
+ }
+
+ .kucing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1.25rem;
+  text-align: center;
+ }
+
+ .kelinci {
+  text-align: center;
+  margin-bottom: 1.25rem;
+ }
+
+.to-top {
+  --border-radius: 30px;
+  --position: absolute;
+  --box-shadow: none;
+  --font-family: 'Inter', sans-serif;
+  --margin: 0 auto;
+  --display: block;
+  height: 3vh;
+  width: 25vw;
+  font-size: 1.5vh;
+  text-transform: none;
+}
+
+ .footer {
+  background: linear-gradient(90deg, #2c3b93 57%, #33629c 81%, #0f908e 99.9%);
+  height: 10vh;
+  margin-bottom: -10px;
+ }
+
+ .copyright {
+  color: white;
+  font-family: 'Inter', sans-serif;
+  text-align: right;
+  font-size: 1.5vh;
+  line-height: 8vh;
+  position: absolute;
+  right: 10vw;
+ }
+
+ .bicara-ai-bot {
+  color: white;
+  font-family: 'Krona One', sans-serif;
+  font-size: 2vh;
+  line-height: 8vh;
+  padding-left: 10vw;
+ }
+
+ .num-back {
+  margin-top: -12vh;
+  height: 55vh;
+  position: absolute;
+  margin-right: 25vw;
+  margin-left: 25vw;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
 }
 
 }
