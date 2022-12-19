@@ -31,41 +31,37 @@
       <div class="dashboard">
         <!-- Sidebar Dashboard-->
         <div class="aside w3-animate-left" id="aside" style="position: fixed">
-          <div style="display: flex; justify-content: space-between; align-items: center">
-            <h1 slot="start">Hi, Jake!</h1>
-            <button slot="end" v-on:click="close_side()" id="close">
-              <span class="material-symbols-rounded close"> close </span>
-            </button>
+          <div class="firstsidebar">
+            <div style="display: flex; justify-content: space-between; align-items: center">
+              <h1 slot="start">Hi, Jake!</h1>
+              <button slot="end" v-on:click="close_side()" id="close">
+                <span class="material-symbols-rounded close"> close </span>
+              </button>
+            </div>
+            <h4>What would you like to do today?</h4>
+            <a href="#">
+              <span class="material-symbols-outlined">home</span>
+              <p>Home</p>
+            </a>
+            <a href="#">
+              <span class="material-symbols-outlined"> video_library </span>
+              <p>Library</p>
+            </a>
+            <a href="#">
+              <span class="material-symbols-outlined"> help_center </span>
+              <p>FAQ</p>
+            </a>
           </div>
-          <h4>What would you like to do today?</h4>
-          <a href="#">
-            <span class="material-symbols-outlined">home</span>
-            <p>Home</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> video_library </span>
-            <p>Library</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> summarize </span>
-            <p>Report</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> group </span>
-            <p>Contact Support</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> settings </span>
-            <p>Settings</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> help_center </span>
-            <p>Help</p>
-          </a>
-          <a href="#">
-            <span class="material-symbols-outlined"> logout </span>
-            <p>Sign Out</p>
-          </a>
+          <div class="lastsidebar">
+            <a href="#">
+              <span class="material-symbols-outlined"> group </span>
+              <p>Contact Support</p>
+            </a>
+            <a href="#">
+              <span class="material-symbols-outlined"> logout </span>
+              <p>Sign Out</p>
+            </a>
+          </div>
         </div>
 
         <!-- Content Dashboard -->
@@ -80,8 +76,33 @@
           </div>
           <!-- Bagian Rating Result -->
           <h1 class="title-rat">Rating Result</h1>
+          <ion-card class="empty-state" style="display: none">
+            <ion-img class="empty-img" src="assets/icon/empty.png"></ion-img>
+            <div style="position: relative">
+              <ion-card-content> There are no video yet </ion-card-content>
+              <p class="title-empty">You can add your video with the button in the bottom right corner (maximum video size 10 MB).</p>
+              <div class="empty-button">
+                <ion-button class="upload-vid">
+                  <span class="material-symbols-outlined"> video_call </span>
+                  <p class="upload-nav2" style="margin-left: 10px">Upload Video</p>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card>
           <ion-grid>
-            <ion-row class="ion-justify-content-end">
+            <ion-row class="ion-justify-content-between">
+              <ion-col size="12" size-sm="6" size-lg="5">
+                <div class="card">
+                  <p class="scoretitle" style="">Score</p>
+                  <p class="scorestar">
+                    <span class="material-symbols-rounded bintang" style="color: #3f54d1"> star </span>
+                    <span class="material-symbols-rounded bintang" style="color: #3f54d1"> star </span>
+                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
+                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
+                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
+                  </p>
+                </div>
+              </ion-col>
               <ion-col size="12" size-sm="6" size-lg="4">
                 <div class="card">
                   <p class="upload-rating">Uploaded 11 November 2022</p>
@@ -89,84 +110,40 @@
               </ion-col>
             </ion-row>
             <!-- score, filler, pacing -->
-            <ion-row>
-              <ion-col size="12" size-sm="12" size-lg="6">
-                <div class="card">
-                  <p style="margin-top: 5px; margin-right: 10px; font-size: 20px">Score</p>
-                  <p>
-                    <span class="material-symbols-rounded" style="color: #3f54d1"> star </span>
-                    <span class="material-symbols-rounded" style="color: #3f54d1"> star </span>
-                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
-                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
-                    <span class="material-symbols-rounded" style="color: #a8b9be"> star </span>
-                  </p>
-                </div>
-              </ion-col>
-              <ion-col class="filler-word" size="6" size-sm="6" size-lg="3">
-                <ion-card class="filler-word">
-                  <ion-row class="ion-justify-content-between">
-                    <ion-col size="8" size-sm="7">
-                      <ion-card-content style="padding-right: 0px">Filler Word</ion-card-content>
-                    </ion-col>
-                    <ion-col size="4" size-sm="4">
-                      <ion-card-content style="padding-left: 0px">40%</ion-card-content>
-                    </ion-col>
-                  </ion-row>
-                </ion-card>
-              </ion-col>
-              <ion-col class="pacing-word" size="6" size-sm="6" size-lg="3">
-                <ion-card class="pacing-word">
-                  <ion-row class="ion-justify-content-between">
-                    <ion-col size="7" size-sm="5">
-                      <ion-card-content>Pacing</ion-card-content>
-                    </ion-col>
-                    <ion-col size="5" size-sm="4">
-                      <ion-card-content>250</ion-card-content>
-                    </ion-col>
-                  </ion-row>
-                </ion-card>
-              </ion-col>
-            </ion-row>
             <!-- detail -->
             <ion-row>
               <ion-col>
                 <!-- Tampilan detail di mobile -->
                 <ion-card class="mobile-rating">
-                  <div style="display: flex">
-                    <div style="background-color: #3f54d1; width: 50%">
-                      <p class="detail-title">Intonation</p>
+                  <div>
+                    <div style="background-color: #3f54d1">
+                      <p class="detail-title">Eye Contact</p>
                       <p class="detail-persen">75%</p>
                     </div>
-                    <div style="background-color: #5280e2; width: 50%">
-                      <p class="detail-title">Pronunciation</p>
-                      <p class="detail-persen">65.7%</p>
-                    </div>
-                  </div>
-                  <div style="display: flex">
-                    <div style="background-color: #15cdcb; width: 50%">
-                      <p class="detail-title">Grammar</p>
+                    <div style="background-color: #15cdcb;">
+                      <p class="detail-title">Filler Word</p>
                       <p class="detail-persen">80%</p>
                     </div>
-                    <div style="background-color: #4fe0b5; width: 50%">
-                      <p class="detail-title">Eye Contact</p>
-                      <p class="detail-persen">50%</p>
+                    <div style="background-color: #4fe0b5;">
+                      <p class="detail-title">Pacing</p>
+                      <p class="detail-persen">250 <span style="font-size: 17px;">word/min</span> </p>
                     </div>
                   </div>
                 </ion-card>
                 <!-- Tampilan detail di desktop -->
                 <ion-card class="detail-rating">
                   <ion-row>
-                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder">
+                    <ion-col size="6" size-sm="4" size-lg="4" class="detailborder">
                       <div class="detail">
                         <p><span class="dot inton"></span></p>
-                        <p>Intonation</p>
+                        <p>Eye Contact</p>
                       </div>
                       <p class="val">75%</p>
                       <div class="progessline">
                         <div class="progessvalue inton" style="width: 75%"></div>
                       </div>
                     </ion-col>
-                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
+                    <!-- <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
                       <div class="detail">
                         <p><span class="dot pronun"></span></p>
                         <p>Pronunciation</p>
@@ -175,23 +152,23 @@
                       <div class="progessline">
                         <div class="progessvalue pronun" style="width: 65.7%"></div>
                       </div>
-                    </ion-col>
-                    <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none2">
+                    </ion-col> -->
+                    <ion-col size="6" size-sm="4" size-lg="4" class="detailborder none2">
                       <div class="detail">
                         <p><span class="dot grammar"></span></p>
-                        <p>Grammar</p>
+                        <p>Filler Word</p>
                       </div>
                       <p class="val">80%</p>
                       <div class="progessline">
                         <div class="progessvalue grammar" style="width: 80%"></div>
                       </div>
                     </ion-col>
-                    <ion-col size="6" size-sm="6" size-lg="3">
+                    <ion-col size="6" size-sm="4" size-lg="4">
                       <div class="detail">
                         <p><span class="dot eyecontact"></span></p>
-                        <p>Eye Contact</p>
+                        <p>Pacing</p>
                       </div>
-                      <p class="val">50%</p>
+                      <p class="val">250 word/min</p>
                       <div class="progessline">
                         <div class="progessvalue eyecontact" style="width: 50%"></div>
                       </div>
@@ -200,18 +177,34 @@
                 </ion-card>
               </ion-col>
             </ion-row>
+            <ion-row class="ion-justify-content-end">
+              <a href="#" class="previous-vid">See your previous video analysis</a>
+            </ion-row>
           </ion-grid>
           <!-- Bagian Progess Report -->
           <h1>Progress Report</h1>
+          <ion-card class="empty-state" style="display: none">
+            <ion-img class="empty-img" src="assets/icon/empty.png"></ion-img>
+            <div style="position: relative">
+              <ion-card-content> There are no video yet </ion-card-content>
+              <p class="title-empty">You can add your video with the button in the bottom right corner (maximum video size 10 MB).</p>
+              <div class="empty-button">
+                <ion-button class="upload-vid">
+                  <span class="material-symbols-outlined"> video_call </span>
+                  <p class="upload-nav2" style="margin-left: 10px">Upload Video</p>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card>
           <div class="ProgressReport2" style="margin-top: 30px">
             <!-- Navigasi Tanggal -->
             <div class="card progressreport" id="prke1">
               <p>
-                <span class="material-symbols-outlined" style="margin: 0px 10px 0px 0px"> chevron_left </span>
+                <span class="material-symbols-outlined"> chevron_left </span>
               </p>
-              <p style="margin-top: 3px">November 2022</p>
+              <p>November 2022</p>
               <p>
-                <span class="material-symbols-outlined" style="margin: 0px 0px 0px 10px"> chevron_right </span>
+                <span class="material-symbols-outlined"> chevron_right </span>
               </p>
             </div>
             <!-- Grafik Chart -->
@@ -234,22 +227,28 @@
                 </div>
               </div>
               <div class="grafiky">
-                <div class="fillline" style="margin-top: 30%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 40%; background-color: #3f54d1"></div>
                   <p>12/11</p>
                 </div>
-                <div class="fillline" style="margin-top: 20%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 60%; background-color: #4fe0b5"></div>
                   <p>13/11</p>
                 </div>
-                <div class="fillline" style="margin-top: 10%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 80%; background-color: #3f54d1"></div>
                   <p>16/11</p>
                 </div>
-                <div class="fillline" style="margin-top: 20%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 60%; background-color: #4fe0b5"></div>
                   <p>17/11</p>
                 </div>
-                <div class="fillline" style="margin-top: 0%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 80%; background-color: #3f54d1"></div>
                   <p>19/11</p>
                 </div>
-                <div class="fillline" style="margin-top: 10%">
+                <div class="fillline">
+                  <div class="filllinestar" style="height: 100%; background-color: #4fe0b5"></div>
                   <p>21/11</p>
                 </div>
               </div>
@@ -408,7 +407,7 @@ ion-header ion-toolbar ion-title {
 }
 
 ion-header ion-toolbar {
-  --background: var(--ion-color-template1);
+  --background: #3e54d3;
   --padding-start: 10px;
   --padding-end: 20px;
   --padding-top: 15px;
@@ -416,15 +415,16 @@ ion-header ion-toolbar {
   --color: white;
 }
 
-ion-header ion-toolbar ion-button {
+ion-header ion-toolbar ion-button,
+.upload-vid {
   --background: #ffffff;
-  --background-hover: var(--ion-color-template1);
+  --background-hover: #3e54d3;
   --background-activated: #dcdcdc;
   --background-focused: #dddddd;
   --color: rgb(0, 0, 0);
   --border-radius: 10px;
   --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  --ripple-color: var(--ion-color-template2);
+  --ripple-color: #4f80e2;
   --padding-top: 0px;
   --padding-bottom: 0px;
   font-family: "Segoe UI", Arial, sans-serif;
@@ -475,9 +475,7 @@ ion-button i {
 .aside {
   background-color: rgb(255, 255, 255);
   border-right: 1px solid #8c8c8c;
-  padding-left: 25px;
-  padding-right: 25px;
-  width: 310px;
+  width: 300px;
   height: 100%;
   display: none;
   z-index: 200;
@@ -500,13 +498,13 @@ ion-button i {
 
 .aside ion-button {
   --background: #ffffff;
-  --background-hover: var(--ion-color-template1);
+  --background-hover: #3e54d3;
   --background-activated: #dcdcdc;
   --background-focused: #dddddd;
   --color: rgb(0, 0, 0);
   --border-radius: 20px;
   --box-shadow: 0;
-  --ripple-color: var(--ion-color-template2);
+  --ripple-color: #4f80e2;
   text-transform: capitalize;
   font-family: "Segoe UI", Arial, sans-serif;
   letter-spacing: 0px;
@@ -518,10 +516,6 @@ ion-button i {
 }
 .aside h1 {
   margin: 9px 0;
-}
-
-.aside div {
-  padding-top: 20px;
 }
 
 .aside ion-button span {
@@ -541,7 +535,7 @@ ion-button i {
   padding-left: 15px;
   padding-top: 8px;
   padding-bottom: 8px;
-  background-color: var(--ion-color-template1);
+  background-color: #3f54d1;
   font-size: 18px;
   gap: 8px;
   margin-top: 20px;
@@ -569,9 +563,16 @@ ion-button i {
   transition: background-color 0.6s;
 }
 
-.aside a:last-child {
+.aside .firstsidebar {
+  margin: 0px 25px;
+  margin-top: 20px;
+}
+.aside .lastsidebar {
   position: absolute;
-  bottom: 100px;
+  bottom: 80px;
+  border-top: 1px solid #8c8c8c;
+  padding: 10px 25px;
+  width: 100%;
 }
 
 .aside a span {
@@ -581,6 +582,11 @@ ion-button i {
 .aside a:hover {
   background-color: rgb(226, 232, 238);
   color: black;
+}
+
+.aside a:nth-child(3):hover {
+  background-color: #3f54d1;
+  color: #ffffff;
 }
 
 .aside a p {
@@ -617,13 +623,16 @@ ion-button i {
   height: 100%;
 }
 
-.card p {
+.scoretitle {
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 20px;
   padding-top: 5px;
   padding-bottom: 3px;
   margin: 0;
 }
 
-.card p span {
+.bintang {
   font-size: 1.7em !important;
   margin-left: 20px;
   margin-top: 3px;
@@ -644,7 +653,6 @@ ion-card-content {
   font-style: normal;
   font-weight: 600;
   font-size: 20px;
-  line-height: 27px;
 }
 
 ion-card ion-row ion-col,
@@ -678,6 +686,7 @@ ion-col p {
 .mobile-rating {
   display: none;
   padding: 10px;
+  border-radius: 15px;
 }
 
 .detail-title {
@@ -697,17 +706,18 @@ ion-col p {
   font-weight: 600;
   line-height: 27px;
   margin: 5px;
-  margin-top: 8px;
   text-align: left;
 }
 
 .mobile-rating div div {
   text-align: left;
   color: #ffffff;
-  border-radius: 14px;
-  margin: 8px;
+  border-radius: 15px;
+  margin: 5px;
   padding: 5px 10px;
-  background-color: #4fe0b5;
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .detail {
@@ -721,7 +731,7 @@ ion-col p {
 }
 
 .val {
-  margin: 3px 0 8px;
+  margin: 15px 0px;
   font-size: 24px;
 }
 
@@ -729,9 +739,18 @@ ion-col p {
   border-right: 1px solid rgb(191, 187, 187);
 }
 
+.upload-rating {
+  margin: 0px;
+  padding-top: 7px;
+}
+
+.scorestar {
+  margin: 0px;
+}
+
 .progessline {
   margin: 20px auto;
-  width: 70%;
+  width: 78%;
   height: 16px;
   background-color: #ababab;
   border-radius: 10px;
@@ -739,6 +758,15 @@ ion-col p {
 .progessvalue {
   height: 16px;
   border-radius: 10px;
+}
+
+.previous-vid{
+  color: black;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  margin-right: 10px;
 }
 
 .inton {
@@ -754,6 +782,41 @@ ion-col p {
 
 .eyecontact {
   background-color: #4fe0b5;
+}
+/* Empty State */
+.empty-state {
+  width: 980px;
+  height: 300px;
+  margin: 30px 10px !important;
+  padding: 30px;
+  display: flex;
+}
+
+.empty-state ion-card-content {
+  font-size: 30px;
+  padding: 0px !important;
+  margin-top: 20px;
+}
+
+.empty-state .title-empty {
+  font-size: 20px;
+  font-family: "Segoe UI";
+  font-style: normal;
+  font-weight: 600;
+  /* line-height: 27px; */
+  color: #6e7071;
+}
+
+.empty-button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.empty-img {
+  width: 180px;
+  margin-right: 30px;
+  margin-left: 5px;
 }
 
 /* CSS CHART */
@@ -809,13 +872,19 @@ ion-col p {
 .fillline {
   width: 17px;
   border-radius: 10px;
-  bottom: 5;
 }
 
-.fillline:nth-child(odd) {
+.filllinestar {
+  width: 17px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+.fillline .filllinestar:nth-child(odd) {
   background-color: #3f54d1;
 }
-.fillline:nth-child(even) {
+.fillline .filllinestar:nth-child(even) {
   background-color: #4fe0b5;
 }
 
@@ -832,6 +901,15 @@ ion-col p {
 }
 .progressreport p {
   font-size: 20px;
+  margin: 0px;
+  margin-top: 5px;
+  padding: 0px;
+  padding-bottom: 5px;
+}
+
+.progressreport p span {
+  padding: 0px 5px;
+  padding-top: 5px;
 }
 
 .progress-count {
@@ -911,7 +989,6 @@ ion-footer ion-toolbar ion-title {
 }
 
 @media (max-width: 992px) {
-
   .content {
     width: 576px;
   }
@@ -926,12 +1003,43 @@ ion-footer ion-toolbar ion-title {
     border-right: none;
   }
 
-  .detailborder {
+  .dot {
+    margin: 0px !important;
+    height: 18px;
+    width: 18px;
+    margin-right: 10px !important;
+    margin-top: 8px !important;
+  }
+  .detail {
+    margin-left: 20px;
+  }
+
+  .detail p {
+    font-size: 20px;
+  }
+
+  .scoretitle {
+    padding-top: 5px;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .bintang {
+    font-size: 28px !important;
+    margin-left: 5px !important;
+  }
+
+  .val {
+    font-size: 20px;
+  }
+  /* .detailborder {
     border-bottom: 1px solid rgb(191, 187, 187);
-  }
-  .none2 {
+  } */
+  /* .none2 {
     border-bottom: none;
-  }
+  } */
 
   .ProgressReport2 {
     display: grid;
@@ -946,11 +1054,6 @@ ion-footer ion-toolbar ion-title {
 
   .progressreport {
     display: none;
-  }
-
-  .card p span {
-    font-size: 1.7em !important;
-    margin-left: 30px;
   }
 
   .chart {
@@ -992,13 +1095,36 @@ ion-footer ion-toolbar ion-title {
   .fillline {
     width: 15px;
     border-radius: 10px;
-    bottom: 5;
+  }
+
+  .filllinestar {
+    width: 15px;
   }
 
   .fillline p {
     position: absolute;
     bottom: -58px;
     margin-left: -13px;
+  }
+
+  .empty-state {
+    width: 556px;
+    margin: 30px 10px;
+  }
+
+  .empty-img {
+    margin-right: 15px;
+    width: 310px;
+  }
+  .empty-state ion-card-content {
+    font-size: 24px;
+  }
+  .title-empty {
+    font-size: 18px;
+  }
+
+  .previous-vid{
+    font-size: 18px;
   }
 }
 
@@ -1011,7 +1137,7 @@ ion-footer ion-toolbar ion-title {
     width: 2000px;
     height: 480px;
     left: -800px;
-    top: -90px;
+    top: -60px;
     background: linear-gradient(180deg, #3f54d1 56.78%, rgba(63, 84, 209, 0.26) 100%);
   }
 
@@ -1059,9 +1185,12 @@ ion-footer ion-toolbar ion-title {
     margin: 4px 10px;
   }
 
-  .aside a:last-child {
-    position: absolute;
-    bottom: 20px;
+  .lastsidebar{
+    bottom: 3px !important;
+  }
+
+  .scoretitle{
+    padding-top: 7px !important;
   }
 
   ion-input {
@@ -1182,13 +1311,49 @@ ion-footer ion-toolbar ion-title {
   .fillline {
     width: 3vw;
     border-radius: 10px;
-    bottom: 5;
+  }
+
+  .filllinestar {
+    width: 3vw;
   }
 
   .fillline p {
     position: absolute;
     bottom: -9.9vw;
     margin-left: -3vw;
+  }
+
+  .empty-state {
+    width: 93vw;
+    height: 60vw;
+    padding: 3vw !important;
+  }
+
+  .empty-state ion-card-content {
+    font-size: 4vw !important;
+    margin: 2vw 0vw;
+  }
+  .title-empty {
+    font-size: 3.8vw !important;
+  }
+
+  .empty-button span {
+    font-size: 4.5vw !important;
+  }
+  .upload-nav2 {
+    font-size: 3.8vw !important;
+    margin: 0px !important;
+    margin-left: 10px !important;
+  }
+
+  .empty-button .upload-vid {
+    height: 10vw;
+    width: 38vw;
+    padding: 5px !important;
+  }
+
+  .previous-vid{
+    font-size: 16px;
   }
 }
 </style>
