@@ -6,16 +6,38 @@
           <span class="material-symbols-rounded menu"> menu </span>
         </button>
         <ion-title>Bicara.ai</ion-title>
-        <ion-button slot="end">
+        <ion-button id="open-modal-upload" slot="end">
           <span class="material-symbols-outlined"> video_call </span>
           <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
         </ion-button>
         <ion-button slot="end">
           <span class="material-symbols-outlined"> search </span>
         </ion-button>
-        <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
+        <a class="avatar" slot="end" id="click-trigger">
+          <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
+            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+        </a>
+        <ion-popover trigger="click-trigger" trigger-action="click" >
+          <ion-content class="ion-padding">Hello World!</ion-content>
+        </ion-popover>
+
+        <ion-modal id="example-modal" ref="modal" trigger="open-modal-upload">
+          <div class="wrapper" @dragover="dragover" @dragleave="dragleave" @drop="drop">
+            <h1 style="color: black">Upload Your Video</h1>
+
+            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".pdf,.jpg,.jpeg,.png" />
+
+            <label class="uploaddrag file-label" for="fileInput">
+              <ion-img class="uploadvid-img" src="assets/icon/uploadvid.svg"></ion-img>
+              <p v-if="isDragging" class="textupload">Release to drop files here.</p>
+              <p v-else class="textupload">Drag and drop file or <span style="cursor: pointer">browse local files</span></p>
+              <p class="textupload2">max. file size 10MB</p>
+            </label>
+
+            <ion-button :disabled="true">Upload</ion-button>
+          </div>
+        </ion-modal>
       </ion-toolbar>
     </ion-header>
 
@@ -43,9 +65,9 @@
               <span class="material-symbols-outlined">home</span>
               <p>Home</p>
             </a>
-            <a href="#">
+            <a href="/history">
               <span class="material-symbols-outlined"> video_library </span>
-              <p>Library</p>
+              <p>History</p>
             </a>
             <a href="#">
               <span class="material-symbols-outlined"> help_center </span>
@@ -120,13 +142,13 @@
                       <p class="detail-title">Eye Contact</p>
                       <p class="detail-persen">75%</p>
                     </div>
-                    <div style="background-color: #15cdcb;">
+                    <div style="background-color: #15cdcb">
                       <p class="detail-title">Filler Word</p>
                       <p class="detail-persen">80%</p>
                     </div>
-                    <div style="background-color: #4fe0b5;">
+                    <div style="background-color: #4fe0b5">
                       <p class="detail-title">Pacing</p>
-                      <p class="detail-persen">250 <span style="font-size: 17px;">word/min</span> </p>
+                      <p class="detail-persen">250 <span style="font-size: 17px">word/min</span></p>
                     </div>
                   </div>
                 </ion-card>
@@ -334,7 +356,7 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput } from "@ionic/vue";
+import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput, IonModal, IonPopover  } from "@ionic/vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -347,6 +369,14 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
     IonInput,
+    IonModal,
+    IonPopover,
+  },
+  data() {
+    return {
+      isDragging: false,
+      // files: [],
+    };
   },
   methods: {
     close_side() {
@@ -358,6 +388,20 @@ export default defineComponent({
       (document.getElementById("menu") as HTMLInputElement).style.display = "none";
       (document.getElementById("aside") as HTMLInputElement).style.display = "block";
       (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
+    },
+    // onChange() {
+    //   console.log(this.$refs.file)
+    // },
+    dragover(event: { preventDefault: () => void; currentTarget: { classList: { contains: (arg0: string) => any; remove: (arg0: string) => void; add: (arg0: string) => void } } }) {
+      event.preventDefault();
+      this.isDragging = true;
+    },
+    dragleave() {
+      this.isDragging = false;
+    },
+    drop(event: { preventDefault: () => void; dataTransfer: { files: any }; currentTarget: { classList: { add: (arg0: string) => void; remove: (arg0: string) => void } } }) {
+      event.preventDefault();
+      this.isDragging = false;
     },
   },
 });
@@ -432,7 +476,7 @@ ion-header ion-toolbar ion-button,
   text-transform: capitalize;
   font-style: normal;
   font-weight: 600;
-  line-height: 24px;
+  /* line-height: 24px; */
   letter-spacing: -1px;
   font-size: 18px;
 }
@@ -450,6 +494,94 @@ ion-header ion-toolbar button .close {
 ion-button i {
   width: 10px;
   margin-right: 15px;
+}
+
+.avatar {
+  width: fit-content;
+  height: fit-content;
+}
+
+ion-popover{
+  --backdrop-opacity: 0;
+  margin-top: 10px;
+}
+
+ion-modal#example-modal {
+  --width: 680px;
+  /* --min-width: 250px; */
+  --height: 450px;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.file-label {
+  /* font-size: 20px; */
+  display: block;
+}
+.hidden-input {
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+}
+
+.wrapper {
+  margin: 30px;
+  /* height: 100%; */
+}
+
+.wrapper > h1 {
+  margin: 18px 0px;
+  font-size: 24px;
+}
+
+.uploaddrag {
+  border: 7px dashed #15cdcb4f;
+  width: 100%;
+  height: 285px;
+  padding-top: 30px;
+}
+
+.uploadvid-img {
+  width: 140px;
+  margin: 20px auto;
+}
+
+.uploaddrag > p {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.45);
+  margin: 0px;
+  text-align: center;
+}
+
+.textupload {
+  font-size: 20px;
+}
+.textupload2 {
+  font-size: 18px;
+  margin-top: 5px !important;
+}
+
+.textupload > span {
+  color: #3e54d3;
+  text-decoration: underline;
+}
+
+.wrapper > ion-button {
+  --background: #3e54d3;
+  --border-radius: 8px;
+  width: 100%;
+  margin: 20px 0px;
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 18px;
 }
 
 #menu {
@@ -760,7 +892,7 @@ ion-col p {
   border-radius: 10px;
 }
 
-.previous-vid{
+.previous-vid {
   color: black;
   font-family: "Segoe UI";
   font-style: normal;
@@ -1123,7 +1255,7 @@ ion-footer ion-toolbar ion-title {
     font-size: 18px;
   }
 
-  .previous-vid{
+  .previous-vid {
     font-size: 18px;
   }
 }
@@ -1185,11 +1317,11 @@ ion-footer ion-toolbar ion-title {
     margin: 4px 10px;
   }
 
-  .lastsidebar{
+  .lastsidebar {
     bottom: 3px !important;
   }
 
-  .scoretitle{
+  .scoretitle {
     padding-top: 7px !important;
   }
 
@@ -1352,7 +1484,7 @@ ion-footer ion-toolbar ion-title {
     padding: 5px !important;
   }
 
-  .previous-vid{
+  .previous-vid {
     font-size: 16px;
   }
 }
