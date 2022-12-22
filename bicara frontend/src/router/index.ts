@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import DashBoard from '../views/DashBoard.vue'
 import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
+import History from '../views/History.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -16,6 +17,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/dashboard',
     component: DashBoard
+  },
+  {
+    path: '/history',
+    component: History
   }
 ]
 
