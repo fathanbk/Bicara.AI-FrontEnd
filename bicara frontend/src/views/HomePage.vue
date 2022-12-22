@@ -205,7 +205,7 @@
               </div>
           </ion-text>
           <div class="kucing">
-              <ion-button class="to-top" size="large" color="im-in" href="#top">
+              <ion-button class="to-top" size="large" color="im-in" href="homepage/#top">
                 Yes I'm in!
               </ion-button>
           </div>
@@ -359,6 +359,7 @@
   .to-sign-up {
     margin-top: 5vh;
     font-weight: 600;
+    font-size: larger;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     margin-left: 0vh!important;
@@ -780,28 +781,137 @@
   }
   
   
-  ion-modal h1 {
-    font-family: 'Inter';
+  ion-modal.sign-in
+  {
+    --border-radius: 2vh;
+    --height: 80vw;
+    --width: 90vw;
+  }
+
+  .sign-in ion-content div {
+    margin-left: 5vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5vh;
+  }
+  .sign-in h1 {
     font-weight: 700;
     color: black;
+    font-size: 4vh;
   }
-  
-  ion-modal ion-text {
-    font-family: 'Inter';
-    font-weight: 700;
+  .sign-in ion-text {
+    font-weight: 600;
     color: black;
+    font-size: 3vh;
   }
   
-  ion-modal ion-content ion-card {
+  .sign-in ion-content ion-card {
     background-color: white;
     font-family: 'Inter';
     font-weight: 700;
     color: black;
-    height: 30vh;
+    border-radius: 15px;
+    height: 32vh;
+    padding-left: 2.8vh;
+    padding-top: 2vh;
+  }
+
+  .sign-in ion-content ion-card ion-button {
+    --border-radius: 25vh;
+    height: 4vh;
+    width: 8vh;
+    font-size: 1.7vh;
+    margin-left: 50vw;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    text-transform: none;
   }
   
-  ion-modal ion-card ion-text {
+  .sign-in ion-card ion-text {
     margin-left: 1vh;
+    font-size: 2.3vh;
+  }
+  
+  .sign-in ion-card ion-input {
+    font-size: 2.3vh;
+    margin-left: 0.2vh;
+  }
+
+  .to-sign-up {
+    margin-top: 5vh;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2vh;
+    text-align: center;
+    margin-left: 0vh!important;
+  }
+  
+  .to-sign-up a {
+    text-decoration:underline;
+    color: black;
+  }
+
+  ion-modal.sign-up
+  {
+    --border-radius: 2vh;
+    --height: 70vh;
+  }
+
+  .sign-up ion-content div {
+    margin-left: 5vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 5vh;
+  }
+  .sign-up h1 {
+    font-weight: 700;
+    color: black;
+    font-size: 4vh;
+  }
+  .sign-up ion-text {
+    font-weight: 600;
+    color: black;
+    font-size: 3vh;
+  }
+  
+  .sign-up ion-content ion-card {
+    background-color: white;
+    font-family: 'Inter';
+    font-weight: 700;
+    color: black;
+    border-radius: 15px;
+    height: 45vh;
+    padding-left: 2.8vh;
+    padding-top: 2vh;
+  }
+
+  .sign-up ion-content ion-card ion-button {
+    --border-radius: 25vh;
+    height: 4vh;
+    width: 8vh;
+    font-size: 1.7vh;
+    margin-left: 50vw;
+    font-family: 'Segoe UI';
+    font-weight: 700;
+    text-transform: none;
+  }
+  
+  .sign-up ion-card ion-text {
+    margin-left: 1vh;
+    font-size: 2.3vh;
+  }
+  
+  .sign-up ion-card ion-input {
+    font-size: 2.3vh;
+    margin-left: 0.2vh;
+  }
+
+  .top-bar ion-row ion-button {
+    --border-radius: 3vh;
+    font-family: 'Inter';
+    font-size: 1vh;
+    text-transform: none;
+    height: 3vh;
+    margin-right: 5vw;
+    margin-top: 1.5vh;
   }
   
   .title-top1 {
