@@ -5,13 +5,10 @@
         <button slot="start" v-on:click="open_side()" id="menu">
           <span class="material-symbols-rounded menu"> menu </span>
         </button>
-        <ion-title>Bicara.ai</ion-title>
+        <ion-img src="assets/img/bicara-logo.svg" style="height: 50px;" slot="start"></ion-img>
         <ion-button id="open-modal-upload" slot="end">
           <span class="material-symbols-outlined"> video_call </span>
           <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
-        </ion-button>
-        <ion-button slot="end">
-          <span class="material-symbols-outlined"> search </span>
         </ion-button>
         <a class="avatar" slot="end" id="click-trigger">
           <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
@@ -113,23 +110,11 @@
           </ion-card>
           <ion-grid>
             <ion-row class="ion-justify-content-between">
-              <ion-col size="12" size-sm="6" size-lg="5">
-                <div class="card">
-                  <p class="scoretitle" style="">Score</p>
-                  <p class="scorestar">
-                    <span class="material-symbols-rounded bintang" style="color: #3f54d1"> star </span>
-                    <span class="material-symbols-rounded bintang" style="color: #3f54d1"> star </span>
-                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
-                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
-                    <span class="material-symbols-rounded bintang" style="color: #a8b9be"> star </span>
-                  </p>
-                </div>
-              </ion-col>
               <ion-col size="12" size-sm="6" size-lg="4">
                 <div class="card">
                   <p class="upload-rating">Uploaded 11 November 2022</p>
                 </div>
-              </ion-col>
+              </ion-col>         
             </ion-row>
             <!-- score, filler, pacing -->
             <!-- detail -->
@@ -160,10 +145,7 @@
                         <p><span class="dot inton"></span></p>
                         <p>Eye Contact</p>
                       </div>
-                      <p class="val">75%</p>
-                      <div class="progessline">
-                        <div class="progessvalue inton" style="width: 75%"></div>
-                      </div>
+                      <p class="val" style="color: #3F54D1;">Good</p>
                     </ion-col>
                     <!-- <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
                       <div class="detail">
@@ -180,20 +162,14 @@
                         <p><span class="dot grammar"></span></p>
                         <p>Filler Word</p>
                       </div>
-                      <p class="val">80%</p>
-                      <div class="progessline">
-                        <div class="progessvalue grammar" style="width: 80%"></div>
-                      </div>
+                      <p class="val" style="color: #15cdcb;">4 Fillers</p>
                     </ion-col>
                     <ion-col size="6" size-sm="4" size-lg="4">
                       <div class="detail">
                         <p><span class="dot eyecontact"></span></p>
                         <p>Pacing</p>
                       </div>
-                      <p class="val">250 word/min</p>
-                      <div class="progessline">
-                        <div class="progessvalue eyecontact" style="width: 50%"></div>
-                      </div>
+                      <p class="val"  style="color: #4fe0b5;">250 word/min</p>
                     </ion-col>
                   </ion-row>
                 </ion-card>
@@ -231,69 +207,64 @@
             </div>
             <!-- Grafik Chart -->
             <div class="chart" id="prke2">
-              <div class="grafik">
-                <div class="starline">
-                  <p>5 star</p>
-                </div>
-                <div class="starline">
-                  <p>4 star</p>
-                </div>
-                <div class="starline">
-                  <p>3 star</p>
-                </div>
-                <div class="starline">
-                  <p>2 star</p>
-                </div>
-                <div class="starline s1">
-                  <p>1 star</p>
-                </div>
-              </div>
-              <div class="grafiky">
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 40%; background-color: #3f54d1"></div>
-                  <p>12/11</p>
-                </div>
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 60%; background-color: #4fe0b5"></div>
-                  <p>13/11</p>
-                </div>
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 80%; background-color: #3f54d1"></div>
-                  <p>16/11</p>
-                </div>
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 60%; background-color: #4fe0b5"></div>
-                  <p>17/11</p>
-                </div>
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 80%; background-color: #3f54d1"></div>
-                  <p>19/11</p>
-                </div>
-                <div class="fillline">
-                  <div class="filllinestar" style="height: 100%; background-color: #4fe0b5"></div>
-                  <p>21/11</p>
-                </div>
-              </div>
+              <h1>Filler Words Count</h1>
+              <ion-grid>
+                <ion-row class="row-align-left">
+                  <ion-col size="2">No</ion-col>
+                  <ion-col size="3">Date</ion-col>
+                  <ion-col size="3">Filler Counts</ion-col>
+                  <ion-col size="4">Filler Words</ion-col>
+                </ion-row>
+                <ion-row class="row-colored row-align-left">
+                  <ion-col size="2">1</ion-col>
+                  <ion-col size="3">11:11/12 Nov</ion-col>
+                  <ion-col size="3">4</ion-col>
+                  <ion-col size="4">um, ah, hm</ion-col>
+                </ion-row>
+                <ion-row class="row-colored row-align-left">
+                  <ion-col size="2">2</ion-col>
+                  <ion-col size="3">11:11/12 Nov</ion-col>
+                  <ion-col size="3">4</ion-col>
+                  <ion-col size="4">um, ah, hm</ion-col>
+                </ion-row>
+                <ion-row class="row-colored row-align-left">
+                  <ion-col size="2">3</ion-col>
+                  <ion-col size="3">11:11/12 Nov</ion-col>
+                  <ion-col size="3">4</ion-col>
+                  <ion-col size="4">um, ah, hm</ion-col>
+                </ion-row>
+                <ion-row class="row-colored row-align-left">
+                  <ion-col size="2">4</ion-col>
+                  <ion-col size="3">11:11/12 Nov</ion-col>
+                  <ion-col size="3">4</ion-col>
+                  <ion-col size="4">um, ah, hm</ion-col>
+                </ion-row>
+                <ion-row class="row-colored row-align-left">
+                  <ion-col size="2">5</ion-col>
+                  <ion-col size="3">11:11/12 Nov</ion-col>
+                  <ion-col size="3">4</ion-col>
+                  <ion-col size="4">um, ah, hm</ion-col>
+                </ion-row>
+              </ion-grid>
             </div>
             <!-- Filler Word Count -->
             <ion-card class="progress-count" id="prke3">
-              <ion-card-content class="progress-title">Filler Word Count</ion-card-content>
+              <ion-card-content class="progress-title">Eye Contact Assesment</ion-card-content>
               <ion-grid>
                 <ion-row class="progress-table progress-title2 ion-justify-content-between">
                   <ion-col size="5" size-sm="6" size-lg="5">Date</ion-col>
-                  <ion-col size="5" size-sm="6" size-lg="5">%Count</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
+                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Good</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
+                  <ion-col  class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="5" size-sm="6" size-lg="5">'uh', 'hm' - 40%</ion-col>
+                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
+                  <ion-col  class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card>
@@ -303,19 +274,19 @@
               <ion-grid>
                 <ion-row class="progress-table progress-title2 ion-justify-content-between">
                   <ion-col size="5" size-sm="4" size-lg="5">Date</ion-col>
-                  <ion-col size="6" size-sm="7" size-lg="6">Pacing (word/min)</ion-col>
+                  <ion-col class="row-right" size="6" size-sm="7" size-lg="6">Pacing (word/min)</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
                   <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="6">205</ion-col>
+                  <ion-col class="row-right" size="6">205</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
                   <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="6">205</ion-col>
+                  <ion-col class="row-right" size="6">205</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
                   <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col size="6">205</ion-col>
+                  <ion-col class="row-right" size="6">205</ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card>
@@ -433,9 +404,14 @@ export default defineComponent({
   text-decoration: none;
 }
 
+ion-header ion-img {
+  margin-top: -10px;
+}
+
 ion-page {
   --ion-background-color: #ffffff;
 }
+
 
 /* CSS HEADER/NAVBAR */
 
@@ -865,6 +841,8 @@ ion-col p {
 .val {
   margin: 15px 0px;
   font-size: 24px;
+  padding-left: 65px;
+  text-align: left;
 }
 
 .detailborder {
@@ -962,12 +940,32 @@ ion-col p {
   border-radius: 10px;
   text-align: center;
   margin: 0;
-  display: flex;
   justify-content: center;
   width: 100%;
   height: 400px;
   position: relative;
 }
+
+.chart h1 {
+  font-size: 24px;
+  text-align: left;
+  margin-left: 35px;
+}
+
+.row-align-left {
+  padding-left: 15px;
+  text-align: left;
+  margin: 15px;
+}
+
+.row-colored {
+  background-color:#5280e2;
+  border-radius: 15px;
+  color: white;
+}
+
+.row-colored:nth-child(even) {background: #5280e2}
+.row-colored:nth-child(odd) {background: #15cdcb}
 
 .grafik {
   margin: auto;
@@ -1060,9 +1058,13 @@ ion-col p {
   font-weight: 500;
 }
 
+.row-right {
+  text-align: right;
+}
+
 .progress-title {
   font-size: 20px;
-  text-align: center;
+  text-align: left;
   font-family: "Segoe UI", Arial, sans-serif;
   padding: 12px;
 }
@@ -1113,7 +1115,7 @@ ion-footer ion-toolbar ion-title {
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
-    ". . prke1"
+    " prke1 . ."
     "prke2 prke2 prke3"
     "prke2 prke2 prke4";
   grid-gap: 12px;
@@ -1191,6 +1193,10 @@ ion-footer ion-toolbar ion-title {
   .chart {
     width: 556px;
     height: 313px;
+  }
+
+  .chart h1 {
+
   }
 
   .grafik {
