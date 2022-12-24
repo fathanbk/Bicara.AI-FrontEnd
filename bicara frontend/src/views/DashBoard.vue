@@ -23,7 +23,7 @@
           <div class="wrapper" @dragover="dragover" @dragleave="dragleave" @drop="drop">
             <h1 style="color: black">Upload Your Video</h1>
 
-            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".pdf,.jpg,.jpeg,.png" />
+            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".mp4" />
 
             <label class="uploaddrag file-label" for="fileInput">
               <ion-img class="uploadvid-img" src="assets/icon/uploadvid.svg"></ion-img>
@@ -32,7 +32,7 @@
               <p class="textupload2">max. file size 10MB</p>
             </label>
 
-            <ion-button :disabled="true">Upload</ion-button>
+            <ion-button :disabled="true" v-on:click="upload_video" id="upload_button">Upload</ion-button>
           </div>
         </ion-modal>
       </ion-toolbar>
@@ -329,6 +329,7 @@
 <script lang="ts">
 import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput, IonModal, IonPopover  } from "@ionic/vue";
 import { defineComponent } from "vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "DashBoard",
@@ -346,7 +347,7 @@ export default defineComponent({
   data() {
     return {
       isDragging: false,
-      // files: [],
+      file :'',
     };
   },
   methods: {
@@ -360,9 +361,11 @@ export default defineComponent({
       (document.getElementById("aside") as HTMLInputElement).style.display = "block";
       (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
     },
-    // onChange() {
-    //   console.log(this.$refs.file)
-    // },
+    onChange(e : { target: { files: any; }; }) {
+      console.log(e.target.files[0]);
+      this.file = e.target.files[0];
+      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
+    },
     dragover(event: { preventDefault: () => void; currentTarget: { classList: { contains: (arg0: string) => any; remove: (arg0: string) => void; add: (arg0: string) => void } } }) {
       event.preventDefault();
       this.isDragging = true;
@@ -372,7 +375,28 @@ export default defineComponent({
     },
     drop(event: { preventDefault: () => void; dataTransfer: { files: any }; currentTarget: { classList: { add: (arg0: string) => void; remove: (arg0: string) => void } } }) {
       event.preventDefault();
+      this.file = event.dataTransfer.files[0];
+      console.log(this.file);
+      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
       this.isDragging = false;
+      
+    },
+    upload_video() {
+      let formData = new FormData();
+      formData.append("file", this.file);
+      axios.post("http://127.0.0.1:5000/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        
+      }).then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      }
+      
+      );
     },
   },
 });
