@@ -5,7 +5,7 @@
         <button slot="start" v-on:click="open_side()" id="menu">
           <span class="material-symbols-rounded menu"> menu </span>
         </button>
-        <ion-img src="assets/img/bicara-logo.svg" style="height: 50px;" slot="start"></ion-img>
+        <ion-img src="assets/img/bicara-logo.svg" style="height: 70px" slot="start"></ion-img>
         <ion-button id="open-modal-upload" slot="end">
           <span class="material-symbols-outlined"> video_call </span>
           <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
@@ -15,8 +15,16 @@
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
         </a>
-        <ion-popover trigger="click-trigger" trigger-action="click" >
-          <ion-content class="ion-padding">Hello World!</ion-content>
+        <ion-popover trigger="click-trigger" trigger-action="click">
+          <ion-content class="ion-padding">
+            <ion-list>
+              <ion-avatar slot="end" style="width: 45px; height: 45px;">
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+              <p class="nameacc">Jake Doe</p>
+              <p class="emailacc">jakedoe@hotemail.com</p>
+            </ion-list>
+          </ion-content>
         </ion-popover>
 
         <ion-modal id="example-modal" ref="modal" trigger="open-modal-upload">
@@ -70,6 +78,14 @@
               <span class="material-symbols-outlined"> help_center </span>
               <p>FAQ</p>
             </a>
+            <a class="onlymobile" id="open-modal-upload">
+              <span class="material-symbols-outlined"> video_call </span>
+              <p>Upload Video</p>
+            </a>
+            <!-- <a class="onlymobile" href="#">
+              <span class="material-symbols-outlined "> account_circle </span>
+              <p>Account</p>
+            </a> -->
           </div>
           <div class="lastsidebar">
             <a href="#">
@@ -114,7 +130,7 @@
                 <div class="card">
                   <p class="upload-rating">Uploaded 11 November 2022</p>
                 </div>
-              </ion-col>         
+              </ion-col>
             </ion-row>
             <!-- score, filler, pacing -->
             <!-- detail -->
@@ -125,11 +141,11 @@
                   <div>
                     <div style="background-color: #3f54d1">
                       <p class="detail-title">Eye Contact</p>
-                      <p class="detail-persen">75%</p>
+                      <p class="detail-title">Good</p>
                     </div>
                     <div style="background-color: #15cdcb">
                       <p class="detail-title">Filler Word</p>
-                      <p class="detail-persen">80%</p>
+                      <p class="detail-persen">4 <span style="font-size: 17px">Fillers</span></p>
                     </div>
                     <div style="background-color: #4fe0b5">
                       <p class="detail-title">Pacing</p>
@@ -293,27 +309,24 @@
           </div>
           <!-- Bagian Samplespeech -->
           <h1>Sample Speech</h1>
+
           <div class="samplespeech">
-            <ion-slides>
-              <ion-slide id="Slide1">
-                <ion-card>
-                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-                </ion-card>
-              </ion-slide>
-              <ion-slide id="Slide2">
-                <ion-card>
-                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-                </ion-card>
-              </ion-slide>
-              <ion-slide id="Slide3">
-                <ion-card>
-                  <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-                  <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-                </ion-card>
-              </ion-slide>
-            </ion-slides>
+            <ion-card>
+              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+            </ion-card>
+            <ion-card>
+              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
+              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
+            </ion-card>
           </div>
           <ion-footer class="ion-no-border">
             <ion-toolbar>
@@ -501,9 +514,10 @@ ion-button i {
   height: fit-content;
 }
 
-ion-popover{
+ion-popover {
   --backdrop-opacity: 0;
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 ion-modal#example-modal {
@@ -593,6 +607,31 @@ ion-modal#example-modal {
   color: black;
 }
 
+ion-popover {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 10px !important;
+}
+
+ion-list,
+ion-item {
+  background-color: #ffffff;
+  padding: 0px;
+}
+
+.nameacc, .emailacc{
+  margin: 5px 0px;
+}
+
+.nameacc{
+  margin-top: 15px;
+}
+
+.emailacc {
+  color: #8c8c8c;
+  font-size: 16px;
+}
 /* CSS SIDEBAR */
 
 .dashboard {
@@ -875,7 +914,8 @@ ion-col p {
 
 .upload-rating {
   margin: 0px;
-  padding-top: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .scorestar {
@@ -1097,14 +1137,40 @@ ion-col p {
   color: #ababab;
 }
 
-.samplespeech ion-card {
-  width: 360px;
-  height: 310px;
-  margin: auto 10px;
-}
 .samplespeech {
   margin: 30px auto;
+  height: 350px;
+  overflow-x: scroll;
   display: flex;
+}
+
+.samplespeech ion-card {
+  width: 280px;
+  min-width: 280px;
+  height: 310px;
+  margin: auto 10px;
+  margin-bottom: 20px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 4px rgba(132, 132, 132, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar {
+  /* width: 5px; */
+  height: 7px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #5280e2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6a90e3;
 }
 
 ion-footer ion-toolbar {
@@ -1191,6 +1257,7 @@ ion-footer ion-toolbar ion-title {
 
   .val {
     font-size: 20px;
+    padding-left: 30px;
   }
   /* .detailborder {
     border-bottom: 1px solid rgb(191, 187, 187);
@@ -1216,12 +1283,12 @@ ion-footer ion-toolbar ion-title {
 
   .chart {
     width: 556px;
-    height: 313px;
+    height: fit-content;
   }
 
-  .chart h1 {
-
-  }
+    .progress-count{
+      height: fit-content;
+    }
 
   .grafik {
     margin: auto;
@@ -1434,7 +1501,7 @@ ion-footer ion-toolbar ion-title {
 
   .chart {
     width: 93vw;
-    height: 60vw;
+    height: fit-content;
     font-size: 14px;
   }
 
