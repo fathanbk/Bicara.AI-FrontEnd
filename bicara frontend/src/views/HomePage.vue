@@ -6,7 +6,7 @@
           <ion-row class="ion-justify-content-end">
             <div class="for-landscape">
               <a href="homepage/#features">Features</a>
-              <a href="homepage/#top">About</a>
+              <a href="homepage/#steps">About</a>
             </div>
             <ion-button @click="setSignInOpen(true)" color="im-in">Sign in</ion-button>
   
@@ -33,7 +33,7 @@
                               Don't have an account? 
                               <a                                @click="setSignUpOpen(true)"
                                   color="white"
-                                  >Sign Up</a>
+                                  >Sign up</a>
                             </div>
                         </ion-content>
                     </ion-modal>
@@ -97,7 +97,7 @@
         <div class="one">
         <!-- ganti icon-->
         <h1>Why you should use Bicara.ai</h1>
-        <div class="num-back"><ion-img src="assets/img/1.svg"></ion-img></div>
+        <div class="num-back" id="features"><ion-img src="assets/img/1.svg"></ion-img></div>
         <ion-row class="for-landscape">
           <ion-col size="3"></ion-col>
           <ion-col size="3">
@@ -147,7 +147,7 @@
 
       <div class="three">
         <h1>How it works</h1>
-        <div class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
+        <div  id="steps" class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
         <div class="green-bar">
           <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
         </div>
@@ -341,7 +341,7 @@
 
   .sign-in ion-content ion-card ion-button {
     --border-radius: 25vh;
-    margin-left: 70vh;
+    padding-left: none!important;;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -502,7 +502,6 @@
 
   .sign-up ion-content ion-card ion-button {
     --border-radius: 25vh;
-    margin-left: 70vh;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -820,7 +819,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -888,7 +886,7 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
+    margin-top: 0.25rem;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -1261,7 +1259,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -1329,7 +1326,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
