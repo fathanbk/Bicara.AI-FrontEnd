@@ -2,11 +2,13 @@
     <ion-page>    
       <ion-content :fullscreen="true">
         <div class="top-bar" id="top">
-          <ion-text class="bicara-ai-top">Bicara.ai</ion-text>
+          <div class="top-bar" id="top">
+        <ion-img src="assets/img/bicara-color.svg" class="bicara-ai-top"></ion-img>
+      </div>
           <ion-row class="ion-justify-content-end">
             <div class="for-landscape">
               <a href="homepage/#features">Features</a>
-              <a href="homepage/#top">About</a>
+              <a href="homepage/#steps">About</a>
             </div>
             <ion-button @click="setSignInOpen(true)" color="im-in">Sign in</ion-button>
   
@@ -33,7 +35,7 @@
                               Don't have an account? 
                               <a                                @click="setSignUpOpen(true)"
                                   color="white"
-                                  >Sign Up</a>
+                                  >Sign up</a>
                             </div>
                         </ion-content>
                     </ion-modal>
@@ -92,27 +94,47 @@
               </ion-col>
             </ion-row>
           </div>
+            <div class="hero-img for-landscape">
+            <ion-img src="assets/img/hero.svg"></ion-img>
+            </div>
         </div>
+        <div class="for-portrait">
+            <ion-img class="hero-img" src="assets/img/hero.svg"></ion-img>
+        </div>
+        
   
         <div class="one">
         <!-- ganti icon-->
         <h1>Why you should use Bicara.ai</h1>
         <div class="num-back"><ion-img src="assets/img/1.svg"></ion-img></div>
         <ion-row class="for-landscape">
-          <ion-col size="3"></ion-col>
-          <ion-col size="3">
+          <ion-col size="4">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/pronunciation.svg" class="big-icon"></ion-img>
+              <ion-img class="small-icon" src="assets/icon/filler.svg"></ion-img>
               <ion-card-title>Filler words detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>
           </ion-col>
-          <ion-col size="3">
+          <ion-col size="4">
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Body language</ion-card-title>
+              <ion-img src="assets/icon/pacing.svg"></ion-img>
+              <ion-card-title>Pacing</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>            
           </ion-col>
-          <ion-col size="3"></ion-col>
+          <ion-col size="4">
+            <ion-card class="card-one">
+              <ion-img src="assets/icon/eye.svg"></ion-img>
+              <ion-card-title>Eye detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
+            </ion-card>            
+          </ion-col>
         </ion-row>
 
         <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 10vh;"></ion-img>
@@ -122,14 +144,20 @@
         <ion-slides class="for-portrait">
           <ion-slide>
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
+              <ion-img class="big-icon" src="assets/icon/filler.svg"></ion-img>
               <ion-card-title>Filler words detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>
           </ion-slide>
           <ion-slide>
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Body language</ion-card-title>
+              <ion-img class="big-icon" src="assets/icon/Pacing.svg"></ion-img>
+              <ion-card-title>Pacing</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>            
           </ion-slide>
         </ion-slides>
@@ -147,7 +175,7 @@
 
       <div class="three">
         <h1>How it works</h1>
-        <div class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
+        <div  id="steps" class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
         <div class="green-bar">
           <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
         </div>
@@ -272,13 +300,14 @@
     position: absolute;
     z-index: 2;
     padding-left: 5vw;
-    font-size: 4.5vh;
+    height: 10vh;
   }
   
   .ion-justify-content-end {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     margin-right: 5vw;
+    margin-top: -10vh;
   }
   
   .top-bar {
@@ -303,7 +332,7 @@
     font-family: 'Inter';
     text-transform: none;
     margin-right: 5vw;
-    margin-top: -1vh;
+    margin-top: -2vh;
   }
 
   ion-modal.sign-in
@@ -341,7 +370,7 @@
 
   .sign-in ion-content ion-card ion-button {
     --border-radius: 25vh;
-    margin-left: 70vh;
+    padding-left: none!important;;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -382,6 +411,7 @@
     background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
     height: 90vh;
     font-family: 'Inter', sans-serif;
+    display: flex;
   }
   
   .top-content {
@@ -389,6 +419,11 @@
     padding-right: 5vw;
     padding-top: 6vh;
     padding-bottom: 6vh;
+    width: 70%;
+  }
+    .hero-img {
+    width: 30%;
+    margin-left: -15vw;
   }
   
   .title-top1 {
@@ -502,7 +537,6 @@
 
   .sign-up ion-content ion-card ion-button {
     --border-radius: 25vh;
-    margin-left: 70vh;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -560,27 +594,42 @@
   }
   
   .card-one {
-    background-color: white;
-    width: 30vw;
-    height: 20vw;
-    border-radius: 40px;
-  }
-  
+  background-color: white;
+  width: 30vw;
+  height: 20vw;
+  border-radius: 40px;
+  margin: 3vw;
+}
 
-  .big-icon {
-    margin-top: 12vh;
-    margin-bottom: 1.5vh;
-    height: 5vh;
-  }
-  
-  .card-one ion-card-title {
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 700;
-    text-align: center;
-    font-size: 2vw;
-    margin-top: 0.75rem;
-  }
+.card-one ion-img {
+  margin-top: 12vh;
+  margin-bottom: 1.5vh;
+  height: 5vh;
+  align-content: center;
+}
+
+.small-icon {
+  height: 6vh!important;
+  margin-top: 11vh!important;
+}
+
+.card-one ion-card-title {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 2vw;
+  margin-top: 0.75rem;
+}
+
+.card-one ion-card-content {
+  color: rgb(28, 28, 28);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.25vw;
+  margin-top: 0.5rem;
+}
   
   .two {
     background:#2c3b93;
@@ -741,13 +790,7 @@
   
   @media (max-width: 576px) {
     .bicara-ai-top {
-    background: #3F54D1;
-    background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: 'Krona One', sans-serif;
-    margin-left: 5vw;
-    font-size: 2vh;
+    height: 6vh;
     position: absolute;
     z-index: 2;
     padding-left: 5vw;
@@ -777,7 +820,7 @@
     text-transform: none;
     height: 3vh;
     margin-right: 5vw;
-    margin-top: 1.5vh;
+    margin-top: -4vh!important;
   }
   
   
@@ -820,7 +863,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -888,7 +930,7 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
+    margin-top: 0.25rem;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -988,6 +1030,11 @@
     --font-size: 2vh;
   }
   
+  .hero-img {
+    height: 30vh;
+    margin-top: -10vh;
+  }
+
   .one {
     background-color: #f3f4f8;
     height: 45vh;
@@ -1193,18 +1240,18 @@
   }
   @media (max-width: 992px) {
     .bicara-ai-top {
-    background: #3F54D1;
-    background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: 'Krona One', sans-serif;
-    margin-left: 5vw;
-    font-size: 2vh;
+    height: 6vh;
     position: absolute;
     z-index: 2;
     padding-left: 5vw;
   }
   
+  .hero-img{
+  height: 35vh;
+  margin-top: -20vh;
+  margin-bottom: 5vh;
+}
+
   .top-bar {
     line-height: 6vh;
     height: 6vh;
@@ -1261,7 +1308,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -1329,7 +1375,6 @@
     height: 4vh;
     width: 8vh;
     font-size: 1.7vh;
-    margin-left: 50vw;
     font-family: 'Segoe UI';
     font-weight: 700;
     text-transform: none;
@@ -1352,7 +1397,7 @@
     text-transform: none;
     height: 3vh;
     margin-right: 5vw;
-    margin-top: 1.5vh;
+    margin-top: -4vh;
   }
   
     
@@ -1482,6 +1527,13 @@
   text-align: center;
   font-size: 4vw;
   margin-top: 0.75rem;
+}
+.card-one ion-card-content {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 2.5vw;
 }
 
 .two {
