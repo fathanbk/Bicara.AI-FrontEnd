@@ -4,6 +4,7 @@ import DashBoard from '../views/DashBoard.vue'
 import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
 import History from '../views/History.vue'
+import Library from '../views/Library.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,6 +22,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/history',
     component: History
+  },
+  {
+    path: '/library',
+    component: Library
   }
 ]
 
