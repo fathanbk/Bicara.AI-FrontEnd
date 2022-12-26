@@ -160,6 +160,15 @@
               </ion-card-content>
             </ion-card>            
           </ion-slide>
+          <ion-slide>
+            <ion-card class="card-one">
+              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
+              <ion-card-title>Body language</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
+            </ion-card>            
+          </ion-slide>
         </ion-slides>
       </div>
 

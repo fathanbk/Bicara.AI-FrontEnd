@@ -2,7 +2,7 @@
   <ion-page>    
     <ion-content :fullscreen="true">
       <div class="top-bar" id="top">
-        <ion-text class="bicara-ai-top">Bicara.ai</ion-text>
+        <ion-img src="assets/img/bicara-color.svg" class="bicara-ai-top"></ion-img>
       </div>
 
       <div class="top-gradient">
@@ -25,27 +25,46 @@
             </ion-col>
           </ion-row>
         </div>
+        <div class="hero-img for-landscape">
+          <ion-img src="assets/img/hero.svg"></ion-img>
+        </div>
       </div>
+      <div class="for-portrait">
+          <ion-img class="hero-img" src="assets/img/hero.svg"></ion-img>
+        </div>
 
       <div class="one">
         <!-- ganti icon-->
         <h1>Why you should use Bicara.ai</h1>
         <div class="num-back"><ion-img src="assets/img/1.svg"></ion-img></div>
         <ion-row class="for-landscape">
-          <ion-col size="3"></ion-col>
-          <ion-col size="3">
+          <ion-col size="4">
             <ion-card class="card-one">
-              <ion-img src="assets/icon/pronunciation.svg" class="big-icon"></ion-img>
+              <ion-img class="small-icon" src="assets/icon/filler.svg"></ion-img>
               <ion-card-title>Filler words detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>
           </ion-col>
-          <ion-col size="3">
+          <ion-col size="4">
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Body language</ion-card-title>
+              <ion-img src="assets/icon/pacing.svg"></ion-img>
+              <ion-card-title>Pacing</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>            
           </ion-col>
-          <ion-col size="3"></ion-col>
+          <ion-col size="4">
+            <ion-card class="card-one">
+              <ion-img src="assets/icon/eye.svg"></ion-img>
+              <ion-card-title>Eye detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
+            </ion-card>            
+          </ion-col>
         </ion-row>
 
         <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 10vh;"></ion-img>
@@ -55,14 +74,29 @@
         <ion-slides class="for-portrait">
           <ion-slide>
             <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/pronunciation.svg"></ion-img>
+              <ion-img class="big-icon" src="assets/icon/filler.svg"></ion-img>
               <ion-card-title>Filler words detection</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+          <ion-slide>
+            <ion-card class="card-one">
+              <ion-img class="big-icon" src="assets/icon/pacing.svg"></ion-img>
+              <ion-card-title>Pacing</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>
           </ion-slide>
           <ion-slide>
             <ion-card class="card-one">
               <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
               <ion-card-title>Body language</ion-card-title>
+              <ion-card-content>
+                Lorem ipsum dolor sit amet.
+              </ion-card-content>
             </ion-card>            
           </ion-slide>
         </ion-slides>
@@ -82,7 +116,7 @@
         <h1>How it works</h1>
         <div class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
         <div class="green-bar">
-          <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
+          <ion-img src="assets/img/blue-union.svg" class="for-landscape"></ion-img>
         </div>
         
         <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 5vh;"></ion-img>
@@ -93,19 +127,22 @@
           <ion-col size="12" size-lg="2"></ion-col>
           <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 1</p>
-            <ion-card class="card-three"></ion-card>
+            <ion-card class="card-three">
+              create account with your name and email adress
+            </ion-card>
           </ion-col>
           <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 2</p>
-            <ion-card class="card-three"></ion-card>
+            <ion-card class="card-three">
+              <ion-card-content>upload your video</ion-card-content></ion-card>
           </ion-col>
           <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 3</p>
-            <ion-card class="card-three"></ion-card>            
+            <ion-card class="card-three">our AI will work to analyze your video</ion-card>            
           </ion-col>
           <ion-col size="6" size-lg="2">
             <p class="card-desc">Step 4</p>
-            <ion-card class="card-three"></ion-card>
+            <ion-card class="card-three">receive notification on your email when your video is analyzed</ion-card>
           </ion-col>
           <ion-col size="12" size-lg="2"></ion-col>
         </ion-row>
@@ -157,7 +194,7 @@
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides,IonInput,IonButton } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonSlides,IonInput,IonButton } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import axios from "axios";
 import { email } from '@vee-validate/rules';
@@ -173,7 +210,7 @@ export default defineComponent({
     IonContent,
     IonPage,
     IonInput,
-    IonButton
+    IonButton,
   },
   methods:{
     emailSubmit(){
@@ -197,13 +234,7 @@ export default defineComponent({
 
 @media (min-width: 992px) {
   .bicara-ai-top {
-  background: #3F54D1;
-  background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: 'Krona One', sans-serif;
-  align-self: center;
-  font-size: 4.5vh;
+  height: 10vh;
 }
 
 .top-bar {
@@ -216,6 +247,7 @@ export default defineComponent({
   background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
   height: 90vh;
   font-family: 'Inter', sans-serif;
+  display: flex;
 }
 
 .top-content {
@@ -223,6 +255,12 @@ export default defineComponent({
   padding-right: 5vw;
   padding-top: 6vh;
   padding-bottom: 6vh;
+  width: 70%;
+}
+
+.hero-img {
+  width: 30%;
+  margin-left: -15vw;
 }
 
 .title-top1 {
@@ -349,12 +387,19 @@ export default defineComponent({
   width: 30vw;
   height: 20vw;
   border-radius: 40px;
+  margin: 3vw;
 }
 
-.big-icon {
-  margin-top: 10vh;
+.card-one ion-img {
+  margin-top: 12vh;
   margin-bottom: 1.5vh;
   height: 5vh;
+  align-content: center;
+}
+
+.small-icon {
+  height: 6vh!important;
+  margin-top: 11vh!important;
 }
 
 .card-one ion-card-title {
@@ -364,6 +409,15 @@ export default defineComponent({
   text-align: center;
   font-size: 2vw;
   margin-top: 0.75rem;
+}
+
+.card-one ion-card-content {
+  color: rgb(28, 28, 28);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.25vw;
+  margin-top: 0.5rem;
 }
 
 .two {
@@ -521,13 +575,7 @@ export default defineComponent({
 
 @media (max-width: 576px) {
   .bicara-ai-top {
-  background: #3F54D1;
-  background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: 'Krona One', sans-serif;
-  align-self: center;
-  font-size: 2vh;
+  height: 6vh;
 }
 
 .top-bar {
@@ -538,15 +586,18 @@ export default defineComponent({
 
 .top-gradient {
   background: linear-gradient(180deg, rgba(21,205,203,1) -43.28%, rgba(243,244,248,1) 98%);
-  height: 55vh;
   font-family: 'Inter', sans-serif;
+  height: 100vh;
 }
-
+.hero-img {
+  height: 30vh;
+  margin-top: -10vh;
+}
 .top-content {
   padding-left: 5vw;
   padding-right: 5vw;
   padding-top: 3vh;
-  padding-bottom: 1vh;
+  height: 50vh;
 }
 
 .title-top1 {
@@ -574,18 +625,19 @@ export default defineComponent({
 }
 
 .email {
-  width: 90vw;
-  display: flex;
-  justify-content: center;
+  width: 50vw;
 }
 .email-regist {
   display: flex;
-  width: 90%;
-  height: 4vh;
+  width: 30vw;
+  height: 7vh;
   box-shadow: none;
   background-color: white;
-  border-radius: 1.875rem;
-  margin-top: 1vh;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-top-right: 0px;
+  border-bottom-right: 0px;
+  margin-top: 2vh;
   padding-left: 2.7vh;
   margin-left: 0px;
   font-size: 1.25rem;
@@ -594,14 +646,14 @@ export default defineComponent({
 
 .email-regist ion-img {
   background-color: white;
-  height: 2vh;
+  height: 2.7vh;
   margin:auto;
 }
 
 .email-input {
   margin : 0px;
-  height: 4vh;
-  font-size: 2vh;
+  height: 7vh;
+  font-size: 2.7vh;
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   color: black;
@@ -610,19 +662,17 @@ export default defineComponent({
 
 .notify {
   position: absolute;
-  margin: 0 auto;
+  margin-top: -0.1vh;
   right:-3vw;
-  height: 4vh;
-  width: 20vw;
+  height: 7vh;
+  width: 10vw;
+  font-size: 2.5vh;
   font-family: 'Inter';
-  font-size: 1.5vh;
   text-transform: none;
-  --border-radius: 1.875rem;
+  --border-radius: 30px;
   --line-height: 7vh;
   --box-shadow: none;
-  --font-size: 2vh;
 }
-
 .one {
   background-color: #f3f4f8;
   height: 45vh;
@@ -658,13 +708,11 @@ export default defineComponent({
 
 .card-one {
   background-color: white;
-  width: 35vw;
-  height: 10vh;
+  width: 105vw;
   border-radius: 25px;
 }
 
 .big-icon {
-  margin-top: 5vh;
   height: 6vw;
 }
 .card-one ion-card-title {
@@ -674,6 +722,13 @@ export default defineComponent({
   text-align: center;
   font-size: 4vw;
   margin-top: 0.75rem;
+}
+.card-one ion-card-content {
+  color: rgb(28, 28, 28);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 1.5vh;
 }
 
 .two {
@@ -830,13 +885,14 @@ export default defineComponent({
 
 @media (max-width: 992px) {
   .bicara-ai-top {
-  background: #3F54D1;
-  background: radial-gradient(70.14% 53.23% at 53.13% 91.67%, rgba(33,188,207,1) 10%, rgba(82,128,226,1) 79%, rgba(63,84,209,1) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-family: 'Krona One', sans-serif;
-  align-self: center;
-  font-size: 2vh;
+  height: 6vh;
+}
+
+
+.hero-img{
+  height: 35vh;
+  margin-top: -20vh;
+  margin-bottom: 5vh;
 }
 
 .top-bar {
@@ -981,8 +1037,15 @@ export default defineComponent({
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 700;
   text-align: center;
-  font-size: 4vw;
+  font-size: 3.5vw;
   margin-top: 0.75rem;
+}
+.card-one ion-card-content {
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 2.5vw;
 }
 
 .two {
