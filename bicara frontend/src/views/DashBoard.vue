@@ -18,7 +18,7 @@
         <ion-popover trigger="click-trigger" trigger-action="click">
           <ion-content class="ion-padding">
             <ion-list>
-              <ion-avatar slot="end" style="width: 45px; height: 45px;">
+              <ion-avatar slot="end" style="width: 45px; height: 45px">
                 <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
               </ion-avatar>
               <p class="nameacc">Jake Doe</p>
@@ -71,8 +71,12 @@
               <p>Home</p>
             </a>
             <a href="/history">
-              <span class="material-symbols-outlined"> video_library </span>
+              <span class="material-symbols-outlined"> movie </span>
               <p>History</p>
+            </a>
+            <a href="#">
+              <span class="material-symbols-outlined"> video_library</span>
+              <p>Library</p>
             </a>
             <a href="#">
               <span class="material-symbols-outlined"> help_center </span>
@@ -161,7 +165,7 @@
                         <p><span class="dot inton"></span></p>
                         <p>Eye Contact</p>
                       </div>
-                      <p class="val" style="color: #3F54D1;">Good</p>
+                      <p class="val" style="color: #3f54d1">Good</p>
                     </ion-col>
                     <!-- <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
                       <div class="detail">
@@ -178,21 +182,21 @@
                         <p><span class="dot grammar"></span></p>
                         <p>Filler Word</p>
                       </div>
-                      <p class="val" style="color: #15cdcb;">4 Fillers</p>
+                      <p class="val" style="color: #15cdcb">4 Fillers</p>
                     </ion-col>
                     <ion-col size="6" size-sm="4" size-lg="4">
                       <div class="detail">
                         <p><span class="dot eyecontact"></span></p>
                         <p>Pacing</p>
                       </div>
-                      <p class="val"  style="color: #4fe0b5;">250 word/min</p>
+                      <p class="val" style="color: #4fe0b5">250 word/min</p>
                     </ion-col>
                   </ion-row>
                 </ion-card>
               </ion-col>
             </ion-row>
             <ion-row class="ion-justify-content-end">
-              <a href="#" class="previous-vid">See your previous video analysis</a>
+              <a href="/history" class="previous-vid">See your previous video analysis</a>
             </ion-row>
           </ion-grid>
           <!-- Bagian Progess Report -->
@@ -276,11 +280,11 @@
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
                   <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
-                  <ion-col  class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
+                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
                 </ion-row>
                 <ion-row class="progress-table ion-justify-content-between">
                   <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
-                  <ion-col  class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
+                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
                 </ion-row>
               </ion-grid>
             </ion-card>
@@ -340,7 +344,7 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput, IonModal, IonPopover  } from "@ionic/vue";
+import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonInput, IonModal, IonPopover } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
 
@@ -360,7 +364,7 @@ export default defineComponent({
   data() {
     return {
       isDragging: false,
-      file :'',
+      file: "",
     };
   },
   methods: {
@@ -374,7 +378,7 @@ export default defineComponent({
       (document.getElementById("aside") as HTMLInputElement).style.display = "block";
       (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
     },
-    onChange(e : { target: { files: any; }; }) {
+    onChange(e: { target: { files: any } }) {
       console.log(e.target.files[0]);
       this.file = e.target.files[0];
       (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
@@ -392,24 +396,22 @@ export default defineComponent({
       console.log(this.file);
       (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
       this.isDragging = false;
-      
     },
     upload_video() {
       let formData = new FormData();
       formData.append("file", this.file);
-      axios.post("http://127.0.0.1:5000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        
-      }).then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      }
-      
-      );
+      axios
+        .post("http://127.0.0.1:5000/upload", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 });
@@ -448,7 +450,6 @@ ion-header ion-img {
 ion-page {
   --ion-background-color: #ffffff;
 }
-
 
 /* CSS HEADER/NAVBAR */
 
@@ -620,11 +621,12 @@ ion-item {
   padding: 0px;
 }
 
-.nameacc, .emailacc{
+.nameacc,
+.emailacc {
   margin: 5px 0px;
 }
 
-.nameacc{
+.nameacc {
   margin-top: 15px;
 }
 
@@ -740,7 +742,7 @@ ion-item {
 }
 .aside .lastsidebar {
   position: absolute;
-  bottom: 80px;
+  bottom: 100px;
   border-top: 1px solid #8c8c8c;
   padding: 10px 25px;
   width: 100%;
@@ -1023,13 +1025,17 @@ ion-col p {
 }
 
 .row-colored {
-  background-color:#5280e2;
+  background-color: #5280e2;
   border-radius: 15px;
   color: white;
 }
 
-.row-colored:nth-child(even) {background: #5280e2}
-.row-colored:nth-child(odd) {background: #15cdcb}
+.row-colored:nth-child(even) {
+  background: #5280e2;
+}
+.row-colored:nth-child(odd) {
+  background: #15cdcb;
+}
 
 .grafik {
   margin: auto;
@@ -1286,9 +1292,9 @@ ion-footer ion-toolbar ion-title {
     height: fit-content;
   }
 
-    .progress-count{
-      height: fit-content;
-    }
+  .progress-count {
+    height: fit-content;
+  }
 
   .grafik {
     margin: auto;
