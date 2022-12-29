@@ -5,6 +5,7 @@ import LandingPage from '../views/LandingPage.vue'
 import HomePage from '../views/HomePage.vue'
 import History from '../views/History.vue'
 import Library from '../views/Library.vue'
+import Details from '../views/Details.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,6 +27,10 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/library',
     component: Library
+  },
+  {
+    path: '/details',
+    component: Details
   }
 ]
 
