@@ -220,6 +220,13 @@ import {
     IonToolbar,
     IonModal,
     IonPopover,
+    IonImg,
+    IonAvatar,
+    IonList,
+    IonCard,
+    IonCol,
+    IonRow,
+    IonGrid,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -234,6 +241,13 @@ export default defineComponent({
         IonToolbar,
         IonModal,
         IonPopover,
+        IonImg,
+        IonAvatar,
+        IonList,
+        IonCard,
+        IonCol,
+        IonRow,
+        IonGrid,
     },
     data() {
         return {

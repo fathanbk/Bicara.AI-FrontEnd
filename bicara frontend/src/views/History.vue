@@ -185,7 +185,7 @@
                 <!-- Content History -->
                 <div class="content">
                     <h1>Jake's History</h1>
-                    <div class="emptystatehistory" style="display: none">
+                    <div class="emptystatehistory" v-if="result.length > 0">
                         <ion-card class="bghistory">
                             <ion-img
                                 src="assets/icon/history-vid.svg"
@@ -195,7 +195,7 @@
                             Discover powerful analytics by recording a speech,
                         </h2>
                         <h2>get your speech feedback now.</h2>
-                        <a href="#"
+                        <a href="#" @click.prevent="setModalOpen(true)"
                             ><h2
                                 style="
                                     text-decoration-line: underline;
@@ -207,7 +207,7 @@
                             </h2></a
                         >
                     </div>
-                    <ion-card class="history-video">
+                    <ion-card class="history-video" v-else>
                         <ion-grid>
                             <ion-row>
                                 <ion-col>

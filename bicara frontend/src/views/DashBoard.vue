@@ -133,7 +133,7 @@
                             </button>
                         </div>
                         <h4>What would you like to do today?</h4>
-                        <a href="#">
+                        <a href="/dashboard">
                             <span class="material-symbols-outlined">home</span>
                             <p>Home</p>
                         </a>

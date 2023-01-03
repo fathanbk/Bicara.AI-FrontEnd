@@ -308,6 +308,7 @@
 
 <script lang="ts">
 import {
+    IonPopover,
     IonButton,
     IonContent,
     IonPage,
@@ -322,7 +323,7 @@ import {
     IonCardContent,
     IonCol,
     IonRow,
-    IonPopover,
+    IonList,
 } from "@ionic/vue";
 import axios from "axios";
 import { defineComponent, ref } from "vue";
@@ -330,6 +331,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
     name: "HistoryDetails",
     components: {
+        IonPopover,
         IonButton,
         IonContent,
         IonPage,
@@ -344,7 +346,7 @@ export default defineComponent({
         IonCardContent,
         IonCol,
         IonRow,
-        IonPopover,
+        IonList,
     },
     data() {
         return {
