@@ -1,157 +1,274 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <button slot="start" v-on:click="open_side()" id="menu">
-          <span class="material-symbols-rounded menu"> menu </span>
-        </button>
-        <ion-title>Bicara.ai</ion-title>
-        <ion-button id="open-modal-upload" slot="end">
-          <span class="material-symbols-outlined"> video_call </span>
-          <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
-        </ion-button>
-        <ion-button slot="end">
-          <span class="material-symbols-outlined"> search </span>
-        </ion-button>
-        <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-        </ion-avatar>
+    <ion-page>
+        <ion-header :translucent="true">
+            <ion-toolbar>
+                <button slot="start" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
+                <ion-title>Bicara.ai</ion-title>
+                <ion-button id="open-modal-upload" slot="end">
+                    <span class="material-symbols-outlined"> video_call </span>
+                    <p class="upload-nav" style="margin-left: 10px">
+                        Upload Video
+                    </p>
+                </ion-button>
+                <ion-button slot="end">
+                    <span class="material-symbols-outlined"> search </span>
+                </ion-button>
+                <ion-avatar
+                    slot="end"
+                    style="width: 38px; height: 38px; margin-left: 10px"
+                >
+                    <img
+                        alt="Silhouette of a person's head"
+                        src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                    />
+                </ion-avatar>
 
-        <ion-modal id="example-modal" ref="modal" trigger="open-modal-upload">
-          <div class="wrapper" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-            <h1 style="color: black">Upload Your Video</h1>
+                <ion-modal
+                    id="example-modal"
+                    ref="modal"
+                    trigger="open-modal-upload"
+                >
+                    <div
+                        class="wrapper"
+                        @dragover="dragover"
+                        @dragleave="dragleave"
+                        @drop="drop"
+                    >
+                        <h1 style="color: black">Upload Your Video</h1>
 
-            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".mp4" />
+                        <input
+                            type="file"
+                            name="file"
+                            id="fileInput"
+                            class="hidden-input"
+                            v-on:change="onChange"
+                            ref="file"
+                            accept=".mp4"
+                        />
 
-            <label class="uploaddrag file-label" for="fileInput">
-              <ion-img class="uploadvid-img" src="assets/icon/uploadvid.svg"></ion-img>
-              <p v-if="isDragging" class="textupload">Release to drop files here.</p>
-              <p v-else class="textupload">Drag and drop file or <span style="cursor: pointer">browse local files</span></p>
-              <p class="textupload2">max. file size 10MB</p>
-            </label>
+                        <label class="uploaddrag file-label" for="fileInput">
+                            <ion-img
+                                class="uploadvid-img"
+                                src="assets/icon/uploadvid.svg"
+                            ></ion-img>
+                            <p v-if="isDragging" class="textupload">
+                                Release to drop files here.
+                            </p>
+                            <p v-else class="textupload">
+                                Drag and drop file or
+                                <span style="cursor: pointer"
+                                    >browse local files</span
+                                >
+                            </p>
+                            <p class="textupload2">max. file size 10MB</p>
+                        </label>
 
-            <ion-button :disabled="true" v-on:click="upload_video" id="upload_button">Upload</ion-button>
-          </div>
-        </ion-modal>
-      </ion-toolbar>
-    </ion-header>
+                        <ion-button
+                            :disabled="true"
+                            v-on:click="upload_video"
+                            id="upload_button"
+                            >Upload</ion-button
+                        >
+                    </div>
+                </ion-modal>
+            </ion-toolbar>
+        </ion-header>
 
-    <ion-content :fullscreen="true">
-      <div class="dashboard">
-        <!-- Sidebar Details-->
-        <div class="aside w3-animate-left" id="aside" style="position: fixed">
-          <div class="firstsidebar">
-            <div style="display: flex; justify-content: space-between; align-items: center">
-              <h1 slot="start">Hi, Jake!</h1>
-              <button slot="end" v-on:click="close_side()" id="close">
-                <span class="material-symbols-rounded close"> close </span>
-              </button>
-            </div>
-            <h4>What would you like to do today?</h4>
-            <a href="#">
-              <span class="material-symbols-outlined">home</span>
-              <p>Home</p>
-            </a>
-            <a href="/history">
-              <span class="material-symbols-outlined"> video_library </span>
-              <p>History</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> help_center </span>
-              <p>FAQ</p>
-            </a>
-            <a class="onlymobile" id="open-modal-upload">
-              <span class="material-symbols-outlined"> video_call </span>
-              <p>Upload Video</p>
-            </a>
-            <!-- <a class="onlymobile" href="#">
+        <ion-content :fullscreen="true">
+            <div class="dashboard">
+                <!-- Sidebar Details-->
+                <div
+                    class="aside w3-animate-left"
+                    id="aside"
+                    style="position: fixed"
+                >
+                    <div class="firstsidebar">
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            "
+                        >
+                            <h1 slot="start">Hi, Jake!</h1>
+                            <button
+                                slot="end"
+                                v-on:click="close_side()"
+                                id="close"
+                            >
+                                <span class="material-symbols-rounded close">
+                                    close
+                                </span>
+                            </button>
+                        </div>
+                        <h4>What would you like to do today?</h4>
+                        <a href="#">
+                            <span class="material-symbols-outlined">home</span>
+                            <p>Home</p>
+                        </a>
+                        <a href="/history">
+                            <span class="material-symbols-outlined">
+                                video_library
+                            </span>
+                            <p>History</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                help_center
+                            </span>
+                            <p>FAQ</p>
+                        </a>
+                        <a class="onlymobile" id="open-modal-upload">
+                            <span class="material-symbols-outlined">
+                                video_call
+                            </span>
+                            <p>Upload Video</p>
+                        </a>
+                        <!-- <a class="onlymobile" href="#">
               <span class="material-symbols-outlined "> account_circle </span>
               <p>Account</p>
             </a> -->
-          </div>
-          <div class="lastsidebar">
-            <a href="#">
-              <span class="material-symbols-outlined"> group </span>
-              <p>Contact Support</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> logout </span>
-              <p>Sign Out</p>
-            </a>
-          </div>
-        </div>
+                    </div>
+                    <div class="lastsidebar">
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                group
+                            </span>
+                            <p>Contact Support</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                            <p>Sign Out</p>
+                        </a>
+                    </div>
+                </div>
 
-        <!-- Content Details -->
-        <div class="content">
-          <!--Video & transcript-->
-          <div class="left-side">
-            <div class="upper-left">
-              <img alt="Ambassador Kim" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-text> Ambassador Kim's Remarks on Women in Fintech </ion-text>
-              <ion-text style="margin-bottom: 2vh; font-size: 2.5vh;"> 11 Aug 2022 11:11 </ion-text>
-            </div>
-            <h3>Transcript</h3>
-            <div class="bottom-left">
-              <ion-card>
-                <ion-card-content>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                <br><br>
-                Donec pede justo, fringilla vel, aliquet nec, vulputate ummm eget, arcu. 
-                <br><br>
-                In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-                Integer tincidunt. Hmmmm Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-                <br><br>
-                Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam jadi lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-                <br><br>
-                Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean umm imperdiet. Etiam ultricies nisi vel augue.
-                Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.
-                <br><br>
-                Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-                </ion-card-content>
-              </ion-card>
-            </div>
-          </div>
+                <!-- Content Details -->
+                <div class="content">
+                    <!--Video & transcript-->
+                    <div class="left-side">
+                        <div class="upper-left">
+                            <!-- <img
+                                alt="Ambassador Kim"
+                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
+                            /> -->
+                            <video controls="controls" preload="preload" v-if="video">
+                                <!-- <source
+                                    src="http://127.0.0.1:5000/static/results/aldysych12_-_Bicara.AI_-_2023-01-03_014845.841990.mp4"
+                                /> -->
+                                <source :src=video />
+                            </video>
+                            <ion-text>
+                                Ambassador Kim's Remarks on Women in Fintech
+                            </ion-text>
+                            <ion-text
+                                style="margin-bottom: 2vh; font-size: 2.5vh"
+                            >
+                                11 Aug 2022 11:11
+                            </ion-text>
+                        </div>
+                        <h3>Transcript</h3>
+                        <div class="bottom-left">
+                            <ion-card>
+                                <ion-card-content>
+                                    {{ result.transcript }}
+                                    <!-- Lorem ipsum dolor sit amet, consectetuer
+                                    adipiscing elit. Aenean commodo ligula eget
+                                    dolor. Aenean massa.
+                                    <br /><br />
+                                    Donec pede justo, fringilla vel, aliquet
+                                    nec, vulputate ummm eget, arcu.
+                                    <br /><br />
+                                    In enim justo, rhoncus ut, imperdiet a,
+                                    venenatis vitae, justo. Nullam dictum felis
+                                    eu pede mollis pretium. Integer tincidunt.
+                                    Hmmmm Cras dapibus. Vivamus elementum semper
+                                    nisi. Aenean vulputate eleifend tellus.
+                                    <br /><br />
+                                    Aenean leo ligula, porttitor eu, consequat
+                                    vitae, eleifend ac, enim. Aliquam jadi lorem
+                                    ante, dapibus in, viverra quis, feugiat a,
+                                    tellus.
+                                    <br /><br />
+                                    Phasellus viverra nulla ut metus varius
+                                    laoreet. Quisque rutrum. Aenean umm
+                                    imperdiet. Etiam ultricies nisi vel augue.
+                                    Curabitur ullamcorper ultricies nisi. Nam
+                                    eget dui. Etiam rhoncus.
+                                    <br /><br />
+                                    Maecenas tempus, tellus eget condimentum
+                                    rhoncus, sem quam semper libero, sit amet
+                                    adipiscing sem neque sed ipsum. -->
+                                </ion-card-content>
+                            </ion-card>
+                        </div>
+                    </div>
 
-          <!--Result-->
-          <div class="right-side">
-            <h3>Result</h3>
-            <div>
-              <ion-card>
-                <ion-card-title>
-                  <ion-row>
-                    <ion-col>Eye Contact</ion-col>
-                    <ion-col class="ion-text-right blue-text" blue-text>Good</ion-col>
-                  </ion-row>
-                </ion-card-title>
-              </ion-card>
-              <ion-card>
-                <ion-card-title>
-                  <ion-row>
-                    <ion-col>Pacing</ion-col>
-                    <ion-col class="ion-text-right blue-text">205 word/min</ion-col>
-                  </ion-row> 
-                </ion-card-title>               
-              </ion-card>
-              <ion-card>  
-                <ion-card-title>              
-                  <ion-row>
-                    <ion-col>Filler words</ion-col>
-                    <ion-col class="ion-text-right blue-text">5 fillers</ion-col>
-                  </ion-row>
-                </ion-card-title>
-                <ion-card-content>
-                  <ion-row>Um (2)</ion-row>
-                  <ion-row>Ah (2)</ion-row>
-                  <ion-row>Hm (1)</ion-row>
-                </ion-card-content>
-              </ion-card>
+                    <!--Result-->
+                    <div class="right-side">
+                        <h3>Result</h3>
+                        <div>
+                            <ion-card>
+                                <ion-card-title>
+                                    <ion-row>
+                                        <ion-col>Eye Contact</ion-col>
+                                        <ion-col
+                                            class="ion-text-right blue-text"
+                                            blue-text
+                                            >{{ result.eyeContact }}</ion-col
+                                        >
+                                    </ion-row>
+                                </ion-card-title>
+                            </ion-card>
+                            <ion-card>
+                                <ion-card-title>
+                                    <ion-row>
+                                        <ion-col>Pacing</ion-col>
+                                        <ion-col
+                                            class="ion-text-right blue-text"
+                                            >{{
+                                                result.pacing
+                                            }}
+                                            word/min</ion-col
+                                        >
+                                    </ion-row>
+                                </ion-card-title>
+                            </ion-card>
+                            <ion-card>
+                                <ion-card-title>
+                                    <ion-row>
+                                        <ion-col>Filler words</ion-col>
+                                        <ion-col
+                                            class="ion-text-right blue-text"
+                                            >{{
+                                                result.filler
+                                            }}
+                                            fillers</ion-col
+                                        >
+                                    </ion-row>
+                                </ion-card-title>
+                                <ion-card-content>
+                                    <ion-row
+                                        v-for="(
+                                            value, name, index
+                                        ) in result.fillerWords"
+                                        :key="index"
+                                        >{{ name }} ({{ value }})</ion-row
+                                    >
+                                    <!-- <ion-row>Ah (2)</ion-row>
+                                    <ion-row>Hm (1)</ion-row> -->
+                                </ion-card-content>
+                            </ion-card>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-
-      </div>
-    </ion-content>
-  </ion-page>
+        </ion-content>
+    </ion-page>
 </template>
 
 <script lang="ts">
