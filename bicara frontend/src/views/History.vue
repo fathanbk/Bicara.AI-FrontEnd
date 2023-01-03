@@ -284,73 +284,193 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonContent, IonPage, IonHeader, IonToolbar, IonModal } from "@ionic/vue";
-import axios from "axios";
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
-  name: "HistoryPage",
-  components: {
+import {
     IonButton,
     IonContent,
     IonPage,
     IonHeader,
     IonToolbar,
     IonModal,
-  },
-  data() {
-    return {
-      isDragging: false,
-      file: "",
-    };
-  },
-  methods: {
-    close_side() {
-      (document.getElementById("aside") as HTMLInputElement).style.display = "none";
-      (document.getElementById("close") as HTMLInputElement).style.display = "none";
-      (document.getElementById("menu") as HTMLInputElement).style.display = "inline-block";
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonImg,
+    IonAvatar,
+    IonList,
+    IonPopover,
+    IonCard,
+} from "@ionic/vue";
+import axios from "axios";
+import { defineComponent, ref } from "vue";
+import moment from "moment";
+
+export default defineComponent({
+    name: "HistoryPage",
+    components: {
+        IonButton,
+        IonContent,
+        IonPage,
+        IonHeader,
+        IonToolbar,
+        IonModal,
+        IonGrid,
+        IonRow,
+        IonCol,
+        IonImg,
+        IonAvatar,
+        IonList,
+        IonPopover,
+        IonCard,
     },
-    open_side() {
-      (document.getElementById("menu") as HTMLInputElement).style.display = "none";
-      (document.getElementById("aside") as HTMLInputElement).style.display = "block";
-      (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
+    data() {
+        return {
+            isDragging: false,
+            file: "",
+            sessionEmail: "",
+            result: [],
+            EyeContactMsg: "",
+            FillerWord: "",
+            FillerWords: "",
+            Pacing: "",
+            date: "",
+        };
     },
-    onChange(e: { target: { files: any } }) {
-      console.log(e.target.files[0]);
-      this.file = e.target.files[0];
-      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
+    computed: {
+        reverseTheResult() {
+            return this.result.reverse;
+        },
     },
-    dragover(event: { preventDefault: () => void; currentTarget: { classList: { contains: (arg0: string) => any; remove: (arg0: string) => void; add: (arg0: string) => void } } }) {
-      event.preventDefault();
-      this.isDragging = true;
+    methods: {
+        moment: function (date: Date) {
+            return moment(date).subtract(7, "hours").format("DD MMM YYYY");
+            // return moment(date).format("hh:mm / DD MMM");
+            // 11:11/12 Nov
+        },
+        close_side() {
+            (
+                document.getElementById("aside") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("close") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("menu") as HTMLInputElement
+            ).style.display = "inline-block";
+        },
+        open_side() {
+            (
+                document.getElementById("menu") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("aside") as HTMLInputElement
+            ).style.display = "block";
+            (
+                document.getElementById("close") as HTMLInputElement
+            ).style.display = "inline-block";
+        },
+        onChange(e: { target: { files: any } }) {
+            console.log(e.target.files[0]);
+            this.file = e.target.files[0];
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = false;
+        },
+        dragover(event: {
+            preventDefault: () => void;
+            currentTarget: {
+                classList: {
+                    contains: (arg0: string) => any;
+                    remove: (arg0: string) => void;
+                    add: (arg0: string) => void;
+                };
+            };
+        }) {
+            event.preventDefault();
+            this.isDragging = true;
+        },
+        dragleave() {
+            this.isDragging = false;
+        },
+        drop(event: {
+            preventDefault: () => void;
+            dataTransfer: { files: any };
+            currentTarget: {
+                classList: {
+                    add: (arg0: string) => void;
+                    remove: (arg0: string) => void;
+                };
+            };
+        }) {
+            event.preventDefault();
+            this.file = event.dataTransfer.files[0];
+            console.log(this.file);
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = false;
+            this.isDragging = false;
+        },
+        upload_video() {
+            let formData = new FormData();
+            formData.append("file", this.file);
+            axios
+                .post("http://127.0.0.1:5000/upload", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
     },
-    dragleave() {
-      this.isDragging = false;
+    mounted() {
+        console.log(this.FillerWord);
+        //   axios
+        //       .get("http://127.0.0.1:5000/signin")
+        //       .then((res) => {
+        //           console.log(res);
+        //           // if (res.data.status === "success") {
+        //           //     localStorage.setItem("email", res.data.email);
+        //           //     this.sessionEmail = res.data.email;
+        //           // } else {
+        //           //     window.location.href = "/homepage";
+        //           // }
+        //       })
+        //       .catch((err) => {
+        //           window.location.href = "/homepage";
+        //           console.log(err);
+        //       });
+        //   // local storage email
+        this.sessionEmail = localStorage.getItem("email") ?? "";
+
+        axios
+            .get("http://127.0.0.1:5000/result/" + this.sessionEmail)
+            .then((response) => {
+                console.log(response);
+                this.result = response.data.result;
+                console.log(this.result);
+                // console.log(this.result.slice(-1)[0]);
+                this.EyeContactMsg = this.result.slice(-1)[0]["eyeContact"];
+                this.FillerWord = this.result.slice(-1)[0]["filler"];
+                this.Pacing = this.result.slice(-1)[0]["pacing"];
+                this.date = this.result.slice(-1)[0]["date"];
+                this.date = new Date(this.date).toLocaleDateString("en-EN", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                });
+                this.FillerWords = this.result.slice(-1)[0]["fillerWords"];
+                console.log(this.FillerWords);
+                // how to get only inside double quote with regex
+                // print array of filler words with comma
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     },
-    drop(event: { preventDefault: () => void; dataTransfer: { files: any }; currentTarget: { classList: { add: (arg0: string) => void; remove: (arg0: string) => void } } }) {
-      event.preventDefault();
-      this.file = event.dataTransfer.files[0];
-      console.log(this.file);
-      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
-      this.isDragging = false;
-    },
-    upload_video() {
-      let formData = new FormData();
-      formData.append("file", this.file);
-      axios
-        .post("http://127.0.0.1:5000/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
 });
 </script>
 
