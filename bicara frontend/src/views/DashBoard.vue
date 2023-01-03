@@ -1,173 +1,306 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <button slot="start" v-on:click="open_side()" id="menu">
-          <span class="material-symbols-rounded menu"> menu </span>
-        </button>
-        <ion-img src="assets/img/bicara-logo.svg" style="height: 70px" slot="start"></ion-img>
-        <ion-button id="open-modal-upload" slot="end">
-          <span class="material-symbols-outlined"> video_call </span>
-          <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
-        </ion-button>
-        <a class="avatar" slot="end" id="click-trigger">
-          <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-        </a>
-        <ion-popover trigger="click-trigger" trigger-action="click">
-          <ion-content class="ion-padding">
-            <ion-list>
-              <ion-avatar slot="end" style="width: 45px; height: 45px">
-                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-              </ion-avatar>
-              <p class="nameacc">Jake Doe</p>
-              <p class="emailacc">jakedoe@hotemail.com</p>
-            </ion-list>
-          </ion-content>
-        </ion-popover>
+    <ion-page>
+        <ion-header :translucent="true">
+            <ion-toolbar>
+                <button slot="start" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
+                <ion-img
+                    src="assets/img/bicara-logo.svg"
+                    style="height: 70px"
+                    slot="start"
+                ></ion-img>
+                <ion-button id="open-modal-upload" slot="end">
+                    <span class="material-symbols-outlined"> video_call </span>
+                    <p class="upload-nav" style="margin-left: 10px">
+                        Upload Video
+                    </p>
+                </ion-button>
+                <a class="avatar" slot="end" id="click-trigger">
+                    <ion-avatar
+                        slot="end"
+                        style="width: 38px; height: 38px; margin-left: 10px"
+                    >
+                        <img
+                            alt="Silhouette of a person's head"
+                            src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                        />
+                    </ion-avatar>
+                </a>
+                <ion-popover trigger="click-trigger" trigger-action="click">
+                    <ion-content class="ion-padding">
+                        <ion-list>
+                            <ion-avatar
+                                slot="end"
+                                style="width: 45px; height: 45px"
+                            >
+                                <img
+                                    alt="Silhouette of a person's head"
+                                    src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                                />
+                            </ion-avatar>
+                            <p class="nameacc">Jake Doe</p>
+                            <p class="emailacc">{{ sessionEmail }}</p>
+                        </ion-list>
+                    </ion-content>
+                </ion-popover>
 
-        <ion-modal id="example-modal" ref="modal" trigger="open-modal-upload">
-          <div class="wrapper" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-            <h1 style="color: black">Upload Your Video</h1>
+                <ion-modal
+                    id="example-modal"
+                    ref="modal"
+                    trigger="open-modal-upload"
+                >
+                    <div
+                        class="wrapper"
+                        @dragover="dragover"
+                        @dragleave="dragleave"
+                        @drop="drop"
+                    >
+                        <h1 style="color: black">Upload Your Video</h1>
 
-            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".mp4" />
+                        <input
+                            type="file"
+                            name="file"
+                            id="fileInput"
+                            class="hidden-input"
+                            v-on:change="onChange"
+                            ref="file"
+                            accept=".mp4"
+                        />
 
-            <label class="uploaddrag file-label" for="fileInput">
-              <ion-img class="uploadvid-img" src="assets/icon/uploadvid.svg"></ion-img>
-              <p v-if="isDragging" class="textupload">Release to drop files here.</p>
-              <p v-else class="textupload">Drag and drop file or <span style="cursor: pointer">browse local files</span></p>
-              <p class="textupload2">max. file size 10MB</p>
-            </label>
+                        <label class="uploaddrag file-label" for="fileInput">
+                            <ion-img
+                                class="uploadvid-img"
+                                src="assets/icon/uploadvid.svg"
+                            ></ion-img>
+                            <p v-if="isDragging" class="textupload">
+                                Release to drop files here.
+                            </p>
+                            <p v-else class="textupload">
+                                Drag and drop file or
+                                <span style="cursor: pointer"
+                                    >browse local files</span
+                                >
+                            </p>
+                            <p class="textupload2">max. file size 10MB</p>
+                        </label>
 
-            <ion-button :disabled="true" v-on:click="upload_video" id="upload_button">Upload</ion-button>
-          </div>
-        </ion-modal>
-      </ion-toolbar>
-    </ion-header>
+                        <ion-button
+                            :disabled="true"
+                            v-on:click="upload_video"
+                            id="upload_button"
+                            >Upload</ion-button
+                        >
+                    </div>
+                </ion-modal>
+            </ion-toolbar>
+        </ion-header>
 
-    <ion-content :fullscreen="true">
-      <!--Mobile -->
-      <div class="background-mobile"></div>
-      <div class="intro-mobile-2">
-        <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
-        <button slot="end" v-on:click="open_side()" id="menu">
-          <span class="material-symbols-rounded menu"> menu </span>
-        </button>
-      </div>
-      <div class="dashboard">
-        <!-- Sidebar Dashboard-->
-        <div class="aside w3-animate-left" id="aside" style="position: fixed">
-          <div class="firstsidebar">
-            <div style="display: flex; justify-content: space-between; align-items: center">
-              <h1 slot="start">Hi, Jake!</h1>
-              <button slot="end" v-on:click="close_side()" id="close">
-                <span class="material-symbols-rounded close"> close </span>
-              </button>
+        <ion-content :fullscreen="true">
+            <!--Mobile -->
+            <div class="background-mobile"></div>
+            <div class="intro-mobile-2">
+                <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
+                <button slot="end" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
             </div>
-            <h4>What would you like to do today?</h4>
-            <a href="#">
-              <span class="material-symbols-outlined">home</span>
-              <p>Home</p>
-            </a>
-            <a href="/history">
-              <span class="material-symbols-outlined"> movie </span>
-              <p>History</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> video_library</span>
-              <p>Library</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> help_center </span>
-              <p>FAQ</p>
-            </a>
-            <a class="onlymobile" id="open-modal-upload">
-              <span class="material-symbols-outlined"> video_call </span>
-              <p>Upload Video</p>
-            </a>
-            <!-- <a class="onlymobile" href="#">
+            <div class="dashboard">
+                <!-- Sidebar Dashboard-->
+                <div
+                    class="aside w3-animate-left"
+                    id="aside"
+                    style="position: fixed"
+                >
+                    <div class="firstsidebar">
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            "
+                        >
+                            <h1 slot="start">Hi, Jake!</h1>
+                            <button
+                                slot="end"
+                                v-on:click="close_side()"
+                                id="close"
+                            >
+                                <span class="material-symbols-rounded close">
+                                    close
+                                </span>
+                            </button>
+                        </div>
+                        <h4>What would you like to do today?</h4>
+                        <a href="#">
+                            <span class="material-symbols-outlined">home</span>
+                            <p>Home</p>
+                        </a>
+                        <a href="/history">
+                            <span class="material-symbols-outlined">
+                                movie
+                            </span>
+                            <p>History</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                video_library</span
+                            >
+                            <p>Library</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                help_center
+                            </span>
+                            <p>FAQ</p>
+                        </a>
+                        <a class="onlymobile" id="open-modal-upload">
+                            <span class="material-symbols-outlined">
+                                video_call
+                            </span>
+                            <p>Upload Video</p>
+                        </a>
+                        <!-- <a class="onlymobile" href="#">
               <span class="material-symbols-outlined "> account_circle </span>
               <p>Account</p>
             </a> -->
-          </div>
-          <div class="lastsidebar">
-            <a href="#">
-              <span class="material-symbols-outlined"> group </span>
-              <p>Contact Support</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> logout </span>
-              <p>Sign Out</p>
-            </a>
-          </div>
-        </div>
-
-        <!-- Content Dashboard -->
-        <div class="content">
-          <!-- Mobile -->
-          <div class="intro-mobile" style="margin-top: 78px">
-            <div class="search-mobile">
-              <span class="material-symbols-outlined"> search </span>
-              <ion-input class="search-mobile2" placeholder="Search"></ion-input>
-            </div>
-            <h4>Hi, Jake! What would you like to do today?</h4>
-          </div>
-          <!-- Bagian Rating Result -->
-          <h1 class="title-rat">Rating Result</h1>
-          <ion-card class="empty-state" style="display: none">
-            <ion-img class="empty-img" src="assets/icon/empty.png"></ion-img>
-            <div style="position: relative">
-              <ion-card-content> There are no video yet </ion-card-content>
-              <p class="title-empty">You can add your video with the button in the bottom right corner (maximum video size 10 MB).</p>
-              <div class="empty-button">
-                <ion-button class="upload-vid">
-                  <span class="material-symbols-outlined"> video_call </span>
-                  <p class="upload-nav2" style="margin-left: 10px">Upload Video</p>
-                </ion-button>
-              </div>
-            </div>
-          </ion-card>
-          <ion-grid>
-            <ion-row class="ion-justify-content-between">
-              <ion-col size="12" size-sm="6" size-lg="4">
-                <div class="card">
-                  <p class="upload-rating">Uploaded 11 November 2022</p>
+                    </div>
+                    <div class="lastsidebar">
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                group
+                            </span>
+                            <p>Contact Support</p>
+                        </a>
+                        <a @click.prevent="logoutMethod">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                            <p>Sign Out</p>
+                        </a>
+                    </div>
                 </div>
-              </ion-col>
-            </ion-row>
-            <!-- score, filler, pacing -->
-            <!-- detail -->
-            <ion-row>
-              <ion-col>
-                <!-- Tampilan detail di mobile -->
-                <ion-card class="mobile-rating">
-                  <div>
-                    <div style="background-color: #3f54d1">
-                      <p class="detail-title">Eye Contact</p>
-                      <p class="detail-title">Good</p>
+
+                <!-- Content Dashboard -->
+                <div class="content">
+                    <!-- Mobile -->
+                    <div class="intro-mobile" style="margin-top: 78px">
+                        <div class="search-mobile">
+                            <span class="material-symbols-outlined">
+                                search
+                            </span>
+                            <ion-input
+                                class="search-mobile2"
+                                placeholder="Search"
+                            ></ion-input>
+                        </div>
+                        <h4>Hi, Jake! What would you like to do today?</h4>
                     </div>
-                    <div style="background-color: #15cdcb">
-                      <p class="detail-title">Filler Word</p>
-                      <p class="detail-persen">4 <span style="font-size: 17px">Fillers</span></p>
-                    </div>
-                    <div style="background-color: #4fe0b5">
-                      <p class="detail-title">Pacing</p>
-                      <p class="detail-persen">250 <span style="font-size: 17px">word/min</span></p>
-                    </div>
-                  </div>
-                </ion-card>
-                <!-- Tampilan detail di desktop -->
-                <ion-card class="detail-rating">
-                  <ion-row>
-                    <ion-col size="6" size-sm="4" size-lg="4" class="detailborder">
-                      <div class="detail">
-                        <p><span class="dot inton"></span></p>
-                        <p>Eye Contact</p>
-                      </div>
-                      <p class="val" style="color: #3f54d1">Good</p>
-                    </ion-col>
-                    <!-- <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
+                    <!-- Bagian Rating Result -->
+                    <h1 class="title-rat">Rating Result</h1>
+                    <ion-card v-if="result.length == 0" class="empty-state">
+                        <ion-img
+                            class="empty-img"
+                            src="assets/icon/empty.png"
+                        ></ion-img>
+                        <div style="position: relative">
+                            <ion-card-content>
+                                There are no video yet
+                            </ion-card-content>
+                            <p class="title-empty">
+                                You can add your video with the button in the
+                                bottom right corner (maximum video size 10 MB).
+                            </p>
+                            <div class="empty-button">
+                                <ion-button class="upload-vid">
+                                    <span class="material-symbols-outlined">
+                                        video_call
+                                    </span>
+                                    <p
+                                        class="upload-nav2"
+                                        style="margin-left: 10px"
+                                    >
+                                        Upload Video
+                                    </p>
+                                </ion-button>
+                            </div>
+                        </div>
+                    </ion-card>
+                    <ion-grid v-else>
+                        <ion-row class="ion-justify-content-between">
+                            <ion-col size="12" size-sm="6" size-lg="4">
+                                <div class="card">
+                                    <p class="upload-rating">
+                                        Uploaded {{ date }}
+                                    </p>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                        <!-- score, filler, pacing -->
+                        <!-- detail -->
+                        <ion-row>
+                            <ion-col>
+                                <!-- Tampilan detail di mobile -->
+                                <ion-card class="mobile-rating">
+                                    <div>
+                                        <div
+                                            v-if="result"
+                                            style="background-color: #3f54d1"
+                                        >
+                                            <p class="detail-title">
+                                                Eye Contact
+                                            </p>
+                                            <p class="detail-title">
+                                                {{ EyeContactMsg }}
+                                            </p>
+                                        </div>
+                                        <div style="background-color: #15cdcb">
+                                            <p class="detail-title">
+                                                Filler Word
+                                            </p>
+                                            <p class="detail-persen">
+                                                {{ FillerWord }}
+                                                <span style="font-size: 17px"
+                                                    >Fillers</span
+                                                >
+                                            </p>
+                                        </div>
+                                        <div style="background-color: #4fe0b5">
+                                            <p class="detail-title">Pacing</p>
+                                            <p class="detail-persen">
+                                                {{ Pacing }}
+                                                <span style="font-size: 17px"
+                                                    >word/min</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </ion-card>
+                                <!-- Tampilan detail di desktop -->
+                                <ion-card class="detail-rating">
+                                    <ion-row>
+                                        <ion-col
+                                            size="6"
+                                            size-sm="4"
+                                            size-lg="4"
+                                            class="detailborder"
+                                        >
+                                            <div class="detail">
+                                                <p>
+                                                    <span
+                                                        class="dot inton"
+                                                    ></span>
+                                                </p>
+                                                <p>Eye Contact</p>
+                                            </div>
+                                            <p
+                                                class="val"
+                                                style="color: #3f54d1"
+                                            >
+                                                {{ EyeContactMsg }}
+                                            </p>
+                                        </ion-col>
+                                        <!-- <ion-col size="6" size-sm="6" size-lg="3" class="detailborder none">
                       <div class="detail">
                         <p><span class="dot pronun"></span></p>
                         <p>Pronunciation</p>
@@ -177,170 +310,307 @@
                         <div class="progessvalue pronun" style="width: 65.7%"></div>
                       </div>
                     </ion-col> -->
-                    <ion-col size="6" size-sm="4" size-lg="4" class="detailborder none2">
-                      <div class="detail">
-                        <p><span class="dot grammar"></span></p>
-                        <p>Filler Word</p>
-                      </div>
-                      <p class="val" style="color: #15cdcb">4 Fillers</p>
-                    </ion-col>
-                    <ion-col size="6" size-sm="4" size-lg="4">
-                      <div class="detail">
-                        <p><span class="dot eyecontact"></span></p>
-                        <p>Pacing</p>
-                      </div>
-                      <p class="val" style="color: #4fe0b5">250 word/min</p>
-                    </ion-col>
-                  </ion-row>
-                </ion-card>
-              </ion-col>
-            </ion-row>
-            <ion-row class="ion-justify-content-end">
-              <a href="/history" class="previous-vid">See your previous video analysis</a>
-            </ion-row>
-          </ion-grid>
-          <!-- Bagian Progess Report -->
-          <h1>Progress Report</h1>
-          <ion-card class="empty-state" style="display: none">
-            <ion-img class="empty-img" src="assets/icon/empty.png"></ion-img>
-            <div style="position: relative">
-              <ion-card-content> There are no video yet </ion-card-content>
-              <p class="title-empty">You can add your video with the button in the bottom right corner (maximum video size 10 MB).</p>
-              <div class="empty-button">
-                <ion-button class="upload-vid">
-                  <span class="material-symbols-outlined"> video_call </span>
-                  <p class="upload-nav2" style="margin-left: 10px">Upload Video</p>
-                </ion-button>
-              </div>
-            </div>
-          </ion-card>
-          <div class="ProgressReport2" style="margin-top: 30px">
-            <!-- Navigasi Tanggal -->
-            <div class="card progressreport" id="prke1">
-              <p>
-                <span class="material-symbols-outlined"> chevron_left </span>
-              </p>
-              <p>November 2022</p>
-              <p>
-                <span class="material-symbols-outlined"> chevron_right </span>
-              </p>
-            </div>
-            <!-- Grafik Chart -->
-            <div class="chart" id="prke2">
-              <h1>Filler Words Count</h1>
-              <ion-grid>
-                <ion-row class="row-align-left">
-                  <ion-col size="2">No</ion-col>
-                  <ion-col size="3">Date</ion-col>
-                  <ion-col size="3">Filler Counts</ion-col>
-                  <ion-col size="4">Filler Words</ion-col>
-                </ion-row>
-                <ion-row class="row-colored row-align-left">
-                  <ion-col size="2">1</ion-col>
-                  <ion-col size="3">11:11/12 Nov</ion-col>
-                  <ion-col size="3">4</ion-col>
-                  <ion-col size="4">um, ah, hm</ion-col>
-                </ion-row>
-                <ion-row class="row-colored row-align-left">
-                  <ion-col size="2">2</ion-col>
-                  <ion-col size="3">11:11/12 Nov</ion-col>
-                  <ion-col size="3">4</ion-col>
-                  <ion-col size="4">um, ah, hm</ion-col>
-                </ion-row>
-                <ion-row class="row-colored row-align-left">
-                  <ion-col size="2">3</ion-col>
-                  <ion-col size="3">11:11/12 Nov</ion-col>
-                  <ion-col size="3">4</ion-col>
-                  <ion-col size="4">um, ah, hm</ion-col>
-                </ion-row>
-                <ion-row class="row-colored row-align-left">
-                  <ion-col size="2">4</ion-col>
-                  <ion-col size="3">11:11/12 Nov</ion-col>
-                  <ion-col size="3">4</ion-col>
-                  <ion-col size="4">um, ah, hm</ion-col>
-                </ion-row>
-                <ion-row class="row-colored row-align-left">
-                  <ion-col size="2">5</ion-col>
-                  <ion-col size="3">11:11/12 Nov</ion-col>
-                  <ion-col size="3">4</ion-col>
-                  <ion-col size="4">um, ah, hm</ion-col>
-                </ion-row>
-              </ion-grid>
-            </div>
-            <!-- Filler Word Count -->
-            <ion-card class="progress-count" id="prke3">
-              <ion-card-content class="progress-title">Eye Contact Assesment</ion-card-content>
-              <ion-grid>
-                <ion-row class="progress-table progress-title2 ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="5">Date</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Good</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5" size-sm="6" size-lg="4">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="5" size-sm="6" size-lg="6">Need Improvement</ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-            <!-- Pacing Count -->
-            <ion-card class="progress-count pacing-count" id="prke4">
-              <ion-card-content class="progress-title">Pacing Count</ion-card-content>
-              <ion-grid>
-                <ion-row class="progress-table progress-title2 ion-justify-content-between">
-                  <ion-col size="5" size-sm="4" size-lg="5">Date</ion-col>
-                  <ion-col class="row-right" size="6" size-sm="7" size-lg="6">Pacing (word/min)</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="6">205</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="6">205</ion-col>
-                </ion-row>
-                <ion-row class="progress-table ion-justify-content-between">
-                  <ion-col size="5">11:11 / 12 Nov</ion-col>
-                  <ion-col class="row-right" size="6">205</ion-col>
-                </ion-row>
-              </ion-grid>
-            </ion-card>
-          </div>
-          <!-- Bagian Samplespeech -->
-          <h1>Sample Speech</h1>
+                                        <ion-col
+                                            size="6"
+                                            size-sm="4"
+                                            size-lg="4"
+                                            class="detailborder none2"
+                                        >
+                                            <div class="detail">
+                                                <p>
+                                                    <span
+                                                        class="dot grammar"
+                                                    ></span>
+                                                </p>
+                                                <p>Filler Word</p>
+                                            </div>
+                                            <p
+                                                class="val"
+                                                style="color: #15cdcb"
+                                            >
+                                                {{ FillerWord }} Fillers
+                                            </p>
+                                        </ion-col>
+                                        <ion-col
+                                            size="6"
+                                            size-sm="4"
+                                            size-lg="4"
+                                        >
+                                            <div class="detail">
+                                                <p>
+                                                    <span
+                                                        class="dot eyecontact"
+                                                    ></span>
+                                                </p>
+                                                <p>Pacing</p>
+                                            </div>
+                                            <p
+                                                class="val"
+                                                style="color: #4fe0b5"
+                                            >
+                                                {{ Pacing }} word/min
+                                            </p>
+                                        </ion-col>
+                                    </ion-row>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row class="ion-justify-content-end">
+                            <a href="/history" class="previous-vid"
+                                >See your previous video analysis</a
+                            >
+                        </ion-row>
+                    </ion-grid>
+                    <!-- Bagian Progess Report -->
+                    <h1>Progress Report</h1>
+                    <ion-card v-if="result.length == 0" class="empty-state">
+                        <ion-img
+                            class="empty-img"
+                            src="assets/icon/empty.png"
+                        ></ion-img>
+                        <div style="position: relative">
+                            <ion-card-content>
+                                There are no video yet
+                            </ion-card-content>
+                            <p class="title-empty">
+                                You can add your video with the button in the
+                                bottom right corner (maximum video size 10 MB).
+                            </p>
+                            <div class="empty-button">
+                                <ion-button class="upload-vid">
+                                    <span class="material-symbols-outlined">
+                                        video_call
+                                    </span>
+                                    <p
+                                        class="upload-nav2"
+                                        style="margin-left: 10px"
+                                    >
+                                        Upload Video
+                                    </p>
+                                </ion-button>
+                            </div>
+                        </div>
+                    </ion-card>
+                    <div
+                        v-else
+                        class="ProgressReport2"
+                        style="margin-top: 30px"
+                    >
+                        <!-- Navigasi Tanggal -->
+                        <div class="card progressreport" id="prke1">
+                            <p>
+                                <span class="material-symbols-outlined">
+                                    chevron_left
+                                </span>
+                            </p>
+                            <p>November 2022</p>
+                            <p>
+                                <span class="material-symbols-outlined">
+                                    chevron_right
+                                </span>
+                            </p>
+                        </div>
+                        <!-- Grafik Chart -->
+                        <div class="chart" id="prke2">
+                            <h1>Filler Words Count</h1>
+                            <ion-grid>
+                                <ion-row class="row-align-left">
+                                    <ion-col size="2">No</ion-col>
+                                    <ion-col size="3">Date</ion-col>
+                                    <ion-col size="3">Filler Counts</ion-col>
+                                    <ion-col size="4">Filler Words</ion-col>
+                                </ion-row>
+                                <div
+                                    v-for="(item, index) in result
+                                        .slice(1)
+                                        .slice(-5)
+                                        .reverse()"
+                                    :key="item.email"
+                                >
+                                    <ion-row
+                                        class="row-colored row-align-left"
+                                        :style="
+                                            index % 2 == 0
+                                                ? 'background-color: #15cdcb'
+                                                : 'background-color: #5280e2'
+                                        "
+                                    >
+                                        <ion-col size="2">{{
+                                            index + 1
+                                        }}</ion-col>
+                                        <ion-col size="3">{{
+                                            // new Date(item.date)
+                                            //     .toLocaleDateString("en-EN", {
+                                            //         hour: "2-digit",
+                                            //         minute: "2-digit",
+                                            //         day: "2-digit",
+                                            //         month: "short",
+                                            //     })
+                                            //     .replace(/AM|PM/, "")
+                                            moment(item.date)
+                                        }}</ion-col>
+                                        <ion-col size="3">{{
+                                            item.filler
+                                        }}</ion-col>
+                                        <!-- {{ item.fillerWords }} -->
+                                        <ion-col
+                                            v-if="
+                                                Object.keys(item.fillerWords)
+                                                    .length > 0
+                                            "
+                                            size="4"
+                                            >{{
+                                                // print array of filler words with comma
 
-          <div class="samplespeech">
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-            <ion-card>
-              <img alt="Silhouette of mountains" src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg" />
-              <ion-card-content> Ambassador Kim's Remarks on Women in Fintech </ion-card-content>
-            </ion-card>
-          </div>
-          <ion-footer class="ion-no-border">
-            <ion-toolbar>
-              <ion-title> <span style="color: #3f54d1"> © 2022 Bicara.ai </span> | Policy</ion-title>
-            </ion-toolbar>
-          </ion-footer>
-        </div>
-      </div>
-    </ion-content>
-  </ion-page>
+                                                Object.keys(
+                                                    item.fillerWords
+                                                ).join(", ")
+                                            }}</ion-col
+                                        >
+                                        <ion-col v-else size="4">0</ion-col>
+                                    </ion-row>
+                                </div>
+                            </ion-grid>
+                        </div>
+                        <!-- Filler Word Count -->
+                        <ion-card class="progress-count" id="prke3">
+                            <ion-card-content class="progress-title"
+                                >Eye Contact Assesment</ion-card-content
+                            >
+                            <ion-grid>
+                                <ion-row
+                                    class="progress-table progress-title2 ion-justify-content-between"
+                                >
+                                    <ion-col size="5" size-sm="6" size-lg="5"
+                                        >Date</ion-col
+                                    >
+                                </ion-row>
+                                <div
+                                    v-for="item in result
+                                        .slice(1)
+                                        .slice(-3)
+                                        .reverse()"
+                                    :key="item.email"
+                                >
+                                    <ion-row
+                                        class="progress-table ion-justify-content-between"
+                                    >
+                                        <ion-col
+                                            size="5"
+                                            size-sm="6"
+                                            size-lg="6"
+                                            >{{ moment(item.date) }}</ion-col
+                                        >
+                                        <ion-col
+                                            class="row-right"
+                                            size="5"
+                                            size-sm="6"
+                                            size-lg="6"
+                                            >{{ item.eyeContact }}</ion-col
+                                        >
+                                    </ion-row>
+                                </div>
+                            </ion-grid>
+                        </ion-card>
+                        <!-- Pacing Count -->
+                        <ion-card
+                            class="progress-count pacing-count"
+                            id="prke4"
+                        >
+                            <ion-card-content class="progress-title"
+                                >Pacing Count</ion-card-content
+                            >
+                            <ion-grid>
+                                <ion-row
+                                    class="progress-table progress-title2 ion-justify-content-between"
+                                >
+                                    <ion-col size="5" size-sm="4" size-lg="5"
+                                        >Date</ion-col
+                                    >
+                                    <ion-col
+                                        class="row-right"
+                                        size="6"
+                                        size-sm="7"
+                                        size-lg="6"
+                                        >Pacing (word/min)</ion-col
+                                    >
+                                </ion-row>
+                                <div
+                                    v-for="item in result
+                                        .slice(1)
+                                        .slice(-3)
+                                        .reverse()"
+                                    :key="item.email"
+                                >
+                                    <ion-row
+                                        class="progress-table ion-justify-content-between"
+                                    >
+                                        <ion-col size="5">{{
+                                            moment(item.date)
+                                        }}</ion-col>
+                                        <ion-col class="row-right" size="6">{{
+                                            item.pacing
+                                        }}</ion-col>
+                                    </ion-row>
+                                </div>
+                            </ion-grid>
+                        </ion-card>
+                    </div>
+                    <!-- Bagian Samplespeech -->
+                    <h1>Sample Speech</h1>
+
+                    <div class="samplespeech">
+                        <ion-card>
+                            <img
+                                alt="Silhouette of mountains"
+                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
+                            />
+                            <ion-card-content>
+                                Ambassador Kim's Remarks on Women in Fintech
+                            </ion-card-content>
+                        </ion-card>
+                        <ion-card>
+                            <img
+                                alt="Silhouette of mountains"
+                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
+                            />
+                            <ion-card-content>
+                                Ambassador Kim's Remarks on Women in Fintech
+                            </ion-card-content>
+                        </ion-card>
+                        <ion-card>
+                            <img
+                                alt="Silhouette of mountains"
+                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
+                            />
+                            <ion-card-content>
+                                Ambassador Kim's Remarks on Women in Fintech
+                            </ion-card-content>
+                        </ion-card>
+                        <ion-card>
+                            <img
+                                alt="Silhouette of mountains"
+                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
+                            />
+                            <ion-card-content>
+                                Ambassador Kim's Remarks on Women in Fintech
+                            </ion-card-content>
+                        </ion-card>
+                    </div>
+                    <ion-footer class="ion-no-border">
+                        <ion-toolbar>
+                            <ion-title>
+                                <span style="color: #3f54d1">
+                                    © 2022 Bicara.ai
+                                </span>
+                                | Policy</ion-title
+                            >
+                        </ion-toolbar>
+                    </ion-footer>
+                </div>
+            </div>
+        </ion-content>
+    </ion-page>
 </template>
 
 <script lang="ts">
