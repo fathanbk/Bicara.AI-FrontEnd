@@ -1,157 +1,286 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <button slot="start" v-on:click="open_side()" id="menu">
-          <span class="material-symbols-rounded menu"> menu </span>
-        </button>
-        <ion-img src="assets/img/bicara-logo.svg" style="height: 70px" slot="start"></ion-img>
-        <ion-button id="open-modal-upload" slot="end">
-          <span class="material-symbols-outlined"> video_call </span>
-          <p class="upload-nav" style="margin-left: 10px">Upload Video</p>
-        </ion-button>
-        <a class="avatar" slot="end" id="click-trigger">
-          <ion-avatar slot="end" style="width: 38px; height: 38px; margin-left: 10px">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-        </a>
-        <ion-popover trigger="click-trigger" trigger-action="click">
-          <ion-content class="ion-padding">
-            <ion-list>
-              <ion-avatar slot="end" style="width: 45px; height: 45px">
-                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-              </ion-avatar>
-              <p class="nameacc">Jake Doe</p>
-              <p class="emailacc">jakedoe@hotemail.com</p>
-            </ion-list>
-          </ion-content>
-        </ion-popover>
+    <ion-page>
+        <ion-header :translucent="true">
+            <ion-toolbar>
+                <button slot="start" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
+                <ion-img
+                    src="assets/img/bicara-logo.svg"
+                    style="height: 70px"
+                    slot="start"
+                ></ion-img>
+                <ion-button id="open-modal-upload" slot="end">
+                    <span class="material-symbols-outlined"> video_call </span>
+                    <p class="upload-nav" style="margin-left: 10px">
+                        Upload Video
+                    </p>
+                </ion-button>
+                <a class="avatar" slot="end" id="click-trigger">
+                    <ion-avatar
+                        slot="end"
+                        style="width: 38px; height: 38px; margin-left: 10px"
+                    >
+                        <img
+                            alt="Silhouette of a person's head"
+                            src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                        />
+                    </ion-avatar>
+                </a>
+                <ion-popover trigger="click-trigger" trigger-action="click">
+                    <ion-content class="ion-padding">
+                        <ion-list>
+                            <ion-avatar
+                                slot="end"
+                                style="width: 45px; height: 45px"
+                            >
+                                <img
+                                    alt="Silhouette of a person's head"
+                                    src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                                />
+                            </ion-avatar>
+                            <p class="nameacc">Jake Doe</p>
+                            <p class="emailacc">jakedoe@hotemail.com</p>
+                        </ion-list>
+                    </ion-content>
+                </ion-popover>
 
-        <ion-modal id="example-modal" ref="modal" trigger="open-modal-upload">
-          <div class="wrapper" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-            <h1 style="color: black">Upload Your Video</h1>
+                <ion-modal
+                    id="example-modal"
+                    ref="modal"
+                    trigger="open-modal-upload"
+                >
+                    <div
+                        class="wrapper"
+                        @dragover="dragover"
+                        @dragleave="dragleave"
+                        @drop="drop"
+                    >
+                        <h1 style="color: black">Upload Your Video</h1>
 
-            <input type="file" name="file" id="fileInput" class="hidden-input" v-on:change="onChange" ref="file" accept=".mp4" />
+                        <input
+                            type="file"
+                            name="file"
+                            id="fileInput"
+                            class="hidden-input"
+                            v-on:change="onChange"
+                            ref="file"
+                            accept=".mp4"
+                        />
 
-            <label class="uploaddrag file-label" for="fileInput">
-              <ion-img class="uploadvid-img" src="assets/icon/uploadvid.svg"></ion-img>
-              <p v-if="isDragging" class="textupload">Release to drop files here.</p>
-              <p v-else class="textupload">Drag and drop file or <span style="cursor: pointer">browse local files</span></p>
-              <p class="textupload2">max. file size 10MB</p>
-            </label>
+                        <label class="uploaddrag file-label" for="fileInput">
+                            <ion-img
+                                class="uploadvid-img"
+                                src="assets/icon/uploadvid.svg"
+                            ></ion-img>
+                            <p v-if="isDragging" class="textupload">
+                                Release to drop files here.
+                            </p>
+                            <p v-else class="textupload">
+                                Drag and drop file or
+                                <span style="cursor: pointer"
+                                    >browse local files</span
+                                >
+                            </p>
+                            <p class="textupload2">max. file size 10MB</p>
+                        </label>
 
-            <ion-button :disabled="true" v-on:click="upload_video" id="upload_button">Upload</ion-button>
-          </div>
-        </ion-modal>
-      </ion-toolbar>
-    </ion-header>
+                        <ion-button
+                            :disabled="true"
+                            v-on:click="upload_video"
+                            id="upload_button"
+                            >Upload</ion-button
+                        >
+                    </div>
+                </ion-modal>
+            </ion-toolbar>
+        </ion-header>
 
-    <ion-content :fullscreen="true">
-      <!--Mobile -->
-      <div class="background-mobile"></div>
-      <div class="intro-mobile-2">
-        <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
-        <button slot="end" v-on:click="open_side()" id="menu">
-          <span class="material-symbols-rounded menu"> menu </span>
-        </button>
-      </div>
-      <div class="dashboard">
-        <!-- Sidebar History-->
-        <div class="aside w3-animate-left" id="aside" style="position: fixed">
-          <div class="firstsidebar">
-            <div style="display: flex; justify-content: space-between; align-items: center">
-              <h1 slot="start">Hi, Jake!</h1>
-              <button slot="end" v-on:click="close_side()" id="close">
-                <span class="material-symbols-rounded close"> close </span>
-              </button>
+        <ion-content :fullscreen="true">
+            <!--Mobile -->
+            <div class="background-mobile"></div>
+            <div class="intro-mobile-2">
+                <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
+                <button slot="end" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
             </div>
-            <h4>What would you like to do today?</h4>
-            <a href="/dashboard">
-              <span class="material-symbols-outlined">home</span>
-              <p>Home</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> video_library </span>
-              <p>History</p>
-            </a>
-            <a href="/library">
-              <span class="material-symbols-outlined"> video_library</span>
-              <p>Library</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> help_center </span>
-              <p>FAQ</p>
-            </a>
-            <a class="onlymobile" id="open-modal-upload">
-              <span class="material-symbols-outlined"> video_call </span>
-              <p>Upload Video</p>
-            </a>
-          </div>
-          <div class="lastsidebar">
-            <a href="#">
-              <span class="material-symbols-outlined"> group </span>
-              <p>Contact Support</p>
-            </a>
-            <a href="#">
-              <span class="material-symbols-outlined"> logout </span>
-              <p>Sign Out</p>
-            </a>
-          </div>
-        </div>
+            <div class="dashboard">
+                <!-- Sidebar History-->
+                <div
+                    class="aside w3-animate-left"
+                    id="aside"
+                    style="position: fixed"
+                >
+                    <div class="firstsidebar">
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            "
+                        >
+                            <h1 slot="start">Hi, Jake!</h1>
+                            <button
+                                slot="end"
+                                v-on:click="close_side()"
+                                id="close"
+                            >
+                                <span class="material-symbols-rounded close">
+                                    close
+                                </span>
+                            </button>
+                        </div>
+                        <h4>What would you like to do today?</h4>
+                        <a href="/dashboard">
+                            <span class="material-symbols-outlined">home</span>
+                            <p>Home</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                video_library
+                            </span>
+                            <p>History</p>
+                        </a>
+                        <a href="/library">
+                            <span class="material-symbols-outlined">
+                                video_library</span
+                            >
+                            <p>Library</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                help_center
+                            </span>
+                            <p>FAQ</p>
+                        </a>
+                        <a class="onlymobile" id="open-modal-upload">
+                            <span class="material-symbols-outlined">
+                                video_call
+                            </span>
+                            <p>Upload Video</p>
+                        </a>
+                    </div>
+                    <div class="lastsidebar">
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                group
+                            </span>
+                            <p>Contact Support</p>
+                        </a>
+                        <a href="#">
+                            <span class="material-symbols-outlined">
+                                logout
+                            </span>
+                            <p>Sign Out</p>
+                        </a>
+                    </div>
+                </div>
 
-        <!-- Content History -->
-        <div class="content">
-          <h1>Jake's History</h1>
-          <div class="emptystatehistory" style="display: none">
-            <ion-card class="bghistory">
-              <ion-img src="assets/icon/history-vid.svg"></ion-img>
-            </ion-card>
-            <h2>Discover powerful analytics by recording a speech,</h2>
-            <h2>get your speech feedback now.</h2>
-            <a href="#"><h2 style="text-decoration-line: underline; color: #3f54d1; text-align: center;">Upload your video</h2></a>
-          </div>
-          <ion-card class="history-video" >
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <h4 class="title">Video</h4>
-                </ion-col>
-                <ion-col>
-                  <h4 class="title">Upload</h4>
-                </ion-col>
-                <ion-col>
-                  <h4 class="title">Duration</h4>
-                </ion-col>
-                <ion-col>
-                  <h4 class="title">Pacing (word/min)</h4>
-                </ion-col>
-                <ion-col>
-                  <h4 class="title">Filler Word</h4>
-                </ion-col>
-              </ion-row>
-              <ion-row class="table-history">
-                <ion-col>
-                  <a href=""></a>
-                </ion-col>
-                <ion-col>
-                  <p class="tablecontent">11 Aug 2022</p>
-                </ion-col>
-                <ion-col>
-                  <p class="tablecontent">11:11</p>
-                </ion-col>
-                <ion-col>
-                  <p class="tablecontent">205</p>
-                </ion-col>
-                <ion-col>
-                  <p class="tablecontent">4 Filler</p>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-card>
-        </div>
-      </div>
-    </ion-content>
-  </ion-page>
+                <!-- Content History -->
+                <div class="content">
+                    <h1>Jake's History</h1>
+                    <div class="emptystatehistory" style="display: none">
+                        <ion-card class="bghistory">
+                            <ion-img
+                                src="assets/icon/history-vid.svg"
+                            ></ion-img>
+                        </ion-card>
+                        <h2>
+                            Discover powerful analytics by recording a speech,
+                        </h2>
+                        <h2>get your speech feedback now.</h2>
+                        <a href="#"
+                            ><h2
+                                style="
+                                    text-decoration-line: underline;
+                                    color: #3f54d1;
+                                    text-align: center;
+                                "
+                            >
+                                Upload your video
+                            </h2></a
+                        >
+                    </div>
+                    <ion-card class="history-video">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <h4 class="title">Video</h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4 class="title">Upload</h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4 class="title">Duration</h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4 class="title">Pacing (word/min)</h4>
+                                </ion-col>
+                                <ion-col>
+                                    <h4 class="title">Filler Word</h4>
+                                </ion-col>
+                            </ion-row>
+                            <div
+                                v-for="item in result.slice().reverse()"
+                                :key="item._id"
+                            >
+                                <ion-row
+                                    class="table-history"
+                                    color="dark"
+                                    :routerLink="`/details/${item._id}`"
+                                >
+                                    <ion-col>
+                                        <ion-img
+                                            class="sample-img"
+                                            src="assets/img/gambar.png"
+                                        ></ion-img>
+                                    </ion-col>
+                                    <ion-col>
+                                        <p class="tablecontent">
+                                            {{ moment(item.date) }}
+                                        </p>
+                                    </ion-col>
+                                    <ion-col>
+                                        <p class="tablecontent">
+                                            {{ item.duration }}
+                                        </p>
+                                    </ion-col>
+                                    <ion-col>
+                                        <p class="tablecontent">
+                                            {{ item.pacing }}
+                                        </p>
+                                    </ion-col>
+                                    <ion-col>
+                                        <p class="tablecontent">
+                                            {{ item.filler }} Filler
+                                        </p>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
+                            <!-- <ion-row class="table-history">
+                                <ion-col>
+                                    <a href=""></a>
+                                </ion-col>
+                                <ion-col>
+                                    <p class="tablecontent">11 Aug 2022</p>
+                                </ion-col>
+                                <ion-col>
+                                    <p class="tablecontent">11:11</p>
+                                </ion-col>
+                                <ion-col>
+                                    <p class="tablecontent">205</p>
+                                </ion-col>
+                                <ion-col>
+                                    <p class="tablecontent">4 Filler</p>
+                                </ion-col>
+                            </ion-row> -->
+                        </ion-grid>
+                    </ion-card>
+                </div>
+            </div>
+        </ion-content>
+    </ion-page>
 </template>
 
 <script lang="ts">
