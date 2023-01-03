@@ -466,8 +466,11 @@
                                         <!-- {{ item.fillerWords }} -->
                                         <ion-col
                                             v-if="
-                                                Object.keys(item.fillerWords)
-                                                    .length > 0
+                                                item.fillerWords
+                                                    ? Object.keys(
+                                                          item.fillerWords
+                                                      ).length > 0
+                                                    : false
                                             "
                                             size="4"
                                             >{{
