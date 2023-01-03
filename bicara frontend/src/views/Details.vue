@@ -272,13 +272,7 @@
 </template>
 
 <script lang="ts">
-import { IonButton, IonContent, IonPage, IonHeader, IonTitle, IonToolbar, IonModal } from "@ionic/vue";
-import axios from "axios";
-import { defineComponent, ref } from "vue";
-
-export default defineComponent({
-  name: "HistoryDetails",
-  components: {
+import {
     IonButton,
     IonContent,
     IonPage,
@@ -286,62 +280,170 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
     IonModal,
-  },
-  data() {
-    return {
-      isDragging: false,
-      file: '',
-    };
-  },
-  methods: {
-    close_side() {
-      (document.getElementById("aside") as HTMLInputElement).style.display = "none";
-      (document.getElementById("close") as HTMLInputElement).style.display = "none";
-      (document.getElementById("menu") as HTMLInputElement).style.display = "inline-block";
+    IonAvatar,
+    IonImg,
+    IonText,
+    IonCard,
+    IonCardTitle,
+    IonCardContent,
+    IonCol,
+    IonRow,
+} from "@ionic/vue";
+import axios from "axios";
+import { defineComponent, ref } from "vue";
+
+export default defineComponent({
+    name: "HistoryDetails",
+    components: {
+        IonButton,
+        IonContent,
+        IonPage,
+        IonHeader,
+        IonTitle,
+        IonToolbar,
+        IonModal,
+        IonAvatar,
+        IonImg,
+        IonText,
+        IonCard,
+        IonCardTitle,
+        IonCardContent,
+        IonCol,
+        IonRow,
     },
-    open_side() {
-      (document.getElementById("menu") as HTMLInputElement).style.display = "none";
-      (document.getElementById("aside") as HTMLInputElement).style.display = "block";
-      (document.getElementById("close") as HTMLInputElement).style.display = "inline-block";
+    data() {
+        return {
+            video: "",
+            isDragging: false,
+            file: "",
+            baseURL: "http://127.0.0.1:5000/static/results/",
+            result: {
+                filename: "",
+                eyeContact: 0,
+                filler: 0,
+                fillerWords: {},
+                pacing: 0,
+                transcript: "",
+            },
+            
+        };
     },
-    onChange(e : { target: { files: any; }; }) {
-      console.log(e.target.files[0]);
-      this.file = e.target.files[0];
-      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
-    },
-    dragover(event: { preventDefault: () => void; currentTarget: { classList: { contains: (arg0: string) => any; remove: (arg0: string) => void; add: (arg0: string) => void } } }) {
-      event.preventDefault();
-      this.isDragging = true;
-    },
-    dragleave() {
-      this.isDragging = false;
-    },
-    drop(event: { preventDefault: () => void; dataTransfer: { files: any }; currentTarget: { classList: { add: (arg0: string) => void; remove: (arg0: string) => void } } }) {
-      event.preventDefault();
-      this.file = event.dataTransfer.files[0];
-      console.log(this.file);
-      (document.getElementById("upload_button") as HTMLInputElement).disabled = false;
-      this.isDragging = false;
-      
-    },
-    upload_video() {
-      let formData = new FormData();
-      formData.append("file", this.file);
-      axios.post("http://127.0.0.1:5000/upload", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+    computed: {
+        addBaseURL() {
+            return (
+                "http://127.0.0.1:5000/static/results/" + this.result.filename
+            );
         },
-        
-      }).then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      }
-      
-      );
     },
-  },
+    methods: {
+        close_side() {
+            (
+                document.getElementById("aside") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("close") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("menu") as HTMLInputElement
+            ).style.display = "inline-block";
+        },
+        open_side() {
+            (
+                document.getElementById("menu") as HTMLInputElement
+            ).style.display = "none";
+            (
+                document.getElementById("aside") as HTMLInputElement
+            ).style.display = "block";
+            (
+                document.getElementById("close") as HTMLInputElement
+            ).style.display = "inline-block";
+        },
+        onChange(e: { target: { files: any } }) {
+            console.log(e.target.files[0]);
+            this.file = e.target.files[0];
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = false;
+        },
+        dragover(event: {
+            preventDefault: () => void;
+            currentTarget: {
+                classList: {
+                    contains: (arg0: string) => any;
+                    remove: (arg0: string) => void;
+                    add: (arg0: string) => void;
+                };
+            };
+        }) {
+            event.preventDefault();
+            this.isDragging = true;
+        },
+        dragleave() {
+            this.isDragging = false;
+        },
+        drop(event: {
+            preventDefault: () => void;
+            dataTransfer: { files: any };
+            currentTarget: {
+                classList: {
+                    add: (arg0: string) => void;
+                    remove: (arg0: string) => void;
+                };
+            };
+        }) {
+            event.preventDefault();
+            this.file = event.dataTransfer.files[0];
+            console.log(this.file);
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = false;
+            this.isDragging = false;
+        },
+        upload_video() {
+            let formData = new FormData();
+            formData.append("file", this.file);
+            axios
+                .post("http://127.0.0.1:5000/upload", formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+    },
+    async mounted() {
+        await axios
+            .get("http://127.0.0.1:5000/details/" + this.$route.params.id)
+            .then((response) => {
+                console.log(response.data);
+                this.result = response.data;
+            }) 
+            .catch((error) => {
+                console.log(error);
+            });
+        if (this.result.filename) {
+            await axios
+                .get(
+                    "http://127.0.0.1:5000/upload/display/" +
+                        this.result.filename
+                )
+                .then((response) => {
+                    console.log(response);
+                    this.video = response.data[0];
+                    console.log(this.video);
+                    console.log(response.data[0]);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+      
+    },
 });
 </script>
 
