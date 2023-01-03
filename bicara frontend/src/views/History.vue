@@ -10,7 +10,7 @@
                     style="height: 70px"
                     slot="start"
                 ></ion-img>
-                <ion-button id="open-modal-upload" slot="end">
+                <ion-button @click="setModalOpen(true)" slot="end">
                     <span class="material-symbols-outlined"> video_call </span>
                     <p class="upload-nav" style="margin-left: 10px">
                         Upload Video
@@ -49,6 +49,7 @@
                     id="example-modal"
                     ref="modal"
                     trigger="open-modal-upload"
+                    :is-open="isModalOpen"
                 >
                     <div
                         class="wrapper"
@@ -136,7 +137,7 @@
                             <span class="material-symbols-outlined">home</span>
                             <p>Home</p>
                         </a>
-                        <a href="#">
+                        <a href="/history">
                             <span class="material-symbols-outlined">
                                 video_library
                             </span>
@@ -154,7 +155,11 @@
                             </span>
                             <p>FAQ</p>
                         </a>
-                        <a class="onlymobile" id="open-modal-upload">
+                        <a
+                            href=""
+                            class="onlymobile"
+                            @click.prevent="setModalOpen(true)"
+                        >
                             <span class="material-symbols-outlined">
                                 video_call
                             </span>
@@ -168,7 +173,7 @@
                             </span>
                             <p>Contact Support</p>
                         </a>
-                        <a href="#">
+                        <a href="#" @click.prevent="logoutMethod">
                             <span class="material-symbols-outlined">
                                 logout
                             </span>
@@ -333,6 +338,7 @@ export default defineComponent({
             FillerWords: "",
             Pacing: "",
             date: "",
+            isModalOpen: false,
         };
     },
     computed: {
@@ -341,6 +347,13 @@ export default defineComponent({
         },
     },
     methods: {
+        logoutMethod() {
+            localStorage.removeItem("email");
+            this.$router.push("/homepage");
+        },
+        setModalOpen(isModalOpen: boolean) {
+            this.isModalOpen = isModalOpen;
+        },
         moment: function (date: Date) {
             return moment(date).subtract(7, "hours").format("DD MMM YYYY");
             // return moment(date).format("hh:mm / DD MMM");
@@ -427,6 +440,11 @@ export default defineComponent({
         },
     },
     mounted() {
+        document.addEventListener("click", (e) => {
+            if (e.target != document.querySelector("#example-modal")) {
+                this.setModalOpen(false);
+            }
+        });
         console.log(this.FillerWord);
         //   axios
         //       .get("http://127.0.0.1:5000/signin")
@@ -476,476 +494,475 @@ export default defineComponent({
 
 <style scoped>
 #container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #container strong {
-  font-size: 20px;
-  line-height: 26px;
+    font-size: 20px;
+    line-height: 26px;
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
 }
 
 #container a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 ion-header ion-img {
-  margin-top: -10px;
+    margin-top: -10px;
 }
 
 ion-page {
-  --ion-background-color: #ffffff;
+    --ion-background-color: #ffffff;
 }
 
 /* CSS HEADER/NAVBAR */
 
 ion-header ion-toolbar ion-title {
-  font-family: "Krona One", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.03em;
+    font-family: "Krona One", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
 }
 
 ion-header ion-toolbar {
-  --background: #3e54d3;
-  --padding-start: 10px;
-  --padding-end: 20px;
-  --padding-top: 15px;
-  --padding-bottom: 15px;
-  --color: white;
+    --background: #3e54d3;
+    --padding-start: 10px;
+    --padding-end: 20px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    --color: white;
 }
 
 ion-header ion-toolbar ion-button,
 .upload-vid {
-  --background: #ffffff;
-  --background-hover: #3e54d3;
-  --background-activated: #dcdcdc;
-  --background-focused: #dddddd;
-  --color: rgb(0, 0, 0);
-  --border-radius: 10px;
-  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  --ripple-color: #4f80e2;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  margin-right: 10px;
-  text-transform: capitalize;
-  font-style: normal;
-  font-weight: 600;
-  /* line-height: 24px; */
-  letter-spacing: -1px;
-  font-size: 18px;
+    --background: #ffffff;
+    --background-hover: #3e54d3;
+    --background-activated: #dcdcdc;
+    --background-focused: #dddddd;
+    --color: rgb(0, 0, 0);
+    --border-radius: 10px;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --ripple-color: #4f80e2;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin-right: 10px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 600;
+    /* line-height: 24px; */
+    letter-spacing: -1px;
+    font-size: 18px;
 }
 
 ion-header ion-toolbar button .menu {
-  font-size: 30px;
-  margin-left: 15px;
+    font-size: 30px;
+    margin-left: 15px;
 }
 ion-header ion-toolbar button .close {
-  font-size: 30px;
-  margin-left: 15px;
-  display: none;
+    font-size: 30px;
+    margin-left: 15px;
+    display: none;
 }
 
 ion-button i {
-  width: 10px;
-  margin-right: 15px;
+    width: 10px;
+    margin-right: 15px;
 }
 
 .avatar {
-  width: fit-content;
-  height: fit-content;
+    width: fit-content;
+    height: fit-content;
 }
 
 ion-popover {
-  --backdrop-opacity: 0;
-  margin-top: 10px;
-  margin-right: 10px;
+    --backdrop-opacity: 0;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 ion-modal#example-modal {
-  --width: 680px;
-  /* --min-width: 250px; */
-  --height: 450px;
-  --border-radius: 6px;
-  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  padding-left: 20px;
-  padding-right: 20px;
+    --width: 680px;
+    /* --min-width: 250px; */
+    --height: 450px;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .file-label {
-  /* font-size: 20px; */
-  display: block;
+    /* font-size: 20px; */
+    display: block;
 }
 .hidden-input {
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-  height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
 }
 
 .wrapper {
-  margin: 30px;
-  /* height: 100%; */
+    margin: 30px;
+    /* height: 100%; */
 }
 
 .wrapper > h1 {
-  margin: 18px 0px;
-  font-size: 24px;
+    margin: 18px 0px;
+    font-size: 24px;
 }
 
 .uploaddrag {
-  border: 7px dashed #15cdcb4f;
-  width: 100%;
-  height: 285px;
-  padding-top: 30px;
+    border: 7px dashed #15cdcb4f;
+    width: 100%;
+    height: 285px;
+    padding-top: 30px;
 }
 
 .uploadvid-img {
-  width: 140px;
-  margin: 20px auto;
+    width: 140px;
+    margin: 20px auto;
 }
 
 .uploaddrag > p {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.45);
-  margin: 0px;
-  text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 0px;
+    text-align: center;
 }
 
 .textupload {
-  font-size: 20px;
+    font-size: 20px;
 }
 .textupload2 {
-  font-size: 18px;
-  margin-top: 5px !important;
+    font-size: 18px;
+    margin-top: 5px !important;
 }
 
 .textupload > span {
-  color: #3e54d3;
-  text-decoration: underline;
+    color: #3e54d3;
+    text-decoration: underline;
 }
 
 .wrapper > ion-button {
-  --background: #3e54d3;
-  --border-radius: 8px;
-  width: 100%;
-  margin: 20px 0px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  text-transform: capitalize;
-  font-size: 18px;
+    --background: #3e54d3;
+    --border-radius: 8px;
+    width: 100%;
+    margin: 20px 0px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 18px;
 }
 
 #menu {
-  background-color: #3f54d1;
+    background-color: #3f54d1;
 }
 
 #close {
-  background-color: #ffffff;
-  color: black;
+    background-color: #ffffff;
+    color: black;
 }
 
 ion-popover {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: 10px !important;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 10px !important;
 }
 
 ion-list,
 ion-item {
-  background-color: #ffffff;
-  padding: 0px;
+    background-color: #ffffff;
+    padding: 0px;
 }
 
 .nameacc,
 .emailacc {
-  margin: 5px 0px;
+    margin: 5px 0px;
 }
 
 .nameacc {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .emailacc {
-  color: #8c8c8c;
-  font-size: 16px;
+    color: #8c8c8c;
+    font-size: 16px;
 }
 
 /* CSS SIDEBAR */
 
 .dashboard {
-  display: flex;
+    display: flex;
 }
 
 .intro-mobile,
 .intro-mobile-2 {
-  display: none;
+    display: none;
 }
 
 .aside {
-  background-color: rgb(255, 255, 255);
-  border-right: 1px solid #8c8c8c;
-  width: 300px;
-  height: 100%;
-  display: none;
-  z-index: 200;
+    background-color: rgb(255, 255, 255);
+    border-right: 1px solid #8c8c8c;
+    width: 300px;
+    height: 100%;
+    display: none;
+    z-index: 200;
 }
 
 .w3-animate-left {
-  position: relative;
-  animation: animateleft 0.4s;
+    position: relative;
+    animation: animateleft 0.4s;
 }
 @keyframes animateleft {
-  from {
-    left: -200px;
-    opacity: 0;
-  }
-  to {
-    left: 0;
-    opacity: 1;
-  }
+    from {
+        left: -200px;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
 }
 
 .aside ion-button {
-  --background: #ffffff;
-  --background-hover: #3e54d3;
-  --background-activated: #dcdcdc;
-  --background-focused: #dddddd;
-  --color: rgb(0, 0, 0);
-  --border-radius: 20px;
-  --box-shadow: 0;
-  --ripple-color: #4f80e2;
-  text-transform: capitalize;
-  font-family: "Segoe UI", Arial, sans-serif;
-  letter-spacing: 0px;
-  width: 230px;
+    --background: #ffffff;
+    --background-hover: #3e54d3;
+    --background-activated: #dcdcdc;
+    --background-focused: #dddddd;
+    --color: rgb(0, 0, 0);
+    --border-radius: 20px;
+    --box-shadow: 0;
+    --ripple-color: #4f80e2;
+    text-transform: capitalize;
+    font-family: "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0px;
+    width: 230px;
 }
 
 .aside h4 {
-  position: relative;
+    position: relative;
 }
 .aside h1 {
-  margin: 9px 0;
+    margin: 9px 0;
 }
 
 .aside ion-button span {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .aside a:nth-child(4) {
-  outline: 0;
-  appearance: none;
-  text-decoration: none;
-  list-style: none;
-  display: flex;
-  color: rgb(255, 255, 255);
-  position: relative;
-  width: 220px;
-  border-radius: 20px;
-  padding-left: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background-color: #3f54d1;
-  font-size: 18px;
-  gap: 8px;
-  font-weight: 600;
-  font-family: "Segoe UI", Arial, sans-serif;
+    outline: 0;
+    appearance: none;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    color: rgb(255, 255, 255);
+    position: relative;
+    width: 220px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #3f54d1;
+    font-size: 18px;
+    gap: 8px;
+    font-weight: 600;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 .aside a {
-  outline: 0;
-  appearance: none;
-  text-decoration: none;
-  list-style: none;
-  display: flex;
-  color: rgb(0, 0, 0);
-  position: relative;
-  width: 220px;
-  border-radius: 20px;
-  padding-left: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 18px;
-  gap: 8px;
-  margin-top: 6px;
-  font-weight: 510;
-  font-family: "Segoe UI", Arial, sans-serif;
-  transition: background-color 0.6s;
+    outline: 0;
+    appearance: none;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    color: rgb(0, 0, 0);
+    position: relative;
+    width: 220px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 18px;
+    gap: 8px;
+    margin-top: 6px;
+    font-weight: 510;
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: background-color 0.6s;
 }
 
 .aside .firstsidebar {
-  margin: 0px 25px;
-  margin-top: 20px;
+    margin: 0px 25px;
+    margin-top: 20px;
 }
 .aside .lastsidebar {
-  position: absolute;
-  bottom: 90px;
-  border-top: 1px solid #8c8c8c;
-  padding: 10px 25px;
-  width: 100%;
+    position: absolute;
+    bottom: 90px;
+    border-top: 1px solid #8c8c8c;
+    padding: 10px 25px;
+    width: 100%;
 }
 
 .aside a span {
-  margin-top: 4px;
+    margin-top: 4px;
 }
 
 .aside a:hover {
-  background-color: rgb(226, 232, 238);
-  color: black;
+    background-color: rgb(226, 232, 238);
+    color: black;
 }
 
 .aside a:nth-child(4):hover {
-  background-color: #3f54d1;
-  color: #ffffff;
+    background-color: #3f54d1;
+    color: #ffffff;
 }
 
 .aside a p {
-  margin: 3px 0 0 5px;
-  padding: 0;
+    margin: 3px 0 0 5px;
+    padding: 0;
 }
 
 /* CSS Content Dashboard */
 
 .content {
-  width: 1000px;
-  margin: 0 auto;
-  padding-top: 10px;
-  transition: all 0.2 s;
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 10px;
+    transition: all 0.2 s;
 }
 
 .content h1 {
-  font-size: 30px;
-  margin: 20px 8px;
+    font-size: 30px;
+    margin: 20px 8px;
 }
 
 ion-card {
-  --background: #e4eaeffe;
-  --color: black;
-  border-radius: 10px;
-  box-shadow: none;
-  margin: 0;
-  padding: 0 !important;
+    --background: #e4eaeffe;
+    --color: black;
+    border-radius: 10px;
+    box-shadow: none;
+    margin: 0;
+    padding: 0 !important;
 }
 
 .title,
 .tablecontent {
-  text-align: center;
-  font-family: "Segoe UI", Arial, sans-serif;
+    text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
 .tablecontent {
-  font-size: 18px;
-  font-weight: 450;
+    font-size: 18px;
+    font-weight: 450;
 }
 
 ion-grid {
-  padding: 0;
+    padding: 0;
 }
 .table-history {
-  border-top: 1px solid #8c8c8c;
-  height: 120px;
+    border-top: 1px solid #8c8c8c;
+    height: 120px;
 }
 
 .bghistory {
-  max-width: 450px;
-  min-height: 200px;
-  margin: 0px auto;
+    max-width: 450px;
+    min-height: 200px;
+    margin: 0px auto;
 }
 
 .bghistory > ion-img {
-  width: 200px;
-  margin: 50px auto;
+    width: 200px;
+    margin: 50px auto;
 }
 
 .emptystatehistory > h2 {
-  text-align: center;
+    text-align: center;
 }
 
 @media (max-width: 992px) {
-  .content {
-    width: 576px;
-  }
+    .content {
+        width: 576px;
+    }
 
-  .upload-nav {
-    display: none;
-  }
+    .upload-nav {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {
+    .intro-mobile-2 {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #3f54d1;
+        padding: 10px 20px;
+        padding-bottom: 0px;
+        width: 100%;
+        margin: 0px;
+        z-index: 200;
+    }
+    .intro-mobile-2 h1 {
+        margin-top: 2px;
+        color: #ffffff;
+        font-family: "Krona One", sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+    }
 
-  .intro-mobile-2 {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3f54d1;
-    padding: 10px 20px;
-    padding-bottom: 0px;
-    width: 100%;
-    margin: 0px;
-    z-index: 200;
-  }
-  .intro-mobile-2 h1 {
-    margin-top: 2px;
-    color: #ffffff;
-    font-family: "Krona One", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-  }
+    .lastsidebar {
+        bottom: 3px !important;
+    }
 
-  .lastsidebar {
-    bottom: 3px !important;
-  }
+    .dashboard {
+        z-index: 0;
+    }
+    ion-header {
+        display: none;
+    }
+    .detail-rating,
+    ion-header ion-toolbar ion-button,
+    ion-header ion-toolbar ion-avatar,
+    #asidee {
+        display: none;
+    }
 
-  .dashboard {
-    z-index: 0;
-  }
-  ion-header {
-    display: none;
-  }
-  .detail-rating,
-  ion-header ion-toolbar ion-button,
-  ion-header ion-toolbar ion-avatar,
-  #asidee {
-    display: none;
-  }
+    .content {
+        width: 97vw;
+    }
 
-  .content {
-    width: 97vw;
-  }
+    .content h1 {
+        font-size: 25px;
+        margin-top: 80px;
+    }
+    .content h2 {
+        font-size: 5vw;
+        line-height: normal;
+    }
 
-  .content h1 {
-    font-size: 25px;
-    margin-top: 80px;
-  }
-  .content h2 {
-    font-size: 5vw;
-    line-height: normal;
-  }
-
-  .content .title-rat {
-    margin-top: 0px;
-    color: #ffffff;
-  }
+    .content .title-rat {
+        margin-top: 0px;
+        color: #ffffff;
+    }
 }
 </style>
