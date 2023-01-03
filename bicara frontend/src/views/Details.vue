@@ -39,8 +39,8 @@
                                     src="https://ionicframework.com/docs/img/demos/avatar.svg"
                                 />
                             </ion-avatar>
-                            <p class="nameacc">Jake Doe</p>
-                            <p class="emailacc">jakedoe@hotemail.com</p>
+                            <p class="nameacc">{{ sessionName }}</p>
+                            <p class="emailacc">{{ sessionEmail }}</p>
                         </ion-list>
                     </ion-content>
                 </ion-popover>
@@ -348,6 +348,8 @@ export default defineComponent({
     },
     data() {
         return {
+            sessionEmail: "",
+            sessionName: "",
             video: "",
             isDragging: false,
             isModalOpen: false,
@@ -459,6 +461,8 @@ export default defineComponent({
         },
     },
     async mounted() {
+        this.sessionEmail = localStorage.getItem("email") ?? "";
+        this.sessionName = localStorage.getItem("name") ?? "";
         await axios
             .get("http://127.0.0.1:5000/details/" + this.$route.params.id)
             .then((response) => {

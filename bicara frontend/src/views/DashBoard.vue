@@ -39,7 +39,7 @@
                                     src="https://ionicframework.com/docs/img/demos/avatar.svg"
                                 />
                             </ion-avatar>
-                            <p class="nameacc">Jake Doe</p>
+                            <p class="nameacc">{{ sessionName }}</p>
                             <p class="emailacc">{{ sessionEmail }}</p>
                         </ion-list>
                     </ion-content>
@@ -143,7 +143,7 @@
                             </span>
                             <p>History</p>
                         </a>
-                        <a href="#">
+                        <a href="/library">
                             <span class="material-symbols-outlined">
                                 video_library</span
                             >
@@ -676,6 +676,7 @@ export default defineComponent({
             isDragging: false,
             file: "",
             sessionEmail: "",
+            sessionName: "",
             result: [],
             EyeContactMsg: "",
             FillerWord: "",
@@ -801,6 +802,7 @@ export default defineComponent({
         //       });
         //   // local storage email
         this.sessionEmail = localStorage.getItem("email") ?? "";
+        this.sessionName = localStorage.getItem("name") ?? "";
 
         axios
             .get("http://127.0.0.1:5000/result/" + this.sessionEmail)
@@ -816,6 +818,18 @@ export default defineComponent({
                     day: "numeric",
                 });
                 this.FillerWords = this.result.slice(-1)[0]["fillerWords"];
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        axios
+            .get("http://127.0.0.1:5000/user/" + this.sessionEmail)
+            .then((response) => {
+                console.log(response);
+                let name =
+                    response.data.firstName + " " + response.data.lastName;
+                console.log(name);
+                localStorage.setItem("name", name);
             })
             .catch((error) => {
                 console.log(error);
