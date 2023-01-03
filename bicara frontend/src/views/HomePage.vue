@@ -1,263 +1,384 @@
 <template>
-    <ion-page>    
-      <ion-content :fullscreen="true">
-        <div class="top-bar" id="top">
-          <div class="top-bar" id="top">
-        <ion-img src="assets/img/bicara-color.svg" class="bicara-ai-top"></ion-img>
-      </div>
-          <ion-row class="ion-justify-content-end">
-            <div class="for-landscape">
-              <a href="homepage/#features">Features</a>
-              <a href="homepage/#steps">About</a>
-            </div>
-            <ion-button @click="setSignInOpen(true)" color="im-in">Sign in</ion-button>
-  
-            <ion-modal class="sign-in" :is-open="isSignInOpen">
+    <ion-page>
+        <ion-content :fullscreen="true">
+            <div class="top-bar" id="top">
+                <div class="top-bar" id="top">
+                    <ion-img
+                        src="assets/img/bicara-color.svg"
+                        class="bicara-ai-top"
+                    ></ion-img>
+                </div>
+                <ion-row class="ion-justify-content-end">
+                    <div class="for-landscape">
+                        <a href="homepage/#features">Features</a>
+                        <a href="homepage/#steps">About</a>
+                    </div>
+                    <ion-button @click="setSignInOpen(true)" color="im-in"
+                        >Sign in</ion-button
+                    >
+
+                    <ion-modal class="sign-in" :is-open="isSignInOpen">
                         <ion-content class="ion-padding">
                             <div>
-                              <h1>Sign in</h1>
-                              <ion-text>Welcome to Bicara.ai</ion-text>
+                                <h1>Sign in</h1>
+                                <ion-text>Welcome to Bicara.ai</ion-text>
                             </div>
                             <ion-card>
                                 <ion-text>Email<br /></ion-text>
                                 <ion-input
                                     type="email"
                                     placeholder="Enter email"
+                                    v-model="emailLogin"
                                 ></ion-input>
                                 <ion-text>Password<br /></ion-text>
                                 <ion-input
                                     type="password"
                                     placeholder="Enter password"
+                                    v-model="passwordLogin"
                                 ></ion-input>
-                              <ion-button color="notify" href="/dashboard">Sign in</ion-button>
+                                <ion-button
+                                    color="notify"
+                                    @click.prevent="signInMethod"
+                                    >Sign in</ion-button
+                                >
                             </ion-card>
                             <div class="to-sign-up">
-                              Don't have an account? 
-                              <a                                @click="setSignUpOpen(true)"
-                                  color="white"
-                                  >Sign up</a>
+                                Don't have an account?
+                                <a @click="setSignUpOpen(true)" color="white"
+                                    >Sign up</a
+                                >
                             </div>
                         </ion-content>
                     </ion-modal>
                     <ion-modal class="sign-up" :is-open="isSignUpOpen">
                         <ion-content class="ion-padding">
-                          <div>
-                              <h1>Sign up</h1>
-                              <ion-text>Welcome to Bicara.ai</ion-text>
+                            <div>
+                                <h1>Sign up</h1>
+                                <ion-text>Welcome to Bicara.ai</ion-text>
                             </div>
                             <ion-card>
                                 <ion-text>First name<br /></ion-text>
                                 <ion-input
                                     type="text"
                                     placeholder="Enter first name"
+                                    v-model="firstName"
                                 ></ion-input>
                                 <ion-text>Last name<br /></ion-text>
                                 <ion-input
                                     type="text"
                                     placeholder="Enter last name"
+                                    v-model="lastName"
                                 ></ion-input>
                                 <ion-text>Email<br /></ion-text>
                                 <ion-input
                                     type="email"
                                     placeholder="Enter email"
+                                    v-model="email"
                                 ></ion-input>
                                 <ion-text>Password<br /></ion-text>
                                 <ion-input
                                     type="password"
                                     placeholder="Enter password"
+                                    v-model="password"
                                 ></ion-input>
-                            <ion-button href="/dashboard">Sign up</ion-button>
+                                <ion-button @click.prevent="signUpMethod"
+                                    >Sign up</ion-button
+                                >
                             </ion-card>
                         </ion-content>
                     </ion-modal>
-          </ion-row>
-        </div>
-  
-        <div class="top-gradient">
-          <div class="top-content">
-            <ion-row>
-              <ion-col size="12" size-lg="5" class="title-top1">Improve your</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="" size-lg="6" class="title-top2" color="secondary">communication skills</ion-col></ion-row>
-            <ion-row class="half">
-              <ion-col size="12" class="desc-top">Bicara.ai is an education platform. Bicara.ai aim to improve indviduals comunication skills with judgement free feedback from our AI-powered speech coach.</ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12" size-md="12" size-lg="5" class="email">
-                <div class="email-regist">
-                  <ion-img src="assets/icon/email.svg"></ion-img>
-                  <ion-input class="email-input" placeholder="Your email address"></ion-input>
-                  <ion-button size="large" color="notify" class="notify" @click="setSignUpOpen(true)">Try for free</ion-button>
-  
-                </div>
-              </ion-col>
-            </ion-row>
-          </div>
-            <div class="hero-img for-landscape">
-            <ion-img src="assets/img/hero.svg"></ion-img>
+                </ion-row>
             </div>
-        </div>
-        <div class="for-portrait">
-            <ion-img class="hero-img" src="assets/img/hero.svg"></ion-img>
-        </div>
-        
-  
-        <div class="one">
-        <!-- ganti icon-->
-        <h1>Why you should use Bicara.ai</h1>
-        <div class="num-back"><ion-img src="assets/img/1.svg"></ion-img></div>
-        <ion-row class="for-landscape">
-          <ion-col size="4">
-            <ion-card class="card-one">
-              <ion-img class="small-icon" src="assets/icon/filler.svg"></ion-img>
-              <ion-card-title>Filler words detection</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col size="4">
-            <ion-card class="card-one">
-              <ion-img src="assets/icon/pacing.svg"></ion-img>
-              <ion-card-title>Pacing</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>            
-          </ion-col>
-          <ion-col size="4">
-            <ion-card class="card-one">
-              <ion-img src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Eye detection</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>            
-          </ion-col>
-        </ion-row>
 
-        <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 10vh;"></ion-img>
-        
-        <ion-img src="assets/icon/arrow-right.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; right: 3vh; margin-top: 10vh;"></ion-img>
+            <div class="top-gradient">
+                <div class="top-content">
+                    <ion-row>
+                        <ion-col size="12" size-lg="5" class="title-top1"
+                            >Improve your</ion-col
+                        >
+                    </ion-row>
+                    <ion-row>
+                        <ion-col
+                            size=""
+                            size-lg="6"
+                            class="title-top2"
+                            color="secondary"
+                            >communication skills</ion-col
+                        ></ion-row
+                    >
+                    <ion-row class="half">
+                        <ion-col size="12" class="desc-top"
+                            >Bicara.ai is an education platform. Bicara.ai aim
+                            to improve indviduals comunication skills with
+                            judgement free feedback from our AI-powered speech
+                            coach.</ion-col
+                        >
+                    </ion-row>
+                    <ion-row>
+                        <ion-col
+                            size="12"
+                            size-md="12"
+                            size-lg="5"
+                            class="email"
+                        >
+                            <div class="email-regist">
+                                <ion-img src="assets/icon/email.svg"></ion-img>
+                                <ion-input
+                                    class="email-input"
+                                    placeholder="Your email address"
+                                ></ion-input>
+                                <ion-button
+                                    size="large"
+                                    color="notify"
+                                    class="notify"
+                                    @click="setSignUpOpen(true)"
+                                    >Try for free</ion-button
+                                >
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+                <div class="hero-img for-landscape">
+                    <ion-img src="assets/img/hero.svg"></ion-img>
+                </div>
+            </div>
+            <div class="for-portrait">
+                <ion-img class="hero-img" src="assets/img/hero.svg"></ion-img>
+            </div>
 
-        <ion-slides class="for-portrait">
-          <ion-slide>
-            <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/filler.svg"></ion-img>
-              <ion-card-title>Filler words detection</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>
-          </ion-slide>
-          <ion-slide>
-            <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/Pacing.svg"></ion-img>
-              <ion-card-title>Pacing</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>            
-          </ion-slide>
-          <ion-slide>
-            <ion-card class="card-one">
-              <ion-img class="big-icon" src="assets/icon/eye.svg"></ion-img>
-              <ion-card-title>Body language</ion-card-title>
-              <ion-card-content>
-                Lorem ipsum dolor sit amet.
-              </ion-card-content>
-            </ion-card>            
-          </ion-slide>
-        </ion-slides>
-      </div>
+            <div class="one">
+                <!-- ganti icon-->
+                <h1>Why you should use Bicara.ai</h1>
+                <div class="num-back">
+                    <ion-img src="assets/img/1.svg"></ion-img>
+                </div>
+                <ion-row class="for-landscape">
+                    <ion-col size="4">
+                        <ion-card class="card-one">
+                            <ion-img
+                                class="small-icon"
+                                src="assets/icon/filler.svg"
+                            ></ion-img>
+                            <ion-card-title
+                                >Filler words detection</ion-card-title
+                            >
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-card class="card-one">
+                            <ion-img src="assets/icon/pacing.svg"></ion-img>
+                            <ion-card-title>Pacing</ion-card-title>
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-card class="card-one">
+                            <ion-img src="assets/icon/eye.svg"></ion-img>
+                            <ion-card-title>Eye detection</ion-card-title>
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
 
-      <div class="two">
-        <h1>See our analysis example</h1>
-        <div class="num-back"><ion-img src="assets/img/2.svg"></ion-img></div>
-        <div>
-          <div class="video">
-            <iframe src="https://www.youtube.com/embed/fpI8Jx65W18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
+                <ion-img
+                    src="assets/icon/arrow-left.svg"
+                    class="for-portrait"
+                    style="
+                        height: 2vh;
+                        z-index: 2;
+                        position: absolute;
+                        left: 3vh;
+                        margin-top: 10vh;
+                    "
+                ></ion-img>
 
-      <div class="three">
-        <h1>How it works</h1>
-        <div  id="steps" class="num-back"><ion-img src="assets/img/3.svg"></ion-img></div>
-        <div class="green-bar">
-          <ion-img src="assets/img/Union.png" class="for-landscape"></ion-img>
-        </div>
-        
-        <ion-img src="assets/icon/arrow-left.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; left: 3vh; margin-top: 5vh;"></ion-img>
-      
-        <ion-img src="assets/icon/arrow-right.svg" class="for-portrait" style="height: 2vh; z-index: 2; position: absolute; right: 3vh; margin-top: 5vh;"></ion-img>
+                <ion-img
+                    src="assets/icon/arrow-right.svg"
+                    class="for-portrait"
+                    style="
+                        height: 2vh;
+                        z-index: 2;
+                        position: absolute;
+                        right: 3vh;
+                        margin-top: 10vh;
+                    "
+                ></ion-img>
 
-        <ion-row class="for-landscape">
-          <ion-col size="12" size-lg="2"></ion-col>
-          <ion-col size="6" size-lg="2">
-            <p class="card-desc">Step 1</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-col>
-          <ion-col size="6" size-lg="2">
-            <p class="card-desc">Step 2</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-col>
-          <ion-col size="6" size-lg="2">
-            <p class="card-desc">Step 3</p>
-            <ion-card class="card-three"></ion-card>            
-          </ion-col>
-          <ion-col size="6" size-lg="2">
-            <p class="card-desc">Step 4</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-col>
-          <ion-col size="12" size-lg="2"></ion-col>
-        </ion-row>
+                <ion-slides class="for-portrait">
+                    <ion-slide>
+                        <ion-card class="card-one">
+                            <ion-img
+                                class="big-icon"
+                                src="assets/icon/filler.svg"
+                            ></ion-img>
+                            <ion-card-title
+                                >Filler words detection</ion-card-title
+                            >
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-slide>
+                    <ion-slide>
+                        <ion-card class="card-one">
+                            <ion-img
+                                class="big-icon"
+                                src="assets/icon/Pacing.svg"
+                            ></ion-img>
+                            <ion-card-title>Pacing</ion-card-title>
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-slide>
+                    <ion-slide>
+                        <ion-card class="card-one">
+                            <ion-img
+                                class="big-icon"
+                                src="assets/icon/eye.svg"
+                            ></ion-img>
+                            <ion-card-title>Body language</ion-card-title>
+                            <ion-card-content>
+                                Lorem ipsum dolor sit amet.
+                            </ion-card-content>
+                        </ion-card>
+                    </ion-slide>
+                </ion-slides>
+            </div>
 
-        <ion-slides class="for-portrait">
-          <ion-slide size="6" size-lg="2">
-            <p class="card-desc">Step 1</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-slide>
-          <ion-slide size="6" size-lg="2">
-            <p class="card-desc">Step 2</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-slide>
-          <ion-slide size="6" size-lg="2">
-            <p class="card-desc">Step 3</p>
-            <ion-card class="card-three"></ion-card>            
-          </ion-slide>
-          <ion-slide size="6" size-lg="2">
-            <p class="card-desc">Step 4</p>
-            <ion-card class="card-three"></ion-card>
-          </ion-slide>
-        </ion-slides>
+            <div class="two">
+                <h1>See our analysis example</h1>
+                <div class="num-back">
+                    <ion-img src="assets/img/2.svg"></ion-img>
+                </div>
+                <div>
+                    <div class="video">
+                        <iframe
+                            src="https://www.youtube.com/embed/fpI8Jx65W18"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
 
-        <div class="center">
-          <ion-text class="kucing">
-              Are you ready to be <br>
-              <div class="kelinci"><ion-text class="highlight">
-                a better speaker
-              </ion-text><ion-text>?</ion-text>
-              </div>
-          </ion-text>
-          <div class="kucing">
-              <ion-button class="to-top" size="large" color="im-in" href="homepage/#top">
-                Yes I'm in!
-              </ion-button>
-          </div>
-        </div>
-      </div>
+            <div class="three">
+                <h1>How it works</h1>
+                <div id="steps" class="num-back">
+                    <ion-img src="assets/img/3.svg"></ion-img>
+                </div>
+                <div class="green-bar">
+                    <ion-img
+                        src="assets/img/Union.png"
+                        class="for-landscape"
+                    ></ion-img>
+                </div>
 
-      <ion-row class="footer">
-        <ion-col size="12" size-lg="6" class="bicara-ai-bot">Bicara.ai</ion-col>
-        <ion-col size="12" size-lg="6" class="copyright">
-          © 2022 Bicara.ai
-        </ion-col>
-      </ion-row>
+                <ion-img
+                    src="assets/icon/arrow-left.svg"
+                    class="for-portrait"
+                    style="
+                        height: 2vh;
+                        z-index: 2;
+                        position: absolute;
+                        left: 3vh;
+                        margin-top: 5vh;
+                    "
+                ></ion-img>
 
-    </ion-content>
-  </ion-page>
+                <ion-img
+                    src="assets/icon/arrow-right.svg"
+                    class="for-portrait"
+                    style="
+                        height: 2vh;
+                        z-index: 2;
+                        position: absolute;
+                        right: 3vh;
+                        margin-top: 5vh;
+                    "
+                ></ion-img>
+
+                <ion-row class="for-landscape">
+                    <ion-col size="12" size-lg="2"></ion-col>
+                    <ion-col size="6" size-lg="2">
+                        <p class="card-desc">Step 1</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-col>
+                    <ion-col size="6" size-lg="2">
+                        <p class="card-desc">Step 2</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-col>
+                    <ion-col size="6" size-lg="2">
+                        <p class="card-desc">Step 3</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-col>
+                    <ion-col size="6" size-lg="2">
+                        <p class="card-desc">Step 4</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-col>
+                    <ion-col size="12" size-lg="2"></ion-col>
+                </ion-row>
+
+                <ion-slides class="for-portrait">
+                    <ion-slide size="6" size-lg="2">
+                        <p class="card-desc">Step 1</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-slide>
+                    <ion-slide size="6" size-lg="2">
+                        <p class="card-desc">Step 2</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-slide>
+                    <ion-slide size="6" size-lg="2">
+                        <p class="card-desc">Step 3</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-slide>
+                    <ion-slide size="6" size-lg="2">
+                        <p class="card-desc">Step 4</p>
+                        <ion-card class="card-three"></ion-card>
+                    </ion-slide>
+                </ion-slides>
+
+                <div class="center">
+                    <ion-text class="kucing">
+                        Are you ready to be <br />
+                        <div class="kelinci">
+                            <ion-text class="highlight">
+                                a better speaker </ion-text
+                            ><ion-text>?</ion-text>
+                        </div>
+                    </ion-text>
+                    <div class="kucing">
+                        <ion-button
+                            class="to-top"
+                            size="large"
+                            color="im-in"
+                            href="homepage/#top"
+                        >
+                            Yes I'm in!
+                        </ion-button>
+                    </div>
+                </div>
+            </div>
+
+            <ion-row class="footer">
+                <ion-col size="12" size-lg="6" class="bicara-ai-bot"
+                    >Bicara.ai</ion-col
+                >
+                <ion-col size="12" size-lg="6" class="copyright">
+                    © 2022 Bicara.ai
+                </ion-col>
+            </ion-row>
+        </ion-content>
+    </ion-page>
 </template>
   
   <script lang="ts">
