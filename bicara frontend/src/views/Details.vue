@@ -5,25 +5,45 @@
                 <button slot="start" v-on:click="open_side()" id="menu">
                     <span class="material-symbols-rounded menu"> menu </span>
                 </button>
-                <ion-title>Bicara.ai</ion-title>
+                <ion-img
+                    src="assets/img/bicara-logo.svg"
+                    style="height: 70px"
+                    slot="start"
+                ></ion-img>
                 <ion-button @click="setModalOpen(true)" slot="end">
                     <span class="material-symbols-outlined"> video_call </span>
                     <p class="upload-nav" style="margin-left: 10px">
                         Upload Video
                     </p>
                 </ion-button>
-                <ion-button slot="end">
-                    <span class="material-symbols-outlined"> search </span>
-                </ion-button>
-                <ion-avatar
-                    slot="end"
-                    style="width: 38px; height: 38px; margin-left: 10px"
-                >
-                    <img
-                        alt="Silhouette of a person's head"
-                        src="https://ionicframework.com/docs/img/demos/avatar.svg"
-                    />
-                </ion-avatar>
+                <a class="avatar" slot="end" id="click-trigger">
+                    <ion-avatar
+                        slot="end"
+                        style="width: 38px; height: 38px; margin-left: 10px"
+                    >
+                        <img
+                            alt="Silhouette of a person's head"
+                            src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                        />
+                    </ion-avatar>
+                </a>
+                <ion-popover trigger="click-trigger" trigger-action="click">
+                    <ion-content class="ion-padding">
+                        <ion-list>
+                            <ion-avatar
+                                slot="end"
+                                style="width: 45px; height: 45px"
+                            >
+                                <img
+                                    alt="Silhouette of a person's head"
+                                    src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                                />
+                            </ion-avatar>
+                            <p class="nameacc">Jake Doe</p>
+                            <p class="emailacc">jakedoe@hotemail.com</p>
+                        </ion-list>
+                    </ion-content>
+                </ion-popover>
 
                 <ion-modal
                     id="example-modal"
@@ -105,7 +125,7 @@
                             </button>
                         </div>
                         <h4>What would you like to do today?</h4>
-                        <a href="#">
+                        <a href="/dashboard">
                             <span class="material-symbols-outlined">home</span>
                             <p>Home</p>
                         </a>
@@ -292,7 +312,6 @@ import {
     IonContent,
     IonPage,
     IonHeader,
-    IonTitle,
     IonToolbar,
     IonModal,
     IonAvatar,
@@ -303,6 +322,7 @@ import {
     IonCardContent,
     IonCol,
     IonRow,
+    IonPopover,
 } from "@ionic/vue";
 import axios from "axios";
 import { defineComponent, ref } from "vue";
@@ -314,7 +334,6 @@ export default defineComponent({
         IonContent,
         IonPage,
         IonHeader,
-        IonTitle,
         IonToolbar,
         IonModal,
         IonAvatar,
@@ -325,6 +344,7 @@ export default defineComponent({
         IonCardContent,
         IonCol,
         IonRow,
+        IonPopover,
     },
     data() {
         return {
@@ -499,6 +519,10 @@ export default defineComponent({
     text-decoration: none;
 }
 
+ion-header ion-img {
+    margin-top: -10px;
+}
+
 ion-page {
     --ion-background-color: #ffffff;
 }
@@ -570,6 +594,46 @@ ion-modal#example-modal {
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
     padding-left: 20px;
     padding-right: 20px;
+}
+
+ion-popover {
+    --backdrop-opacity: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+ion-popover {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 10px !important;
+}
+
+ion-popover {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 10px !important;
+}
+
+ion-list,
+ion-item {
+    background-color: #ffffff;
+    padding: 0px;
+}
+
+.nameacc,
+.emailacc {
+    margin: 5px 0px;
+}
+
+.nameacc {
+    margin-top: 15px;
+}
+
+.emailacc {
+    color: #8c8c8c;
+    font-size: 16px;
 }
 
 .file-label {
@@ -902,6 +966,15 @@ h3 {
     margin-right: 15px;
     color: black;
     font-weight: 400;
+}
+
+@media (max-width: 992px) {
+    /* .content {
+        width: 576px;
+    } */
+    .upload-nav {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {
