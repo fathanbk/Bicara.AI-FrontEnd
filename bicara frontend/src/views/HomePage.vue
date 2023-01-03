@@ -381,41 +381,135 @@
     </ion-page>
 </template>
   
-  <script lang="ts">
-  import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonicSlides, IonModal } from '@ionic/vue';
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    name: 'HomePage',
+<script lang="ts">
+import {
+    IonContent,
+    IonPage,
+    IonInput,
+    IonButton,
+    IonImg,
+    IonCol,
+    IonRow,
+    IonCard,
+    IonCardTitle,
+    IonCardContent,
+    IonSlides,
+    IonSlide,
+    IonText,
+    IonModal,
+} from "@ionic/vue";
+import { defineComponent } from "vue";
+import axios from "axios";
+
+export default defineComponent({
+    name: "HomePage",
     components: {
-      IonContent,
-      IonPage,
-      IonModal,
+        IonContent,
+        IonPage,
+        IonInput,
+        IonButton,
+        IonImg,
+        IonCol,
+        IonRow,
+        IonCard,
+        IonCardTitle,
+        IonCardContent,
+        IonSlides,
+        IonSlide,
+        IonText,
+        IonModal,
     },
     data() {
         return {
-          isSignInOpen: false,
-          isSignUpOpen: false,
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            emailLogin: "",
+            passwordLogin: "",
+            isSignInOpen: false,
+            isSignUpOpen: false,
         };
-      },
-      methods: {
+    },
+    methods: {
         setSignInOpen(isSignInOpen: boolean) {
-          this.isSignInOpen = isSignInOpen;
+            this.isSignInOpen = isSignInOpen;
         },
         setSignUpOpen(isSignUpOpen: boolean) {
-          this.isSignUpOpen = isSignUpOpen;
+            this.isSignUpOpen = isSignUpOpen;
         },
-      },
-      mounted() {
+        signUpMethod() {
+            let data = {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                email: this.email,
+                password: this.password,
+            };
+            console.log(data);
+            axios
+                .post("http://127.0.0.1:5000/signup", {
+                    firstName: this.firstName,
+                    lastName: this.lastName,
+                    email: this.email,
+                    password: this.password,
+                })
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+        signInMethod() {
+            let session = new FormData();
+            session.append("email", this.emailLogin);
+            session.append("password", this.passwordLogin);
+            axios
+                .post("http://127.0.0.1:5000/signin", session)
+                .then((res) => {
+                    console.log(res.data.message);
+                    if (
+                        res.data.message == "User logged in successfully" ||
+                        res.data.message == "User already logged in"
+                    ) {
+                        window.location.href = "/dashboard";
+                        console.log(res.data.email);
+                        localStorage.setItem("email", res.data.email);
+                    } else {
+                        console.log("User not logged in");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
+    },
+    mounted() {
         document.addEventListener("click", (e) => {
             if (e.target != document.querySelector(".sign-in")) {
                 this.setSignInOpen(false);
                 this.setSignUpOpen(false);
             }
         });
+        axios
+            .get("http://127.0.0.1:5000/signin")
+            .then((res) => {
+                // console.log(res.data.email);
+                if (
+                    res.data.message == "User logged in successfully" ||
+                    res.data.message == "User already logged in"
+                ) {
+                    // window.location.href = "/dashboard";
+                } else {
+                    console.log("User not logged in");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
-    });
-  </script>
+});
+</script>
   
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Krona+One&display=swap');
