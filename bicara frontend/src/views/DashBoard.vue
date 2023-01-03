@@ -10,7 +10,7 @@
                     style="height: 70px"
                     slot="start"
                 ></ion-img>
-                <ion-button id="open-modal-upload" slot="end">
+                <ion-button @click="setModalOpen(true)" slot="end">
                     <span class="material-symbols-outlined"> video_call </span>
                     <p class="upload-nav" style="margin-left: 10px">
                         Upload Video
@@ -49,6 +49,7 @@
                     id="example-modal"
                     ref="modal"
                     trigger="open-modal-upload"
+                    :is-open="isModalOpen"
                 >
                     <div
                         class="wrapper"
@@ -154,7 +155,11 @@
                             </span>
                             <p>FAQ</p>
                         </a>
-                        <a class="onlymobile" id="open-modal-upload">
+                        <a
+                            href="#"
+                            class="onlymobile"
+                            @click.prevent="setModalOpen(true)"
+                        >
                             <span class="material-symbols-outlined">
                                 video_call
                             </span>
@@ -172,7 +177,7 @@
                             </span>
                             <p>Contact Support</p>
                         </a>
-                        <a @click.prevent="logoutMethod">
+                        <a href="" @click.prevent="logoutMethod">
                             <span class="material-symbols-outlined">
                                 logout
                             </span>
@@ -212,7 +217,10 @@
                                 bottom right corner (maximum video size 10 MB).
                             </p>
                             <div class="empty-button">
-                                <ion-button class="upload-vid">
+                                <ion-button
+                                    class="upload-vid"
+                                    @click="setModalOpen(true)"
+                                >
                                     <span class="material-symbols-outlined">
                                         video_call
                                     </span>
@@ -377,7 +385,10 @@
                                 bottom right corner (maximum video size 10 MB).
                             </p>
                             <div class="empty-button">
-                                <ion-button class="upload-vid">
+                                <ion-button
+                                    class="upload-vid"
+                                    @click="setModalOpen(true)"
+                                >
                                     <span class="material-symbols-outlined">
                                         video_call
                                     </span>
@@ -671,11 +682,14 @@ export default defineComponent({
             FillerWords: "",
             Pacing: "",
             date: "",
-            
+            isModalOpen: false,
         };
     },
 
     methods: {
+        setModalOpen(isModalOpen: boolean) {
+            this.isModalOpen = isModalOpen;
+        },
         moment: function (date: Date) {
             return moment(date).subtract(7, "hours").format("HH:mm / DD MMM");
             // return moment(date).format("hh:mm / DD MMM");
@@ -697,7 +711,6 @@ export default defineComponent({
             ).style.display = "inline-block";
         },
         open_side() {
-            console.log(this.sessionEmail);
             (
                 document.getElementById("menu") as HTMLInputElement
             ).style.display = "none";
@@ -709,7 +722,6 @@ export default defineComponent({
             ).style.display = "inline-block";
         },
         onChange(e: { target: { files: any } }) {
-            console.log(e.target.files[0]);
             this.file = e.target.files[0];
             (
                 document.getElementById("upload_button") as HTMLInputElement
@@ -743,7 +755,6 @@ export default defineComponent({
         }) {
             event.preventDefault();
             this.file = event.dataTransfer.files[0];
-            console.log(this.file);
             (
                 document.getElementById("upload_button") as HTMLInputElement
             ).disabled = false;
@@ -768,7 +779,11 @@ export default defineComponent({
         },
     },
     mounted() {
-        console.log(this.FillerWord);
+        document.addEventListener("click", (e) => {
+            if (e.target != document.querySelector("#example-modal")) {
+                this.setModalOpen(false);
+            }
+        });
         //   axios
         //       .get("http://127.0.0.1:5000/signin")
         //       .then((res) => {
@@ -790,10 +805,7 @@ export default defineComponent({
         axios
             .get("http://127.0.0.1:5000/result/" + this.sessionEmail)
             .then((response) => {
-                console.log(response);
                 this.result = response.data.result;
-                console.log(this.result);
-                // console.log(this.result.slice(-1)[0]);
                 this.EyeContactMsg = this.result.slice(-1)[0]["eyeContact"];
                 this.FillerWord = this.result.slice(-1)[0]["filler"];
                 this.Pacing = this.result.slice(-1)[0]["pacing"];
@@ -804,9 +816,6 @@ export default defineComponent({
                     day: "numeric",
                 });
                 this.FillerWords = this.result.slice(-1)[0]["fillerWords"];
-                console.log(this.FillerWords);
-                // how to get only inside double quote with regex
-                // print array of filler words with comma
             })
             .catch((error) => {
                 console.log(error);
@@ -817,1176 +826,1180 @@ export default defineComponent({
 
 <style scoped>
 #container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 #container strong {
-  font-size: 20px;
-  line-height: 26px;
+    font-size: 20px;
+    line-height: 26px;
 }
 
 #container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
 }
 
 #container a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 ion-header ion-img {
-  margin-top: -10px;
+    margin-top: -10px;
 }
 
 ion-page {
-  --ion-background-color: #ffffff;
+    --ion-background-color: #ffffff;
 }
 
 /* CSS HEADER/NAVBAR */
 
 ion-header ion-toolbar ion-title {
-  font-family: "Krona One", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.03em;
+    font-family: "Krona One", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
 }
 
 ion-header ion-toolbar {
-  --background: #3e54d3;
-  --padding-start: 10px;
-  --padding-end: 20px;
-  --padding-top: 15px;
-  --padding-bottom: 15px;
-  --color: white;
+    --background: #3e54d3;
+    --padding-start: 10px;
+    --padding-end: 20px;
+    --padding-top: 15px;
+    --padding-bottom: 15px;
+    --color: white;
 }
 
 ion-header ion-toolbar ion-button,
 .upload-vid {
-  --background: #ffffff;
-  --background-hover: #3e54d3;
-  --background-activated: #dcdcdc;
-  --background-focused: #dddddd;
-  --color: rgb(0, 0, 0);
-  --border-radius: 10px;
-  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
-  --ripple-color: #4f80e2;
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  margin-right: 10px;
-  text-transform: capitalize;
-  font-style: normal;
-  font-weight: 600;
-  /* line-height: 24px; */
-  letter-spacing: -1px;
-  font-size: 18px;
+    --background: #ffffff;
+    --background-hover: #3e54d3;
+    --background-activated: #dcdcdc;
+    --background-focused: #dddddd;
+    --color: rgb(0, 0, 0);
+    --border-radius: 10px;
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    --ripple-color: #4f80e2;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin-right: 10px;
+    text-transform: capitalize;
+    font-style: normal;
+    font-weight: 600;
+    /* line-height: 24px; */
+    letter-spacing: -1px;
+    font-size: 18px;
 }
 
 ion-header ion-toolbar button .menu {
-  font-size: 30px;
-  margin-left: 15px;
+    font-size: 30px;
+    margin-left: 15px;
 }
 ion-header ion-toolbar button .close {
-  font-size: 30px;
-  margin-left: 15px;
-  display: none;
+    font-size: 30px;
+    margin-left: 15px;
+    display: none;
 }
 
 ion-button i {
-  width: 10px;
-  margin-right: 15px;
+    width: 10px;
+    margin-right: 15px;
 }
 
 .avatar {
-  width: fit-content;
-  height: fit-content;
+    width: fit-content;
+    height: fit-content;
 }
 
 ion-popover {
-  --backdrop-opacity: 0;
-  margin-top: 10px;
-  margin-right: 10px;
+    --backdrop-opacity: 0;
+    margin-top: 10px;
+    margin-right: 10px;
 }
 
 ion-modal#example-modal {
-  --width: 680px;
-  /* --min-width: 250px; */
-  --height: 450px;
-  --border-radius: 6px;
-  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  padding-left: 20px;
-  padding-right: 20px;
+    --width: 680px;
+    /* --min-width: 250px; */
+    --height: 450px;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .file-label {
-  /* font-size: 20px; */
-  display: block;
+    /* font-size: 20px; */
+    display: block;
 }
 .hidden-input {
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-  height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
 }
 
 .wrapper {
-  margin: 30px;
-  /* height: 100%; */
+    margin: 30px;
+    /* height: 100%; */
 }
 
 .wrapper > h1 {
-  margin: 18px 0px;
-  font-size: 24px;
+    margin: 18px 0px;
+    font-size: 24px;
 }
 
 .uploaddrag {
-  border: 7px dashed #15cdcb4f;
-  width: 100%;
-  height: 285px;
-  padding-top: 30px;
+    border: 7px dashed #15cdcb4f;
+    width: 100%;
+    height: 285px;
+    padding-top: 30px;
 }
 
 .uploadvid-img {
-  width: 140px;
-  margin: 20px auto;
+    width: 140px;
+    margin: 20px auto;
 }
 
 .uploaddrag > p {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.45);
-  margin: 0px;
-  text-align: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 0px;
+    text-align: center;
 }
 
 .textupload {
-  font-size: 20px;
+    font-size: 20px;
 }
 .textupload2 {
-  font-size: 18px;
-  margin-top: 5px !important;
+    font-size: 18px;
+    margin-top: 5px !important;
 }
 
 .textupload > span {
-  color: #3e54d3;
-  text-decoration: underline;
+    color: #3e54d3;
+    text-decoration: underline;
 }
 
 .wrapper > ion-button {
-  --background: #3e54d3;
-  --border-radius: 8px;
-  width: 100%;
-  margin: 20px 0px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  text-transform: capitalize;
-  font-size: 18px;
+    --background: #3e54d3;
+    --border-radius: 8px;
+    width: 100%;
+    margin: 20px 0px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 18px;
 }
 
 #menu {
-  background-color: #3f54d1;
+    background-color: #3f54d1;
 }
 
 #close {
-  background-color: #ffffff;
-  color: black;
+    background-color: #ffffff;
+    color: black;
 }
 
 ion-popover {
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-weight: 600;
-  font-size: 18px;
-  border-radius: 10px !important;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 10px !important;
 }
 
 ion-list,
 ion-item {
-  background-color: #ffffff;
-  padding: 0px;
+    background-color: #ffffff;
+    padding: 0px;
 }
 
 .nameacc,
 .emailacc {
-  margin: 5px 0px;
+    margin: 5px 0px;
 }
 
 .nameacc {
-  margin-top: 15px;
+    margin-top: 15px;
 }
 
 .emailacc {
-  color: #8c8c8c;
-  font-size: 16px;
+    color: #8c8c8c;
+    font-size: 16px;
 }
 /* CSS SIDEBAR */
 
 .dashboard {
-  display: flex;
+    display: flex;
 }
 
 .intro-mobile,
 .intro-mobile-2 {
-  display: none;
+    display: none;
 }
 
 .aside {
-  background-color: rgb(255, 255, 255);
-  border-right: 1px solid #8c8c8c;
-  width: 300px;
-  height: 100%;
-  display: none;
-  z-index: 200;
+    background-color: rgb(255, 255, 255);
+    border-right: 1px solid #8c8c8c;
+    width: 300px;
+    height: 100%;
+    display: none;
+    z-index: 200;
 }
 
 .w3-animate-left {
-  position: relative;
-  animation: animateleft 0.4s;
+    position: relative;
+    animation: animateleft 0.4s;
 }
 @keyframes animateleft {
-  from {
-    left: -200px;
-    opacity: 0;
-  }
-  to {
-    left: 0;
-    opacity: 1;
-  }
+    from {
+        left: -200px;
+        opacity: 0;
+    }
+    to {
+        left: 0;
+        opacity: 1;
+    }
 }
 
 .aside ion-button {
-  --background: #ffffff;
-  --background-hover: #3e54d3;
-  --background-activated: #dcdcdc;
-  --background-focused: #dddddd;
-  --color: rgb(0, 0, 0);
-  --border-radius: 20px;
-  --box-shadow: 0;
-  --ripple-color: #4f80e2;
-  text-transform: capitalize;
-  font-family: "Segoe UI", Arial, sans-serif;
-  letter-spacing: 0px;
-  width: 230px;
+    --background: #ffffff;
+    --background-hover: #3e54d3;
+    --background-activated: #dcdcdc;
+    --background-focused: #dddddd;
+    --color: rgb(0, 0, 0);
+    --border-radius: 20px;
+    --box-shadow: 0;
+    --ripple-color: #4f80e2;
+    text-transform: capitalize;
+    font-family: "Segoe UI", Arial, sans-serif;
+    letter-spacing: 0px;
+    width: 230px;
 }
 
 .aside h4 {
-  position: relative;
+    position: relative;
 }
 .aside h1 {
-  margin: 9px 0;
+    margin: 9px 0;
 }
 
 .aside ion-button span {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .aside a:nth-child(3) {
-  outline: 0;
-  appearance: none;
-  text-decoration: none;
-  list-style: none;
-  display: flex;
-  color: rgb(255, 255, 255);
-  position: relative;
-  width: 220px;
-  border-radius: 20px;
-  padding-left: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  background-color: #3f54d1;
-  font-size: 18px;
-  gap: 8px;
-  margin-top: 20px;
-  font-weight: 600;
-  font-family: "Segoe UI", Arial, sans-serif;
+    outline: 0;
+    appearance: none;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    color: rgb(255, 255, 255);
+    position: relative;
+    width: 220px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #3f54d1;
+    font-size: 18px;
+    gap: 8px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 .aside a {
-  outline: 0;
-  appearance: none;
-  text-decoration: none;
-  list-style: none;
-  display: flex;
-  color: rgb(0, 0, 0);
-  position: relative;
-  width: 220px;
-  border-radius: 20px;
-  padding-left: 15px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 18px;
-  gap: 8px;
-  margin-top: 6px;
-  font-weight: 510;
-  font-family: "Segoe UI", Arial, sans-serif;
-  transition: background-color 0.6s;
+    outline: 0;
+    appearance: none;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    color: rgb(0, 0, 0);
+    position: relative;
+    width: 220px;
+    border-radius: 20px;
+    padding-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 18px;
+    gap: 8px;
+    margin-top: 6px;
+    font-weight: 510;
+    font-family: "Segoe UI", Arial, sans-serif;
+    transition: background-color 0.6s;
 }
 
 .aside .firstsidebar {
-  margin: 0px 25px;
-  margin-top: 20px;
+    margin: 0px 25px;
+    margin-top: 20px;
 }
 .aside .lastsidebar {
-  position: absolute;
-  bottom: 100px;
-  border-top: 1px solid #8c8c8c;
-  padding: 10px 25px;
-  width: 100%;
+    position: absolute;
+    bottom: 100px;
+    border-top: 1px solid #8c8c8c;
+    padding: 10px 25px;
+    width: 100%;
 }
 
 .aside a span {
-  margin-top: 4px;
+    margin-top: 4px;
 }
 
 .aside a:hover {
-  background-color: rgb(226, 232, 238);
-  color: black;
+    background-color: rgb(226, 232, 238);
+    color: black;
 }
 
 .aside a:nth-child(3):hover {
-  background-color: #3f54d1;
-  color: #ffffff;
+    background-color: #3f54d1;
+    color: #ffffff;
 }
 
 .aside a p {
-  margin: 3px 0 0 5px;
-  padding: 0;
+    margin: 3px 0 0 5px;
+    padding: 0;
 }
 
 /* CSS Content Dashboard */
 
 .content {
-  width: 1000px;
-  margin: 0 auto;
-  padding-top: 10px;
-  transition: all 0.2 s;
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 10px;
+    transition: all 0.2 s;
 }
 
 .content h1 {
-  font-size: 30px;
-  margin-left: 8px;
+    font-size: 30px;
+    margin-left: 8px;
 }
 
 .card {
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  background-color: #e4eaeffe;
-  color: black;
-  border-radius: 10px;
-  text-align: center;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  height: 100%;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: #e4eaeffe;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    height: 100%;
 }
 
 .scoretitle {
-  margin-top: 5px;
-  margin-right: 10px;
-  font-size: 20px;
-  padding-top: 5px;
-  padding-bottom: 3px;
-  margin: 0;
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 3px;
+    margin: 0;
 }
 
 .bintang {
-  font-size: 1.7em !important;
-  margin-left: 20px;
-  margin-top: 3px;
+    font-size: 1.7em !important;
+    margin-left: 20px;
+    margin-top: 3px;
 }
 
 /* .isicontent */
 
 ion-card {
-  --background: #e4eaeffe;
-  --color: black;
-  border-radius: 10px;
-  box-shadow: none;
-  margin: 0;
+    --background: #e4eaeffe;
+    --color: black;
+    border-radius: 10px;
+    box-shadow: none;
+    margin: 0;
 }
 
 ion-card-content {
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
 }
 
 ion-card ion-row ion-col,
 ion-card ion-row {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 ion-card ion-row ion-col ion-card-content {
-  text-align: center;
+    text-align: center;
 }
 
 ion-col p {
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  text-align: center;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
 }
 
 /* Detail Intonasi */
 .dot {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-top: 10px;
-  margin-right: 13px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 10px;
+    margin-right: 13px;
 }
 
 .mobile-rating {
-  display: none;
-  padding: 10px;
-  border-radius: 15px;
+    display: none;
+    padding: 10px;
+    border-radius: 15px;
 }
 
 .detail-title {
-  font-size: 18px;
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 600;
-  line-height: 27px;
-  margin: 5px;
-  text-align: left;
+    font-size: 18px;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    margin: 5px;
+    text-align: left;
 }
 
 .detail-persen {
-  font-size: 24px;
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 600;
-  line-height: 27px;
-  margin: 5px;
-  text-align: left;
+    font-size: 24px;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 600;
+    line-height: 27px;
+    margin: 5px;
+    text-align: left;
 }
 
 .mobile-rating div div {
-  text-align: left;
-  color: #ffffff;
-  border-radius: 15px;
-  margin: 5px;
-  padding: 5px 10px;
-  width: 98%;
-  display: flex;
-  justify-content: space-between;
+    text-align: left;
+    color: #ffffff;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px 10px;
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .detail {
-  display: flex;
-  justify-content: left;
-  margin-left: 33px;
+    display: flex;
+    justify-content: left;
+    margin-left: 33px;
 }
 .detail p {
-  margin: 15px 0 3px;
-  font-size: 24px;
+    margin: 15px 0 3px;
+    font-size: 24px;
 }
 
 .val {
-  margin: 15px 0px;
-  font-size: 24px;
-  padding-left: 65px;
-  text-align: left;
+    margin: 15px 0px;
+    font-size: 24px;
+    padding-left: 65px;
+    text-align: left;
 }
 
 .detailborder {
-  border-right: 1px solid rgb(191, 187, 187);
+    border-right: 1px solid rgb(191, 187, 187);
 }
 
 .upload-rating {
-  margin: 0px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+    margin: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .scorestar {
-  margin: 0px;
+    margin: 0px;
 }
 
 .progessline {
-  margin: 20px auto;
-  width: 78%;
-  height: 16px;
-  background-color: #ababab;
-  border-radius: 10px;
+    margin: 20px auto;
+    width: 78%;
+    height: 16px;
+    background-color: #ababab;
+    border-radius: 10px;
 }
 .progessvalue {
-  height: 16px;
-  border-radius: 10px;
+    height: 16px;
+    border-radius: 10px;
 }
 
 .previous-vid {
-  color: black;
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  margin-right: 10px;
+    color: black;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    margin-right: 10px;
 }
 
 .inton {
-  background-color: #3f54d1;
+    background-color: #3f54d1;
 }
 .pronun {
-  background-color: #5280e2;
+    background-color: #5280e2;
 }
 
 .grammar {
-  background-color: #15cdcb;
+    background-color: #15cdcb;
 }
 
 .eyecontact {
-  background-color: #4fe0b5;
+    background-color: #4fe0b5;
 }
 /* Empty State */
 .empty-state {
-  width: 980px;
-  height: 300px;
-  margin: 30px 10px !important;
-  padding: 30px;
-  display: flex;
+    width: 980px;
+    height: 300px;
+    margin: 30px 10px !important;
+    padding: 30px;
+    display: flex;
 }
 
 .empty-state ion-card-content {
-  font-size: 30px;
-  padding: 0px !important;
-  margin-top: 20px;
+    font-size: 30px;
+    padding: 0px !important;
+    margin-top: 20px;
 }
 
 .empty-state .title-empty {
-  font-size: 20px;
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 600;
-  /* line-height: 27px; */
-  color: #6e7071;
+    font-size: 20px;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 600;
+    /* line-height: 27px; */
+    color: #6e7071;
 }
 
 .empty-button {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .empty-img {
-  width: 180px;
-  margin-right: 30px;
-  margin-left: 5px;
+    width: 180px;
+    margin-right: 30px;
+    margin-left: 5px;
 }
 
 /* CSS CHART */
 .chart {
-  font-family: "Segoe UI";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 1.2rem;
-  background-color: #e4eaeffe;
-  color: black;
-  border-radius: 10px;
-  text-align: center;
-  margin: 0;
-  justify-content: center;
-  width: 100%;
-  height: 400px;
-  position: relative;
+    font-family: "Segoe UI";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    background-color: #e4eaeffe;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    margin: 0;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    position: relative;
 }
 
 .chart h1 {
-  font-size: 24px;
-  text-align: left;
-  margin-left: 35px;
+    font-size: 24px;
+    text-align: left;
+    margin-left: 35px;
 }
 
 .row-align-left {
-  padding-left: 15px;
-  text-align: left;
-  margin: 15px;
+    padding-left: 15px;
+    text-align: left;
+    margin: 15px;
 }
 
 .row-colored {
-  background-color: #5280e2;
-  border-radius: 15px;
-  color: white;
+    background-color: #5280e2;
+    border-radius: 15px;
+    color: white;
 }
 
 .row-colored:nth-child(even) {
-  background: #5280e2;
+    background: #5280e2;
 }
 .row-colored:nth-child(odd) {
-  background: #15cdcb;
+    background: #15cdcb;
 }
 
 .grafik {
-  margin: auto;
-  margin-left: 50px;
-  z-index: 0;
+    margin: auto;
+    margin-left: 50px;
+    z-index: 0;
 }
 .starline {
-  border-top: 2px solid rgb(182, 182, 182);
-  width: 500px;
-  height: 50px;
+    border-top: 2px solid rgb(182, 182, 182);
+    width: 500px;
+    height: 50px;
 }
 
 .s1 {
-  border-bottom: 2px solid rgb(182, 182, 182);
+    border-bottom: 2px solid rgb(182, 182, 182);
 }
 .starline p {
-  right: 5px;
-  margin: 0px;
-  margin-right: -580px;
-  margin-top: -18px;
+    right: 5px;
+    margin: 0px;
+    margin-right: -580px;
+    margin-top: -18px;
 }
 
 .grafiky {
-  position: absolute;
-  margin: 77px auto;
-  /* margin-left: 50px; */
-  width: 500px;
-  height: 250px;
-  z-index: 100;
-  display: flex;
-  gap: 68px;
+    position: absolute;
+    margin: 77px auto;
+    /* margin-left: 50px; */
+    width: 500px;
+    height: 250px;
+    z-index: 100;
+    display: flex;
+    gap: 68px;
 }
 
 .fillline {
-  width: 17px;
-  border-radius: 10px;
+    width: 17px;
+    border-radius: 10px;
 }
 
 .filllinestar {
-  width: 17px;
-  border-radius: 10px;
-  position: absolute;
-  bottom: 0;
+    width: 17px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
 }
 
 .fillline .filllinestar:nth-child(odd) {
-  background-color: #3f54d1;
+    background-color: #3f54d1;
 }
 .fillline .filllinestar:nth-child(even) {
-  background-color: #4fe0b5;
+    background-color: #4fe0b5;
 }
 
 .fillline p {
-  position: absolute;
-  bottom: -58px;
-  margin-left: -13px;
+    position: absolute;
+    bottom: -58px;
+    margin-left: -13px;
 }
 
 .progressreport {
-  padding-bottom: 0px;
-  display: flex;
-  justify-content: space-between;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
 }
 .progressreport p {
-  font-size: 20px;
-  margin: 0px;
-  margin-top: 5px;
-  padding: 0px;
-  padding-bottom: 5px;
+    font-size: 20px;
+    margin: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    padding-bottom: 5px;
 }
 
 .progressreport p span {
-  padding: 0px 5px;
-  padding-top: 5px;
+    padding: 0px 5px;
+    padding-top: 5px;
 }
 
 .progress-count {
-  --background: #e4eaeffe;
-  --color: black;
-  padding: 10px 15px;
-  width: 100%;
-  height: 195px;
+    --background: #e4eaeffe;
+    --color: black;
+    padding: 10px 15px;
+    width: 100%;
+    height: 195px;
 }
 
 .progress-table {
-  border-bottom: 0.5px solid grey;
-  padding-top: 4px;
-  font-family: "Segoe UI", Arial, sans-serif;
-  font-size: 15px;
-  font-weight: 500;
+    border-bottom: 0.5px solid grey;
+    padding-top: 4px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .row-right {
-  text-align: right;
+    text-align: right;
 }
 
 .progress-title {
-  font-size: 20px;
-  text-align: left;
-  font-family: "Segoe UI", Arial, sans-serif;
-  padding: 12px;
+    font-size: 20px;
+    text-align: left;
+    font-family: "Segoe UI", Arial, sans-serif;
+    padding: 12px;
 }
 
 .progress-title2 {
-  color: #ababab;
+    color: #ababab;
 }
 
 .samplespeech {
-  margin: 30px auto;
-  height: 350px;
-  overflow-x: scroll;
-  display: flex;
+    margin: 30px auto;
+    height: 350px;
+    overflow-x: scroll;
+    display: flex;
 }
 
 .samplespeech ion-card {
-  width: 280px;
-  min-width: 280px;
-  height: 310px;
-  margin: auto 10px;
-  margin-bottom: 20px;
+    width: 280px;
+    min-width: 280px;
+    height: 310px;
+    margin: auto 10px;
+    margin-bottom: 20px;
 }
 
 ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 4px rgba(132, 132, 132, 0.3);
-  border-radius: 10px;
-  background-color: #f5f5f5;
+    -webkit-box-shadow: inset 0 0 4px rgba(132, 132, 132, 0.3);
+    border-radius: 10px;
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar {
-  /* width: 5px; */
-  height: 7px;
-  background-color: #f5f5f5;
+    /* width: 5px; */
+    height: 7px;
+    background-color: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #5280e2;
+    border-radius: 10px;
+    background-color: #5280e2;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6a90e3;
+    background: #6a90e3;
 }
 
 ion-footer ion-toolbar {
-  --background: white;
-  margin: 20px;
-  width: auto;
+    --background: white;
+    margin: 20px;
+    width: auto;
 }
 ion-footer ion-toolbar ion-title {
-  font-size: 15px;
-  text-align: center;
+    font-size: 15px;
+    text-align: center;
 }
 
 .samplespeech ion-card ion-card-content {
-  text-align: center;
+    text-align: center;
 }
 
 /* Progress Report Grid*/
 #prke1 {
-  grid-area: prke1;
+    grid-area: prke1;
 }
 #prke2 {
-  grid-area: prke2;
+    grid-area: prke2;
 }
 #prke3 {
-  grid-area: prke3;
+    grid-area: prke3;
 }
 #prke4 {
-  grid-area: prke4;
+    grid-area: prke4;
 }
 .ProgressReport2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
-  grid-template-areas:
-    " prke1 . ."
-    "prke2 prke2 prke3"
-    "prke2 prke2 prke4";
-  grid-gap: 12px;
-  margin: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        " prke1 . ."
+        "prke2 prke2 prke3"
+        "prke2 prke2 prke4";
+    grid-gap: 12px;
+    margin: 10px;
 }
 
 @media (max-width: 992px) {
-  .content {
-    width: 576px;
-  }
+    .content {
+        width: 576px;
+    }
 
-  .upload-rating {
-    font-size: 18px;
-  }
-  .upload-nav {
-    display: none;
-  }
-  .none {
-    border-right: none;
-  }
+    .upload-rating {
+        font-size: 18px;
+    }
+    .upload-nav {
+        display: none;
+    }
+    .none {
+        border-right: none;
+    }
 
-  .dot {
-    margin: 0px !important;
-    height: 18px;
-    width: 18px;
-    margin-right: 10px !important;
-    margin-top: 8px !important;
-  }
-  .detail {
-    margin-left: 20px;
-  }
+    .dot {
+        margin: 0px !important;
+        height: 18px;
+        width: 18px;
+        margin-right: 10px !important;
+        margin-top: 8px !important;
+    }
+    .detail {
+        margin-left: 20px;
+    }
 
-  .detail p {
-    font-size: 20px;
-  }
+    .detail p {
+        font-size: 20px;
+    }
 
-  .scoretitle {
-    padding-top: 5px;
-    padding-bottom: 3px;
-    padding-right: 3px;
-    margin: 0;
-    font-size: 18px;
-  }
+    .scoretitle {
+        padding-top: 5px;
+        padding-bottom: 3px;
+        padding-right: 3px;
+        margin: 0;
+        font-size: 18px;
+    }
 
-  .bintang {
-    font-size: 28px !important;
-    margin-left: 5px !important;
-  }
+    .bintang {
+        font-size: 28px !important;
+        margin-left: 5px !important;
+    }
 
-  .val {
-    font-size: 20px;
-    padding-left: 30px;
-  }
-  /* .detailborder {
+    .val {
+        font-size: 20px;
+        padding-left: 30px;
+    }
+    /* .detailborder {
     border-bottom: 1px solid rgb(191, 187, 187);
   } */
-  /* .none2 {
+    /* .none2 {
     border-bottom: none;
   } */
 
-  .ProgressReport2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "prke2 prke2"
-      "prke3 prke4";
-    grid-gap: 12px;
-    margin: 10px;
-  }
+    .ProgressReport2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "prke2 prke2"
+            "prke3 prke4";
+        grid-gap: 12px;
+        margin: 10px;
+    }
 
-  .progressreport {
-    display: none;
-  }
+    .progressreport {
+        display: none;
+    }
 
-  .chart {
-    width: 556px;
-    height: fit-content;
-  }
+    .chart {
+        width: 556px;
+        height: fit-content;
+    }
 
-  .progress-count {
-    height: fit-content;
-  }
+    .progress-count {
+        height: fit-content;
+    }
 
-  .grafik {
-    margin: auto;
-    margin-left: 50px;
-    z-index: 0;
-  }
-  .starline {
-    border-top: 2px solid rgb(182, 182, 182);
-    width: 400px;
-    height: 41px;
-  }
+    .grafik {
+        margin: auto;
+        margin-left: 50px;
+        z-index: 0;
+    }
+    .starline {
+        border-top: 2px solid rgb(182, 182, 182);
+        width: 400px;
+        height: 41px;
+    }
 
-  .s1 {
-    border-bottom: 2px solid rgb(182, 182, 182);
-  }
-  .starline p {
-    right: 5px;
-    margin: 0px;
-    margin-right: -480px;
-    margin-top: -15px;
-  }
+    .s1 {
+        border-bottom: 2px solid rgb(182, 182, 182);
+    }
+    .starline p {
+        right: 5px;
+        margin: 0px;
+        margin-right: -480px;
+        margin-top: -15px;
+    }
 
-  .grafiky {
-    position: absolute;
-    margin: 55px auto;
-    width: 400px;
-    height: 204px;
-    z-index: 100;
-    display: flex;
-    gap: 48px;
-  }
+    .grafiky {
+        position: absolute;
+        margin: 55px auto;
+        width: 400px;
+        height: 204px;
+        z-index: 100;
+        display: flex;
+        gap: 48px;
+    }
 
-  .fillline {
-    width: 15px;
-    border-radius: 10px;
-  }
+    .fillline {
+        width: 15px;
+        border-radius: 10px;
+    }
 
-  .filllinestar {
-    width: 15px;
-  }
+    .filllinestar {
+        width: 15px;
+    }
 
-  .fillline p {
-    position: absolute;
-    bottom: -58px;
-    margin-left: -13px;
-  }
+    .fillline p {
+        position: absolute;
+        bottom: -58px;
+        margin-left: -13px;
+    }
 
-  .empty-state {
-    width: 556px;
-    margin: 30px 10px;
-  }
+    .empty-state {
+        width: 556px;
+        margin: 30px 10px;
+    }
 
-  .empty-img {
-    margin-right: 15px;
-    width: 310px;
-  }
-  .empty-state ion-card-content {
-    font-size: 24px;
-  }
-  .title-empty {
-    font-size: 18px;
-  }
+    .empty-img {
+        margin-right: 15px;
+        width: 310px;
+    }
+    .empty-state ion-card-content {
+        font-size: 24px;
+    }
+    .title-empty {
+        font-size: 18px;
+    }
 
-  .previous-vid {
-    font-size: 18px;
-  }
+    .previous-vid {
+        font-size: 18px;
+    }
 }
 
 @media (max-width: 576px) {
-  .background-mobile {
-    position: absolute;
-    z-index: -1000;
-    background-color: #3f54d1;
-    border-radius: 50%;
-    width: 2000px;
-    height: 480px;
-    left: -800px;
-    top: -60px;
-    background: linear-gradient(180deg, #3f54d1 56.78%, rgba(63, 84, 209, 0.26) 100%);
-  }
+    .background-mobile {
+        position: absolute;
+        z-index: -1000;
+        background-color: #3f54d1;
+        border-radius: 50%;
+        width: 2000px;
+        height: 480px;
+        left: -800px;
+        top: -60px;
+        background: linear-gradient(
+            180deg,
+            #3f54d1 56.78%,
+            rgba(63, 84, 209, 0.26) 100%
+        );
+    }
 
-  .intro-mobile {
-    z-index: 0;
-    width: 90%;
-    margin: 20px 20px 25px;
-    font-family: "Segoe UI";
-    font-size: 24px;
-    display: block;
-    color: #ffffff;
-  }
+    .intro-mobile {
+        z-index: 0;
+        width: 90%;
+        margin: 20px 20px 25px;
+        font-family: "Segoe UI";
+        font-size: 24px;
+        display: block;
+        color: #ffffff;
+    }
 
-  .intro-mobile-2 {
-    position: fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #3f54d1;
-    padding: 10px 20px;
-    padding-bottom: 0px;
-    width: 100%;
-    margin: 0px;
-    z-index: 200;
-  }
-  .intro-mobile-2 h1 {
-    margin-top: 2px;
-    color: #ffffff;
-    font-family: "Krona One", sans-serif;
-    font-weight: 400;
-    font-size: 24px;
-  }
+    .intro-mobile-2 {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #3f54d1;
+        padding: 10px 20px;
+        padding-bottom: 0px;
+        width: 100%;
+        margin: 0px;
+        z-index: 200;
+    }
+    .intro-mobile-2 h1 {
+        margin-top: 2px;
+        color: #ffffff;
+        font-family: "Krona One", sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+    }
 
-  .search-mobile {
-    box-shadow: none;
-    background-color: white;
-    border-radius: 30px;
-    font-size: 20px;
-    display: flex;
-    margin-top: 15px;
-  }
+    .search-mobile {
+        box-shadow: none;
+        background-color: white;
+        border-radius: 30px;
+        font-size: 20px;
+        display: flex;
+        margin-top: 15px;
+    }
 
-  .search-mobile span {
-    color: black;
-    margin: 4px 10px;
-  }
+    .search-mobile span {
+        color: black;
+        margin: 4px 10px;
+    }
 
-  .lastsidebar {
-    bottom: 3px !important;
-  }
+    .lastsidebar {
+        bottom: 3px !important;
+    }
 
-  .scoretitle {
-    padding-top: 7px !important;
-  }
+    .scoretitle {
+        padding-top: 7px !important;
+    }
 
-  ion-input {
-    font-family: "Segoe UI";
-    font-size: 18px;
-    z-index: 10;
-    width: 55vw;
-    height: 33px;
-    --background: #ffffff;
-    --color: rgb(0, 0, 0);
-    --placeholder-opacity: 0.8;
-    --padding-bottom: 10px;
-    --padding-end: 10px;
-    --padding-start: 10px;
-    --padding-top: 10px;
-    margin-right: 20px;
-  }
+    ion-input {
+        font-family: "Segoe UI";
+        font-size: 18px;
+        z-index: 10;
+        width: 55vw;
+        height: 33px;
+        --background: #ffffff;
+        --color: rgb(0, 0, 0);
+        --placeholder-opacity: 0.8;
+        --padding-bottom: 10px;
+        --padding-end: 10px;
+        --padding-start: 10px;
+        --padding-top: 10px;
+        margin-right: 20px;
+    }
 
-  .dashboard {
-    z-index: 0;
-  }
-  ion-header {
-    display: none;
-  }
-  .detail-rating,
-  ion-header ion-toolbar ion-button,
-  ion-header ion-toolbar ion-avatar,
-  #asidee {
-    display: none;
-  }
+    .dashboard {
+        z-index: 0;
+    }
+    ion-header {
+        display: none;
+    }
+    .detail-rating,
+    ion-header ion-toolbar ion-button,
+    ion-header ion-toolbar ion-avatar,
+    #asidee {
+        display: none;
+    }
 
-  .content {
-    width: 97vw;
-  }
+    .content {
+        width: 97vw;
+    }
 
-  .content h1 {
-    font-size: 25px;
-  }
+    .content h1 {
+        font-size: 25px;
+    }
 
-  .content .title-rat {
-    margin-top: 0px;
-    color: #ffffff;
-  }
+    .content .title-rat {
+        margin-top: 0px;
+        color: #ffffff;
+    }
 
-  .upload-rating {
-    display: none;
-  }
+    .upload-rating {
+        display: none;
+    }
 
-  .ProgressReport2 {
-    display: grid;
-    grid-template-columns: 93vw;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "prke2"
-      "prke3"
-      "prke4";
-    grid-gap: 12px;
-    margin: 9px;
-  }
+    .ProgressReport2 {
+        display: grid;
+        grid-template-columns: 93vw;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "prke2"
+            "prke3"
+            "prke4";
+        grid-gap: 12px;
+        margin: 9px;
+    }
 
-  .card p span {
-    font-size: 1.7em !important;
-    margin-left: 10px;
-  }
+    .card p span {
+        font-size: 1.7em !important;
+        margin-left: 10px;
+    }
 
-  ion-card-content {
-    padding: 10px;
-    font-size: 18px;
-  }
+    ion-card-content {
+        padding: 10px;
+        font-size: 18px;
+    }
 
-  .filler-word,
-  .pacing-word {
-    display: none;
-  }
+    .filler-word,
+    .pacing-word {
+        display: none;
+    }
 
-  .mobile-rating {
-    display: block;
-  }
+    .mobile-rating {
+        display: block;
+    }
 
-  .chart {
-    width: 93vw;
-    height: fit-content;
-    font-size: 14px;
-  }
+    .chart {
+        width: 93vw;
+        height: fit-content;
+        font-size: 14px;
+    }
 
-  .grafik {
-    margin: auto;
-    margin-left: 7vw;
-    z-index: 0;
-  }
-  .starline {
-    border-top: 2px solid rgb(182, 182, 182);
-    width: 70vw;
-    height: 8vw;
-  }
+    .grafik {
+        margin: auto;
+        margin-left: 7vw;
+        z-index: 0;
+    }
+    .starline {
+        border-top: 2px solid rgb(182, 182, 182);
+        width: 70vw;
+        height: 8vw;
+    }
 
-  .s1 {
-    border-bottom: 2px solid rgb(182, 182, 182);
-  }
-  .starline p {
-    right: 5px;
-    margin: 0px;
-    margin-right: -85vw;
-    margin-top: -3.8vw;
-  }
+    .s1 {
+        border-bottom: 2px solid rgb(182, 182, 182);
+    }
+    .starline p {
+        right: 5px;
+        margin: 0px;
+        margin-right: -85vw;
+        margin-top: -3.8vw;
+    }
 
-  .grafiky {
-    position: absolute;
-    margin: 9.8vw auto;
-    margin-left: 6vw;
-    width: 75vw;
-    height: 40vw;
-    z-index: 100;
-    display: flex;
-    gap: 8vw;
-  }
+    .grafiky {
+        position: absolute;
+        margin: 9.8vw auto;
+        margin-left: 6vw;
+        width: 75vw;
+        height: 40vw;
+        z-index: 100;
+        display: flex;
+        gap: 8vw;
+    }
 
-  .fillline {
-    width: 3vw;
-    border-radius: 10px;
-  }
+    .fillline {
+        width: 3vw;
+        border-radius: 10px;
+    }
 
-  .filllinestar {
-    width: 3vw;
-  }
+    .filllinestar {
+        width: 3vw;
+    }
 
-  .fillline p {
-    position: absolute;
-    bottom: -9.9vw;
-    margin-left: -3vw;
-  }
+    .fillline p {
+        position: absolute;
+        bottom: -9.9vw;
+        margin-left: -3vw;
+    }
 
-  .empty-state {
-    width: 93vw;
-    height: 60vw;
-    padding: 3vw !important;
-  }
+    .empty-state {
+        width: 93vw;
+        height: 60vw;
+        padding: 3vw !important;
+    }
 
-  .empty-state ion-card-content {
-    font-size: 4vw !important;
-    margin: 2vw 0vw;
-  }
-  .title-empty {
-    font-size: 3.8vw !important;
-  }
+    .empty-state ion-card-content {
+        font-size: 4vw !important;
+        margin: 2vw 0vw;
+    }
+    .title-empty {
+        font-size: 3.8vw !important;
+    }
 
-  .empty-button span {
-    font-size: 4.5vw !important;
-  }
-  .upload-nav2 {
-    font-size: 3.8vw !important;
-    margin: 0px !important;
-    margin-left: 10px !important;
-  }
+    .empty-button span {
+        font-size: 4.5vw !important;
+    }
+    .upload-nav2 {
+        font-size: 3.8vw !important;
+        margin: 0px !important;
+        margin-left: 10px !important;
+    }
 
-  .empty-button .upload-vid {
-    height: 10vw;
-    width: 38vw;
-    padding: 5px !important;
-  }
+    .empty-button .upload-vid {
+        height: 10vw;
+        width: 38vw;
+        padding: 5px !important;
+    }
 
-  .previous-vid {
-    font-size: 16px;
-  }
+    .previous-vid {
+        font-size: 16px;
+    }
 }
 </style>
