@@ -827,7 +827,20 @@ export default defineComponent({
         //   // local storage email
         this.sessionEmail = localStorage.getItem("email") ?? "";
         this.sessionName = localStorage.getItem("name") ?? "";
-
+        axios
+            .get("http://127.0.0.1:5000/signin")
+            .then((res) => {
+                if (
+                    this.sessionEmail == ""
+                ) {
+                    window.location.href = "/homepage";
+                } else {
+                    console.log("User not logged in");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
         axios
             .get("http://127.0.0.1:5000/result/" + this.sessionEmail)
             .then((response) => {
