@@ -443,7 +443,7 @@
                                 </ion-row>
                                 <div
                                     v-for="(item, index) in result
-                                        .slice(1)
+                                        .slice(0)
                                         .slice(-5)
                                         .reverse()"
                                     :key="item.email"
@@ -513,7 +513,7 @@
                                 </ion-row>
                                 <div
                                     v-for="item in result
-                                        .slice(1)
+                                        .slice(0)
                                         .slice(-3)
                                         .reverse()"
                                     :key="item.email"
@@ -563,7 +563,7 @@
                                 </ion-row>
                                 <div
                                     v-for="item in result
-                                        .slice(1)
+                                        .slice(0)
                                         .slice(-3)
                                         .reverse()"
                                     :key="item.email"

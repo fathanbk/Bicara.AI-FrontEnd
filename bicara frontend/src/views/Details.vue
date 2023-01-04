@@ -198,19 +198,18 @@
                                 controls="controls"
                                 preload="preload"
                                 v-if="video"
+                                style="width: 50vw; height: 50vh; margin: 0;"
+                            
                             >
                                 <!-- <source
                                     src="http://127.0.0.1:5000/static/results/aldysych12_-_Bicara.AI_-_2023-01-03_014845.841990.mp4"
                                 /> -->
-                                <source :src="video" />
+                                <source :src="video"   />
                             </video>
-                            <ion-text>
-                                Ambassador Kim's Remarks on Women in Fintech
-                            </ion-text>
                             <ion-text
-                                style="margin-bottom: 2vh; font-size: 2.5vh"
+                                style="margin:1.5vh; font-size: 2.5vh;"
                             >
-                                11 Aug 2022 11:11
+                                {{ moment(result.date) }}
                             </ion-text>
                         </div>
                         <h3>Transcript</h3>
@@ -335,6 +334,7 @@ import {
 } from "@ionic/vue";
 import axios from "axios";
 import { defineComponent, ref } from "vue";
+import moment from "moment";
 
 export default defineComponent({
     name: "HistoryDetails",
@@ -479,6 +479,9 @@ export default defineComponent({
                 window.location.reload();
             }, 2000);
         },
+        moment: function (date: Date) {
+            return moment(date).subtract(7, "hours").format("dddd, DD MMM YYYY");
+        },
     },
     async mounted() {
         this.sessionEmail = localStorage.getItem("email") ?? "";
@@ -487,27 +490,13 @@ export default defineComponent({
             .get("http://127.0.0.1:5000/details/" + this.$route.params.id)
             .then((response) => {
                 console.log(response.data);
+                this.video = this.baseURL + response.data.filename;
                 this.result = response.data;
             })
             .catch((error) => {
                 console.log(error);
             });
-        if (this.result.filename) {
-            await axios
-                .get(
-                    "http://127.0.0.1:5000/upload/display/" +
-                        this.result.filename
-                )
-                .then((response) => {
-                    console.log(response);
-                    this.video = response.data[0];
-                    console.log(this.video);
-                    console.log(response.data[0]);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+        
         document.addEventListener("click", (e) => {
             if (e.target != document.querySelector("#example-modal")) {
                 this.setModalOpen(false);
