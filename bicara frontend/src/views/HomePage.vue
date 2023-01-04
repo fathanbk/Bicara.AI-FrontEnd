@@ -96,20 +96,20 @@
                                 </Field>
                                 <ErrorMessage name="Email" class="error" /><br>
                                 <ion-text>Password<br /></ion-text>
-                                <Field v-model="password" name="Password" v-slot="{field}" 
+                                <Field v-model="password" name="password" v-slot="{field}" 
                                   rules="required|min:6">
                                 <ion-input
                                     v-bind="field"
-                                    name="Password"
+                                    name="password"
                                     type="password"
                                     placeholder="Enter password"
                                     
                                 ></ion-input>
                                 </Field>
-                                <ErrorMessage name="Password" class="error" /><br>
+                                <ErrorMessage name="password" class="error" /><br>
                                 <ion-text>Confirm password<br /></ion-text>
                                 <Field name="Confirm Password" v-slot="{field}" 
-                                  rules="required|confirmed:password">
+                                  rules="required|confirmed:@password">
                                 <ion-input
                                     v-bind="field"
                                     name="Confirm Password"
