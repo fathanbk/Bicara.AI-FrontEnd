@@ -255,7 +255,7 @@
                                     </ion-col>
                                     <ion-col>
                                         <p class="tablecontent">
-                                            {{ item.duration }}
+                                            {{ secondsToMS(item.duration) }}
                                         </p>
                                     </ion-col>
                                     <ion-col>
@@ -371,6 +371,9 @@ export default defineComponent({
             // return moment(date).format("hh:mm / DD MMM");
             // 11:11/12 Nov
         },
+        secondsToMS: function (d: number) {
+            return moment.utc(d * 1000).format("mm:ss");
+        },
         close_side() {
             (
                 document.getElementById("aside") as HTMLInputElement
@@ -460,6 +463,12 @@ export default defineComponent({
         },
     },
     mounted() {
+        // let durationInSeconds = 5;
+        // // turn duration into MM:SS
+        // let duration = moment
+        //     .duration(durationInSeconds, "seconds")
+        //     .format("mm:ss", { trim: false });
+        // console.log(duration);
         document.addEventListener("click", (e) => {
             if (e.target != document.querySelector("#example-modal")) {
                 this.setModalOpen(false);
