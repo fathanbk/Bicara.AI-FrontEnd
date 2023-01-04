@@ -92,6 +92,11 @@
                             id="upload_button"
                             >Upload</ion-button
                         >
+                        <ion-alert
+                            :is-open="isLoading"
+                            message="Your video is being processed. We will notify you an email when it's done."
+                            :buttons="['OK']"
+                        ></ion-alert>
                     </div>
                 </ion-modal>
             </ion-toolbar>
@@ -185,7 +190,7 @@
                 <!-- Content History -->
                 <div class="content">
                     <h1>Jake's History</h1>
-                    <div class="emptystatehistory" v-if="result.length > 0">
+                    <div class="emptystatehistory" v-if="result.length == 0">
                         <ion-card class="bghistory">
                             <ion-img
                                 src="assets/icon/history-vid.svg"
@@ -304,6 +309,7 @@ import {
     IonList,
     IonPopover,
     IonCard,
+    IonAlert,
 } from "@ionic/vue";
 import axios from "axios";
 import { defineComponent, ref } from "vue";
@@ -326,6 +332,7 @@ export default defineComponent({
         IonList,
         IonPopover,
         IonCard,
+        IonAlert,
     },
     data() {
         return {
@@ -340,6 +347,7 @@ export default defineComponent({
             Pacing: "",
             date: "",
             isModalOpen: false,
+            isLoading: false,
         };
     },
     computed: {
@@ -426,6 +434,7 @@ export default defineComponent({
         upload_video() {
             let formData = new FormData();
             formData.append("file", this.file);
+            formData.append("email", this.sessionEmail);
             axios
                 .post("http://127.0.0.1:5000/upload", formData, {
                     headers: {
@@ -438,6 +447,13 @@ export default defineComponent({
                 .catch((error) => {
                     console.log(error);
                 });
+            this.isLoading = true;
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = true;
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         },
     },
     mounted() {

@@ -92,6 +92,11 @@
                             id="upload_button"
                             >Upload</ion-button
                         >
+                        <ion-alert
+                            :is-open="isLoading"
+                            message="Your video is being processed. We will notify you an email when it's done."
+                            :buttons="['OK']"
+                        ></ion-alert>
                     </div>
                 </ion-modal>
             </ion-toolbar>
@@ -324,6 +329,7 @@ import {
     IonCol,
     IonRow,
     IonList,
+    IonAlert,
 } from "@ionic/vue";
 import axios from "axios";
 import { defineComponent, ref } from "vue";
@@ -347,6 +353,7 @@ export default defineComponent({
         IonCol,
         IonRow,
         IonList,
+        IonAlert,
     },
     data() {
         return {
@@ -355,6 +362,7 @@ export default defineComponent({
             video: "",
             isDragging: false,
             isModalOpen: false,
+            isLoading: false,
             file: "",
             baseURL: "http://127.0.0.1:5000/static/results/",
             result: {
@@ -448,6 +456,7 @@ export default defineComponent({
         upload_video() {
             let formData = new FormData();
             formData.append("file", this.file);
+            formData.append("email", this.sessionEmail);
             axios
                 .post("http://127.0.0.1:5000/upload", formData, {
                     headers: {
@@ -460,6 +469,13 @@ export default defineComponent({
                 .catch((error) => {
                     console.log(error);
                 });
+            this.isLoading = true;
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = true;
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         },
     },
     async mounted() {

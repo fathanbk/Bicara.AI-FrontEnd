@@ -92,6 +92,11 @@
                             id="upload_button"
                             >Upload</ion-button
                         >
+                        <ion-alert
+                            :is-open="isLoading"
+                            message="Your video is being processed. We will notify you an email when it's done."
+                            :buttons="['OK']"
+                        ></ion-alert>
                     </div>
                 </ion-modal>
             </ion-toolbar>
@@ -460,9 +465,11 @@
                                             //     .replace(/AM|PM/, "")
                                             moment(item.date)
                                         }}</ion-col>
-                                        <ion-col size="3">{{
-                                            item.filler
-                                        }}</ion-col>
+                                        <ion-col
+                                            size="3"
+                                            class="ion-text-center"
+                                            >{{ item.filler }}</ion-col
+                                        >
                                         <!-- {{ item.fillerWords }} -->
                                         <ion-col
                                             v-if="
@@ -647,6 +654,7 @@ import {
     IonRow,
     IonGrid,
     IonFooter,
+    IonAlert,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 import axios from "axios";
@@ -673,6 +681,7 @@ export default defineComponent({
         IonRow,
         IonGrid,
         IonFooter,
+        IonAlert,
     },
     data() {
         return {
@@ -687,6 +696,7 @@ export default defineComponent({
             Pacing: "",
             date: "",
             isModalOpen: false,
+            isLoading: false,
         };
     },
 
@@ -779,6 +789,13 @@ export default defineComponent({
                 .catch((error) => {
                     console.log(error);
                 });
+            this.isLoading = true;
+            (
+                document.getElementById("upload_button") as HTMLInputElement
+            ).disabled = true;
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
         },
     },
     mounted() {
