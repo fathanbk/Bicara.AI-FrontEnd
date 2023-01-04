@@ -36,6 +36,7 @@
                                     placeholder="Enter password"
                                     v-model="passwordLogin"
                                 ></ion-input>
+                                <ion-text class="error">{{ errorLogin }}</ion-text><br>
                                 <ion-button
                                     color="notify"
                                     @click.prevent="signInMethod"
@@ -435,7 +436,7 @@ import {
     IonText,
     IonModal,
 } from "@ionic/vue";
-import { defineComponent, onMounted } from "vue";
+import { capitalize, defineComponent, onMounted } from "vue";
 import axios from "axios";
 import { configure,Form, Field, defineRule, ErrorMessage,} from "vee-validate";
 import { required, min, email,confirmed, alpha } from "@vee-validate/rules";
@@ -472,6 +473,7 @@ export default defineComponent({
             passwordLogin: "",
             isSignInOpen: false,
             isSignUpOpen: false,
+            errorLogin: "",
         };
     },
     setup() {
@@ -507,19 +509,14 @@ export default defineComponent({
         },
         signUpMethod() {
             let data = {
-                firstName: this.firstName,
-                lastName: this.lastName,
+                firstName: capitalize(this.firstName),
+                lastName: capitalize(this.lastName),
                 email: this.email,
                 password: this.password,
             };
             console.log(data);
             axios
-                .post("http://127.0.0.1:5000/signup", {
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    email: this.email,
-                    password: this.password,
-                })
+                .post("http://127.0.0.1:5000/signup",data)
                 .then((res) => {
                     console.log(res);
                 })
@@ -544,6 +541,7 @@ export default defineComponent({
                         localStorage.setItem("email", res.data.email);
                     } else {
                         console.log("User not logged in");
+                        this.errorLogin = "Wrong email or password";
                     }
                 })
                 .catch((err) => {
@@ -580,7 +578,12 @@ export default defineComponent({
   
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Krona+One&display=swap');
-  
+  .error {
+    color: red;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    padding-left: 1vh;
+  }
   @media (min-width: 992px) {
     .bicara-ai-top {
     background: #3F54D1;
@@ -796,7 +799,7 @@ export default defineComponent({
   ion-modal.sign-up
   {
     --border-radius: 3vh;
-    --height: 85vh;
+    --height: 90vh;
   }
 
   .sign-up ion-content div {
@@ -822,8 +825,9 @@ export default defineComponent({
     color: black;
     border-radius: 15px;
     padding-left: 2.5vh;
+    padding-right: 2.5vh;
     padding-top: 2vh;
-    height: 52vh;
+    height: 61vh;
   }
 
   .sign-up ion-content ion-card ion-button {
