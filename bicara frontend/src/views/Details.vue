@@ -118,7 +118,9 @@
                                 align-items: center;
                             "
                         >
-                            <h1 slot="start">Hi, Jake!</h1>
+                            <h1 slot="start">
+                                Hi, {{ sessionName.split(" ")[0] }}!
+                            </h1>
                             <button
                                 slot="end"
                                 v-on:click="close_side()"
