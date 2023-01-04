@@ -198,17 +198,14 @@
                                 controls="controls"
                                 preload="preload"
                                 v-if="video"
-                                style="width: 50vw; height: 50vh; margin: 0;"
-                            
+                                style="width: 50vw; height: 50vh; margin: 0"
                             >
                                 <!-- <source
                                     src="http://127.0.0.1:5000/static/results/aldysych12_-_Bicara.AI_-_2023-01-03_014845.841990.mp4"
                                 /> -->
-                                <source :src="video"   />
+                                <source :src="video" />
                             </video>
-                            <ion-text
-                                style="margin:1.5vh; font-size: 2.5vh;"
-                            >
+                            <ion-text style="margin: 1.5vh; font-size: 2.5vh">
                                 {{ moment(result.date) }}
                             </ion-text>
                         </div>
@@ -387,6 +384,7 @@ export default defineComponent({
     methods: {
         logoutMethod() {
             localStorage.removeItem("email");
+            localStorage.removeItem("name");
             this.$router.push("/homepage");
         },
         setModalOpen(isModalOpen: boolean) {
@@ -480,7 +478,9 @@ export default defineComponent({
             }, 2000);
         },
         moment: function (date: Date) {
-            return moment(date).subtract(7, "hours").format("dddd, DD MMM YYYY");
+            return moment(date)
+                .subtract(7, "hours")
+                .format("dddd, DD MMM YYYY");
         },
     },
     async mounted() {
@@ -496,7 +496,7 @@ export default defineComponent({
             .catch((error) => {
                 console.log(error);
             });
-        
+
         document.addEventListener("click", (e) => {
             if (e.target != document.querySelector("#example-modal")) {
                 this.setModalOpen(false);

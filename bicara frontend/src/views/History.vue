@@ -126,7 +126,9 @@
                                 align-items: center;
                             "
                         >
-                            <h1 slot="start">Hi, {{ sessionName.split(" ")[0] }}!</h1>
+                            <h1 slot="start">
+                                Hi, {{ sessionName.split(" ")[0] }}!
+                            </h1>
                             <button
                                 slot="end"
                                 v-on:click="close_side()"
@@ -358,6 +360,7 @@ export default defineComponent({
     methods: {
         logoutMethod() {
             localStorage.removeItem("email");
+            localStorage.removeItem("name");
             this.$router.push("/homepage");
         },
         setModalOpen(isModalOpen: boolean) {
