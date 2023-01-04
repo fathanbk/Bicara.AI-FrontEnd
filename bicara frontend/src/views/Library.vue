@@ -372,6 +372,20 @@ export default defineComponent({
                 this.setModalOpen(false);
             }
         });
+        axios
+            .get("http://127.0.0.1:5000/signin")
+            .then((res) => {
+                if (
+                    this.sessionEmail == ""
+                ) {
+                    window.location.href = "/homepage";
+                } else {
+                    console.log("User not logged in");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
 });
 </script>
