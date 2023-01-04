@@ -559,12 +559,10 @@ export default defineComponent({
         axios
             .get("http://127.0.0.1:5000/signin")
             .then((res) => {
-                // console.log(res.data.email);
                 if (
-                    res.data.message == "User logged in successfully" ||
-                    res.data.message == "User already logged in"
+                    localStorage.getItem("email") != null 
                 ) {
-                    // window.location.href = "/dashboard";
+                    window.location.href = "/dashboard";
                 } else {
                     console.log("User not logged in");
                 }
