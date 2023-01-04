@@ -107,7 +107,7 @@
                                 ></ion-input>
                                 </Field>
                                 <ErrorMessage name="Password" class="error" /><br>
-                                <!-- <ion-text>Confirm password<br /></ion-text>
+                                <ion-text>Confirm password<br /></ion-text>
                                 <Field name="Confirm Password" v-slot="{field}" 
                                   rules="required|confirmed:password">
                                 <ion-input
@@ -117,7 +117,7 @@
                                     placeholder="confirm password"
                                 ></ion-input>
                                 </Field>
-                                <ErrorMessage name="Confirm Password" class="error" /><br> -->
+                                <ErrorMessage name="Confirm Password" class="error" /><br>
                                 <ion-button @click.prevent="signUpMethod"
                                     >Sign up</ion-button
                                 >
@@ -485,7 +485,7 @@ export default defineComponent({
         messages: {
         required: 'The {field} is required',
         between: 'The {field} value must be between 0:{min}, 1:{max}',
-        confirmed: 'The {field} value must match {age}',
+        confirmed: 'The {field} does not match',
         alpha: 'The {field} value may only contain alphabetic characters',
     }}),
         });
@@ -580,7 +580,7 @@ export default defineComponent({
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&family=Krona+One&display=swap');
   .error {
     color: red;
-    font-size: 12px;
+    font-size: 1.8vh;
     font-family: 'Inter', sans-serif;
     padding-left: 1vh;
   }
@@ -799,13 +799,12 @@ export default defineComponent({
   ion-modal.sign-up
   {
     --border-radius: 3vh;
-    --height: 90vh;
+    --height: 100vh;
   }
 
   .sign-up ion-content div {
     margin-left: 5vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-bottom: 5vh;
   }
   .sign-up h1 {
     font-weight: 700;
@@ -827,7 +826,7 @@ export default defineComponent({
     padding-left: 2.5vh;
     padding-right: 2.5vh;
     padding-top: 2vh;
-    height: 61vh;
+    height: 75vh;
   }
 
   .sign-up ion-content ion-card ion-button {
