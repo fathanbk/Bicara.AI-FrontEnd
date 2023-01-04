@@ -706,11 +706,10 @@ export default defineComponent({
         },
         moment: function (date: Date) {
             return moment(date).subtract(7, "hours").format("HH:mm / DD MMM");
-            // return moment(date).format("hh:mm / DD MMM");
-            // 11:11/12 Nov
         },
         logoutMethod() {
             localStorage.removeItem("email");
+            localStorage.removeItem("name");
             this.$router.push("/homepage");
         },
         close_side() {
