@@ -126,7 +126,7 @@
                                 align-items: center;
                             "
                         >
-                            <h1 slot="start">Hi, Jake!</h1>
+                            <h1 slot="start">Hi, {{ sessionName.split(" ")[0] }}!</h1>
                             <button
                                 slot="end"
                                 v-on:click="close_side()"
@@ -189,7 +189,7 @@
 
                 <!-- Content History -->
                 <div class="content">
-                    <h1>Jake's History</h1>
+                    <h1>{{ sessionName.split(" ")[0] }}'s History</h1>
                     <div class="emptystatehistory" v-if="result.length == 0">
                         <ion-card class="bghistory">
                             <ion-img
