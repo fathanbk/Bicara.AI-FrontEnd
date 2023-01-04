@@ -126,7 +126,9 @@
                                 align-items: center;
                             "
                         >
-                            <h1 slot="start">Hi, Jake!</h1>
+                            <h1 slot="start">
+                                Hi, {{ sessionName.split(" ")[0] }}!
+                            </h1>
                             <button
                                 slot="end"
                                 v-on:click="close_side()"
@@ -204,7 +206,10 @@
                                 placeholder="Search"
                             ></ion-input>
                         </div>
-                        <h4>Hi, Jake! What would you like to do today?</h4>
+                        <h4>
+                            Hi, {{ sessionName.split(" ")[0] }}! What would you
+                            like to do today?
+                        </h4>
                     </div>
                     <!-- Bagian Rating Result -->
                     <h1 class="title-rat">Rating Result</h1>
