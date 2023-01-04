@@ -271,6 +271,7 @@ export default defineComponent({
     methods: {
         logoutMethod() {
             localStorage.removeItem("email");
+            localStorage.removeItem("name");
             this.$router.push("/homepage");
         },
         setModalOpen(isModalOpen: boolean) {
