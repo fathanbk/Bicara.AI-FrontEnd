@@ -722,6 +722,7 @@ export default defineComponent({
   }
   
   .title-top1 {
+<<<<<<< HEAD
   font-style: normal;
   font-weight: 700;
   font-size: 6vh;
@@ -740,6 +741,115 @@ export default defineComponent({
 .half {
   width: 40vw;
 }
+=======
+    font-style: normal;
+    font-weight: 700;
+    font-size: 6vh;
+    color: black;
+  }
+  .title-top2 {
+    margin-top: -3vh;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 6vh;
+    color: #3F54D1;
+  }
+  
+  .half {
+    width: 40vw;
+  }
+  
+  .desc-top {
+    padding-top: 2.5vh;
+    font-size: 3vh;
+    font-weight: 500;
+    color: #6e7071;
+    width: 40vw;
+  }
+  
+  .email {
+    width: 50vw;
+  }
+  .email-regist {
+    display: flex;
+    width: 30vw;
+    height: 7vh;
+    box-shadow: none;
+    background-color: white;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-top-right: 0px;
+    border-bottom-right: 0px;
+    margin-top: 2vh;
+    padding-left: 2.7vh;
+    margin-left: 0px;
+    font-size: 1.25rem;
+    position: absolute;
+  }
+  
+  .email-regist ion-img {
+    background-color: white;
+    height: 2.7vh;
+    margin:auto;
+  }
+  
+  .email-input {
+    margin : 0px;
+    height: 7vh;
+    font-size: 2.7vh;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: black;
+    z-index: 0;
+  }
+  
+  .notify {
+    position: absolute;
+    margin-top: -0.1vh;
+    right:-3vw;
+    height: 7vh;
+    width: 10vw;
+    font-size: 2.5vh;
+    font-family: 'Inter';
+    text-transform: none;
+    --border-radius: 30px;
+    --line-height: 7vh;
+    --box-shadow: none;
+  }
+  
+  ion-modal.sign-up
+  {
+    --border-radius: 3vh;
+    --height: 100vh;
+  }
+
+  .sign-up ion-content div {
+    margin-left: 5vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .sign-up h1 {
+    font-weight: 700;
+    color: black;
+    font-size: 6vh;
+  }
+  .sign-up ion-text {
+    font-weight: 600;
+    color: black;
+    font-size: 4vh;
+  }
+  
+  .sign-up ion-content ion-card {
+    background-color: white;
+    font-family: 'Inter';
+    font-weight: 700;
+    color: black;
+    border-radius: 15px;
+    padding-left: 2.5vh;
+    padding-right: 2.5vh;
+    padding-top: 2vh;
+    height: 75vh;
+  }
+>>>>>>> c88c33444bd3896cb0208e22ccb642f86eb2bfb0
 
 .desc-top {
   padding-top: 2.5vh;
