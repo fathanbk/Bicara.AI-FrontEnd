@@ -13,11 +13,11 @@
 [**Dokumentasi Interface Web Service API Home Page**](https://documenter.getpostman.com/view/24216905/2s8YmSqzVE)
 
 ## Team 1 Members :
-- Aldy Syachranie 
+- Aldy Syachranie 1313621012
 - Kenya Bhanuwati Pranoto 1313621019
-- Raden Roro Ziva Azzahrah Khalila 
+- Raden Roro Ziva Azzahrah Khalila 1313621034
 
 ## Team 2 Members :
-- Annisa Sekar Rini Ayu 
-- Fathan Bainal Kaffi
-- Salwa Tsabitah 
+- Annisa Sekar Rini Ayu 1313621002
+- Fathan Bainal Kaffi 1313621037
+- Salwa Tsabitah 1313621042
