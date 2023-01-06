@@ -702,6 +702,7 @@ export default defineComponent({
             date: "",
             isModalOpen: false,
             isLoading: false,
+            size: 0,
         };
     },
 
@@ -740,10 +741,17 @@ export default defineComponent({
             ).style.display = "inline-block";
         },
         onChange(e: { target: { files: any } }) {
+            console.log(e.target.files[0]);
             this.file = e.target.files[0];
-            (
+            this.size = e.target.files[0].size;
+            if (this.size > 110000000) {
+                alert("File size is too large");
+                return;
+            }
+            else{(
                 document.getElementById("upload_button") as HTMLInputElement
             ).disabled = false;
+            }
         },
         dragover(event: {
             preventDefault: () => void;
