@@ -436,10 +436,18 @@
                             <h1>Filler Words Count</h1>
                             <ion-grid>
                                 <ion-row class="row-align-left">
-                                    <ion-col size="2">No</ion-col>
-                                    <ion-col size="3">Date</ion-col>
-                                    <ion-col size="3">Filler Counts</ion-col>
-                                    <ion-col size="4">Filler Words</ion-col>
+                                    <ion-col size="2" class="ion-text-center"
+                                        >No</ion-col
+                                    >
+                                    <ion-col size="3" class="ion-text-center"
+                                        >Date</ion-col
+                                    >
+                                    <ion-col size="3" class="ion-text-center"
+                                        >Filler Counts</ion-col
+                                    >
+                                    <ion-col size="4" class="ion-text-center"
+                                        >Filler Words</ion-col
+                                    >
                                 </ion-row>
                                 <div
                                     v-for="(item, index) in result
@@ -449,27 +457,33 @@
                                     :key="item.email"
                                 >
                                     <ion-row
-                                        class="row-colored row-align-left"
+                                        class="row-colored row-align-left ion-text-center"
                                         :style="
                                             index % 2 == 0
                                                 ? 'background-color: #15cdcb'
                                                 : 'background-color: #5280e2'
                                         "
                                     >
-                                        <ion-col size="2">{{
-                                            index + 1
-                                        }}</ion-col>
-                                        <ion-col size="3">{{
-                                            // new Date(item.date)
-                                            //     .toLocaleDateString("en-EN", {
-                                            //         hour: "2-digit",
-                                            //         minute: "2-digit",
-                                            //         day: "2-digit",
-                                            //         month: "short",
-                                            //     })
-                                            //     .replace(/AM|PM/, "")
-                                            moment(item.date)
-                                        }}</ion-col>
+                                        <ion-col
+                                            size="2"
+                                            class="ion-text-center"
+                                            >{{ index + 1 }}</ion-col
+                                        >
+                                        <ion-col
+                                            size="3"
+                                            class="ion-text-center"
+                                            >{{
+                                                // new Date(item.date)
+                                                //     .toLocaleDateString("en-EN", {
+                                                //         hour: "2-digit",
+                                                //         minute: "2-digit",
+                                                //         day: "2-digit",
+                                                //         month: "short",
+                                                //     })
+                                                //     .replace(/AM|PM/, "")
+                                                moment(item.date)
+                                            }}</ion-col
+                                        >
                                         <ion-col
                                             size="3"
                                             class="ion-text-center"
@@ -485,6 +499,7 @@
                                                     : false
                                             "
                                             size="4"
+                                            class="ion-text-center"
                                             >{{
                                                 // print array of filler words with comma
 
@@ -493,7 +508,12 @@
                                                 ).join(", ")
                                             }}</ion-col
                                         >
-                                        <ion-col v-else size="4">0</ion-col>
+                                        <ion-col
+                                            class="ion-text-center"
+                                            v-else
+                                            size="4"
+                                            >0</ion-col
+                                        >
                                     </ion-row>
                                 </div>
                             </ion-grid>
@@ -830,9 +850,7 @@ export default defineComponent({
         axios
             .get("http://127.0.0.1:5000/signin")
             .then((res) => {
-                if (
-                    this.sessionEmail == ""
-                ) {
+                if (this.sessionEmail == "") {
                     window.location.href = "/homepage";
                 } else {
                     console.log("User not logged in");
