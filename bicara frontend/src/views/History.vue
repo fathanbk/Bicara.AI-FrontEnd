@@ -368,7 +368,7 @@ export default defineComponent({
             this.isModalOpen = isModalOpen;
         },
         moment: function (date: Date) {
-            return moment(date).subtract(7, "hours").format("DD MMM YYYY");
+            return moment(date).subtract(7, "hours").format("HH:mm DD MMM YYYY");
             // return moment(date).format("hh:mm / DD MMM");
             // 11:11/12 Nov
         },

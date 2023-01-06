@@ -418,7 +418,7 @@
                         style="margin-top: 30px"
                     >
                         <!-- Navigasi Tanggal -->
-                        <div class="card progressreport" id="prke1">
+                        <!-- <div class="card progressreport" id="prke1">
                             <p>
                                 <span class="material-symbols-outlined">
                                     chevron_left
@@ -430,7 +430,7 @@
                                     chevron_right
                                 </span>
                             </p>
-                        </div>
+                        </div> -->
                         <!-- Grafik Chart -->
                         <div class="chart" id="prke2">
                             <h1>Filler Words Count</h1>
