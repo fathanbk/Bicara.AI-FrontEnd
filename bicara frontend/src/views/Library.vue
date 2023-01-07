@@ -884,7 +884,7 @@ ion-grid {
 }
 
 .sample-img {
-    margin: 5px;
+    margin: -5px;
 }
 
 @media (max-width: 992px) {
