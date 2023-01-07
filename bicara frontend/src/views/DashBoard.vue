@@ -586,42 +586,35 @@
                     <h1>Sample Speech</h1>
 
                     <div class="samplespeech">
+                        <ion-modal
+                        id="sample-modal"
+                        ref="modal"
+                        trigger="open-modal-upload"
+                        :is-open="isSampleModalOpen"
+                            >
+                            <div class="video" >
+                                <iframe
+                                src="/assets/samplespeech/yintro.mp4"
+                                title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            
+                            ></iframe>
+                        </div>
+                    </ion-modal>
                         <ion-card>
-                            <img
-                                alt="Silhouette of mountains"
-                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
-                            />
+                            <a @click=" setSampleModalOpen(true) ">
+                                <img
+                                    alt="Silhouette of mountains"
+                                    src="/assets/img/yintro.jpg"
+                                />
+                            </a>
                             <ion-card-content>
-                                Ambassador Kim's Remarks on Women in Fintech
+                                Y-Combinator CF Matching Introduction Buenyamin Kartal
                             </ion-card-content>
                         </ion-card>
-                        <ion-card>
-                            <img
-                                alt="Silhouette of mountains"
-                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
-                            />
-                            <ion-card-content>
-                                Ambassador Kim's Remarks on Women in Fintech
-                            </ion-card-content>
-                        </ion-card>
-                        <ion-card>
-                            <img
-                                alt="Silhouette of mountains"
-                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
-                            />
-                            <ion-card-content>
-                                Ambassador Kim's Remarks on Women in Fintech
-                            </ion-card-content>
-                        </ion-card>
-                        <ion-card>
-                            <img
-                                alt="Silhouette of mountains"
-                                src="https://d2v9ipibika81v.cloudfront.net/uploads/sites/72/BDS-0690.jpg"
-                            />
-                            <ion-card-content>
-                                Ambassador Kim's Remarks on Women in Fintech
-                            </ion-card-content>
-                        </ion-card>
+                       
                     </div>
                     <ion-footer class="ion-no-border">
                         <ion-toolbar>
@@ -702,6 +695,7 @@ export default defineComponent({
             date: "",
             isModalOpen: false,
             isLoading: false,
+            isSampleModalOpen: false,
             size: 0,
         };
     },
@@ -709,6 +703,9 @@ export default defineComponent({
     methods: {
         setModalOpen(isModalOpen: boolean) {
             this.isModalOpen = isModalOpen;
+        },
+        setSampleModalOpen(isSampleModalOpen: boolean) {
+            this.isSampleModalOpen = isSampleModalOpen;
         },
         moment: function (date: Date) {
             return moment(date).subtract(7, "hours").format("HH:mm / DD MMM");
@@ -816,6 +813,9 @@ export default defineComponent({
             if (e.target != document.querySelector("#example-modal")) {
                 this.setModalOpen(false);
             }
+            if (e.target != document.querySelector("#sample-modal")) {
+                this.setSampleModalOpen(false);
+            }
         });
         //   axios
         //       .get("http://127.0.0.1:5000/signin")
@@ -884,6 +884,12 @@ export default defineComponent({
 </script>
 
 <style scoped>
+iframe{
+    height: 100%;
+    width: 100%;
+    border: none;
+    position: absolute;
+}
 #container {
     text-align: center;
     position: absolute;
@@ -988,6 +994,15 @@ ion-popover {
 }
 
 ion-modal#example-modal {
+    --width: 680px;
+    /* --min-width: 250px; */
+    --height: 450px;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+ion-modal#sample-modal {
     --width: 680px;
     /* --min-width: 250px; */
     --height: 450px;
