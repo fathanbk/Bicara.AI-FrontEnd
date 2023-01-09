@@ -26,10 +26,9 @@
                     >
                     <ion-row class="half">
                         <ion-col size="12" class="desc-top"
-                            >Bicara.ai is an education platform. Bicara.ai aim
-                            to improve indviduals comunication skills with
-                            judgement free feedback from our AI-powered speech
-                            coach.</ion-col
+                            >Bicara AI is an AI-based education platform which
+                            aims to democratise public speaking learning
+                            anywhere.</ion-col
                         >
                     </ion-row>
                     <ion-row>
