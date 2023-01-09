@@ -243,10 +243,12 @@
                                     :routerLink="`/details/${item._id}`"
                                 >
                                     <ion-col>
-                                        <ion-img
-                                            class="sample-img"
-                                            src="assets/img/gambar.png"
-                                        ></ion-img>
+                                        <video width="190" height="110"  >
+                                            <source 
+                                                :src="baseURL + item.filename"
+                                                type="video/mp4"
+                                            />
+                                        </video>
                                     </ion-col>
                                     <ion-col>
                                         <p class="tablecontent">
@@ -351,6 +353,7 @@ export default defineComponent({
             isModalOpen: false,
             isLoading: false,
             size: 0,
+            baseURL: process.env.VUE_APP_BASE_URL + "/static/results/",
         };
     },
     computed: {
