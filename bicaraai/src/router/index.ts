@@ -6,6 +6,7 @@ import HomePage from "../views/HomePage.vue";
 import History from "../views/History.vue";
 import Library from "../views/Library.vue";
 import Details from "../views/Details.vue";
+import ContactSupport from "../views/ContactSupport.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -31,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/details/:id",
         component: Details,
+    },
+    {
+        path: "/contactsupport",
+        component: ContactSupport,
     },
 ];
 
