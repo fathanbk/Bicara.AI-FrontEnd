@@ -54,7 +54,11 @@
       <!--Mobile -->
       <div class="background-mobile"></div>
       <div class="intro-mobile-2">
-        <h1 slot="start" style="margin: 10px 3px">Bicara.ai</h1>
+        <ion-img
+                    src="assets/img/bicara-logo.svg"
+                    style="height: 70px"
+                    slot="start"
+                ></ion-img>
         <button slot="end" v-on:click="open_side()" id="menu">
           <span class="material-symbols-rounded menu"> menu </span>
         </button>
@@ -82,7 +86,7 @@
               <span class="material-symbols-outlined"> video_library</span>
               <p>Library</p>
             </a>
-            <a href="#">
+            <a href="/faqs">
               <span class="material-symbols-outlined"> help_center </span>
               <p>FAQ</p>
             </a>
@@ -92,7 +96,7 @@
             </a>
           </div>
           <div class="lastsidebar">
-            <a href="#">
+            <a href="/contactsupport">
               <span class="material-symbols-outlined"> group </span>
               <p>Contact Support</p>
             </a>
@@ -632,6 +636,10 @@ ion-item {
   padding: 10px 25px;
   width: 100%;
 }
+.lastsidebar {
+        bottom: 3px !important;
+    }
+
 
 .aside a span {
   margin-top: 4px;
@@ -902,6 +910,8 @@ ion-textarea.custom-textarea {
     align-items: center;
     background-color: #3f54d1;
     padding: 10px 20px;
+    padding-left: 0px;
+    padding-top: 0px;
     padding-bottom: 0px;
     width: 100%;
     margin: 0px;
@@ -919,7 +929,7 @@ ion-textarea.custom-textarea {
   }
 
   .c1 {
-    margin-top: 70px !important;
+    margin-top: 90px !important;
   }
 
   .c1 > h1 {

@@ -138,7 +138,7 @@
                         </a>
                         <a href="/history">
                             <span class="material-symbols-outlined">
-                                video_library
+                                movie
                             </span>
                             <p>History</p>
                         </a>
@@ -148,7 +148,7 @@
                             >
                             <p>Library</p>
                         </a>
-                        <a href="#">
+                        <a href="/faqs">
                             <span class="material-symbols-outlined">
                                 help_center
                             </span>
@@ -170,7 +170,7 @@
             </a> -->
                     </div>
                     <div class="lastsidebar">
-                        <a href="#">
+                        <a href="/contactsupport">
                             <span class="material-symbols-outlined">
                                 group
                             </span>

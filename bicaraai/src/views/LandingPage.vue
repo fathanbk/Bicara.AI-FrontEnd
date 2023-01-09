@@ -176,7 +176,7 @@
                 </div>
                 <div>
                     <div class="video">
-                        <video controls>
+                        <video controls width="400">
                             <source
                                 src="assets/samplespeech/zivasample.mp4"
                                 title="YouTube video player"
