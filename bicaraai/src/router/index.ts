@@ -7,6 +7,7 @@ import History from "../views/History.vue";
 import Library from "../views/Library.vue";
 import Details from "../views/Details.vue";
 import ContactSupport from "../views/ContactSupport.vue";
+import FrequentlyAsked from "../views/FrequentlyAskedQuestions.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -36,6 +37,10 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/contactsupport",
         component: ContactSupport,
+    },
+    {
+        path: "/faqs",
+        component: FrequentlyAsked,
     },
 ];
 
