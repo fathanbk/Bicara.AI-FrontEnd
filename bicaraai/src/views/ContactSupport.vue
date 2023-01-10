@@ -140,7 +140,7 @@
           <ion-row>
             <ion-col>
               <ion-img src="assets/icon/msg.svg" style="width: 40px"></ion-img>
-              <p>bicara.ai@gmail.com</p>
+              <p>bicara.aiteam@gmail.com</p>
             </ion-col>
             <ion-col>
               <ion-img src="assets/icon/telp.svg" style="width: 35px"></ion-img>
