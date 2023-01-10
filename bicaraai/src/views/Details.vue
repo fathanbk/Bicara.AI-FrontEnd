@@ -103,6 +103,16 @@
         </ion-header>
 
         <ion-content :fullscreen="true">
+            <div class="intro-mobile-2">
+                <ion-img
+                    src="assets/img/bicara-logo.svg"
+                    style="height: 70px"
+                    slot="start"
+                ></ion-img>
+                <button slot="end" v-on:click="open_side()" id="menu">
+                    <span class="material-symbols-rounded menu"> menu </span>
+                </button>
+            </div>
             <div class="dashboard">
                 <!-- Sidebar Details-->
                 <div
@@ -213,6 +223,7 @@
                         <div class="bottom-left">
                             <ion-card>
                                 <ion-card-content>
+                                    
                                     {{ result.transcript }}
                                 </ion-card-content>
                             </ion-card>
@@ -220,7 +231,7 @@
                     </div>
 
                     <!--Result-->
-                    <div class="right-side">
+                    <div class="right-side for-desktop">
                         <h3>Result</h3>
                         <div>
                             <ion-card>
@@ -274,6 +285,78 @@
                                     <ion-row>Hm (1)</ion-row> -->
                                 </ion-card-content>
                             </ion-card>
+                        </div>
+                    </div>
+                    <div class="for-mobile">
+                        <div class="right-side">
+                            <h3>Result</h3>
+                            <div>
+                                <ion-row>
+                                    <ion-col size="4">
+                                        <ion-card> 
+                                            <ion-card-title>
+                                                <ion-row>
+                                                    <ion-col>Eye Contact</ion-col>
+                                                </ion-row>
+                                                <ion-row>
+                                                    <ion-col
+                                                        class="blue-text"
+                                                        blue-text
+                                                        >{{ result.eyeContact }}</ion-col
+                                                    >
+                                                </ion-row>
+                                            </ion-card-title>
+                                        </ion-card>
+                                    </ion-col>
+                                    <ion-col size="4">
+                                        <ion-card>
+                                            <ion-card-title>
+                                                <ion-row>
+                                                    <ion-col>Pacing</ion-col>
+                                                </ion-row>
+                                                <ion-row>
+                                                    <ion-col
+                                                        class="blue-text"
+                                                        >{{
+                                                            result.pacing
+                                                        }}
+                                                        word/min</ion-col
+                                                    >
+                                                </ion-row>
+                                            </ion-card-title>
+                                        </ion-card>
+                                    </ion-col>
+                                    <ion-col size="4">
+                                        <ion-card>
+                                            <ion-card-title>
+                                                <ion-row>
+                                                    <ion-col>Filler words</ion-col>
+                                                </ion-row>
+                                                <ion-row>
+                                                    <ion-col
+                                                        class="blue-text"
+                                                        >{{
+                                                            result.filler
+                                                        }}
+                                                        fillers</ion-col
+                                                    >
+                                                </ion-row>
+                                            </ion-card-title>
+                                            <ion-card-content>
+                                                <ion-row
+                                                    v-for="(
+                                                        value, name, index
+                                                    ) in result.fillerWords"
+                                                    :key="index"
+                                                    >{{ name }} ({{ value }})</ion-row
+                                                >
+                                                <!-- <ion-row>Ah (2)</ion-row>
+                                                <ion-row>Hm (1)</ion-row> -->
+                                            </ion-card-content>
+                                        </ion-card>
+                                    </ion-col>
+                                </ion-row>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -979,11 +1062,19 @@ h3 {
     font-weight: 400;
 }
 
+for-mobile {
+    display: none;
+}
+
 @media (max-width: 992px) {
     /* .content {
         width: 576px;
     } */
     .upload-nav {
+        display: none;
+    }
+
+    for-mobile {
         display: none;
     }
 }
@@ -1007,7 +1098,9 @@ h3 {
     }
 
     .content {
+        margin-top: 80px;
         width: 97vw;
+        display: grid;
     }
 
     .content h1 {
@@ -1017,6 +1110,102 @@ h3 {
     .content .title-rat {
         margin-top: 0px;
         color: #ffffff;
+    }
+
+    .intro-mobile {
+        z-index: 0;
+        width: 90%;
+        margin: 20px 20px 25px;
+        font-family: "Segoe UI";
+        font-size: 24px;
+        display: block;
+        color: #ffffff;
+    }
+
+    .intro-mobile-2 {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f54d1;
+    padding: 10px 20px;
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    width: 100%;
+    margin: 0px;
+    z-index: 200;
+    }
+
+    .left-side {
+        width: 100%;
+        border-right: none;
+        height: 80vh;
+    }
+
+    .bottom-left ion-card {
+        margin-top: -3px;
+        max-height: 180px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        width: 98%;
+        overflow-y: scroll;
+    }
+
+    .bottom-left ion-card-content {
+        text-align: justify;
+    }
+    
+    .right-side {
+        margin-top: 50px;
+        margin-left: auto;
+        width: 100%;
+        position: relative;
+        border-top-color: #a7afb1;
+        border-top-style: solid;
+        border-top-width: 2px;
+        height: 30px;
+    }
+    .right-side h3 {
+        margin-left: 0px;
+    }
+    .right-side div {
+        margin-left:0px;
+    }
+    .right-side ion-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: #000000;
+        width: 95%;
+        height: 135px;
+        margin-left: 5px;
+        margin-right: 5px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+    .right-side ion-card-title {
+        color: black;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 5px;
+        text-align: center;
+        word-wrap: normal;
+    }
+    .right-side ion-card-content {
+        border-top-width: 1px;
+        border-top-color: #a7afb1;
+        border-top-style: solid;
+        font-size: 12px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: black;
+        font-weight: 400;
+    }
+
+    .for-desktop {
+        display: none;
+    }
+    .for-mobile {
+        display: initial;
     }
 }
 </style>
