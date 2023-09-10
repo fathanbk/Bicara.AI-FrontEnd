@@ -230,8 +230,10 @@
                         </div>
                     </div>
 
+                    <div class="middle"></div>
                     <!--Result-->
                     <div class="right-side for-desktop">
+                        <!--Result-->
                         <h3>Result</h3>
                         <div>
                             <ion-card>
@@ -286,6 +288,16 @@
                                 </ion-card-content>
                             </ion-card>
                         </div>
+
+                       <!--review-->
+                        <h3 class="review1">Review</h3>
+                            <div class="review2">
+                                <ion-card>
+                                    <ion-card-content>
+                                        {{result.review}} 
+                                    </ion-card-content>
+                                </ion-card>
+                            </div>
                     </div>
                     <div class="for-mobile">
                         <div class="right-side">
@@ -357,6 +369,19 @@
                                     </ion-col>
                                 </ion-row>
                             </div>
+                            <!-- review for mobile -->
+                            <h3>Review</h3>
+                            <div>
+                                <div class="review2" style="margin-bottom: 100px;">
+                                <ion-card>
+                                    <ion-card-content>
+                                        {{result.review}} 
+                                    </ion-card-content>
+                                </ion-card>
+                            </div>
+                            <!-- spasi  -->
+                            <div class="spacebottom"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -427,6 +452,7 @@ export default defineComponent({
                 fillerWords: {},
                 pacing: 0,
                 transcript: "",
+                review: "",
             },
             size: 0,
         };
@@ -943,9 +969,10 @@ ion-item {
 .content {
     width: 100%;
     margin: 0 auto;
-    padding-top: 10px;
+    /* padding-top: 10px; */
     transition: all 0.2 s;
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .content h1 {
@@ -1018,10 +1045,17 @@ h3 {
     position: fixed;
 }
 
+.right-side h3{
+    border-bottom-color: #a7afb1;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    padding: 10px 0px;
+}
+
 .right-side div {
-    border-top-color: #a7afb1;
+    /* border-top-color: #a7afb1;
     border-top-width: 2px;
-    border-top-style: solid;
+    border-top-style: solid; */
     width: 100%;
     margin: 10px;
 }
@@ -1034,7 +1068,7 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    padding: 5px;
+    /* padding: 5px; */
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -1059,6 +1093,25 @@ h3 {
     margin-right: 15px;
     color: black;
     font-weight: 400;
+}
+
+.review1 {
+    border-top-color: #a7afb1;
+    border-top-width: 2px;
+    border-top-style: solid;
+}
+
+
+.review2 ion-card {
+    width: 45vw;
+    background-color: #3f54d10d;
+}
+
+.review2 ion-card-content{
+    /* width: 45vw; */
+    background-color: #3f54d10d;
+    margin: 0px;
+    border-top: none;
 }
 
 for-mobile {
@@ -1142,8 +1195,12 @@ for-mobile {
         height: 80vh;
     }
 
+    .bottom-left{
+        margin-top: 10px;
+    }
+
     .bottom-left ion-card {
-        margin-top: -3px;
+        margin-top: 10px;
         max-height: 180px;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -1157,15 +1214,19 @@ for-mobile {
     
     .right-side {
         margin-top: 50px;
+        margin-bottom: 50px;
         margin-left: auto;
         width: 100%;
         position: relative;
-        border-top-color: #a7afb1;
+        /* border-top-color: #a7afb1;
         border-top-style: solid;
-        border-top-width: 2px;
+        border-top-width: 2px; */
         height: 30px;
     }
     .right-side h3 {
+        border-top-color: #a7afb1;
+        border-top-style: solid;
+        border-top-width: 2px;
         margin-left: 0px;
     }
     .right-side div {
@@ -1176,7 +1237,7 @@ for-mobile {
         border-radius: 10px;
         box-shadow: #000000;
         width: 95%;
-        height: 135px;
+        /* height: 135px; */
         margin-left: 5px;
         margin-right: 5px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -1185,19 +1246,27 @@ for-mobile {
         color: black;
         font-size: 18px;
         font-weight: 600;
-        padding: 5px;
+        /* padding: 5px; */
         text-align: center;
         word-wrap: normal;
     }
     .right-side ion-card-content {
-        border-top-width: 1px;
+        /* border-top-width: 1px;
         border-top-color: #a7afb1;
-        border-top-style: solid;
+        border-top-style: solid; */
         font-size: 12px;
-        margin-left: 10px;
-        margin-right: 10px;
+        /* margin-left: 10px;
+        margin-right: 10px; */
         color: black;
         font-weight: 400;
+    }
+
+    .review2 ion-card ion-card-content{
+        font-size: 14px;
+    }
+
+    .spacebottom{
+        height: 5px;
     }
 
     .for-desktop {
