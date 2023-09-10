@@ -1,81 +1,3 @@
-Abien Affar
-abienaffar
-Invisible
-
-yuu — 07/01/2023 8:09 PM
-https://docs.google.com/document/d/1rI4qI3AmZfH-yicpB0s_KVtfv9TtpoIxU0nkgbwOl5I/edit?usp=sharing
-Google Docs
-GEMASTIK RPL Bicara.ai
-Susunan Proposal Pengembangan Perangkat Lunak a) Judul/Nama Perangkat Lunak; b) Latar Belakang Ide Perangkat Lunak; c) Tujuan dan Manfaat Dikembangkannya Perangkat Lunak; d) Batasan Perangkat Lunak yang Dikembangkan; e) Metodologi Pengembangan Perangkat Lunak; f) Analisis Kebutuhan dan De...
-Image
-yuu — 07/01/2023 8:22 PM
-https://docs.google.com/document/d/1T8BybKO6iyq9Kp7PhXaWooM43xkw6q87MQRiE0tdG0U/edit
-Google Docs
-proposal lidm
-➢ Cover (Lampiran 1) ➢ Lembar Pengesahan (Lampiran 2) ➢ Abstrak ➢ Latar belakang (memuat problematika yang telah terjadi dalam proses pencapaian kompetensi dengan didasarkan pada fakta yang terdokumentasikan oleh tim pengusul maupun tersedia pada penelitian lain yang terpublikasikan) data EF (E...
-Image
-Boft — 07/01/2023 8:41 PM
-Image
-Abien Affar — 07/08/2023 7:21 PM
-Sementara ini untuk preventif kegagalan deployment aplikasi web. Deploy webnya sebagai android app https://ionicframework.com/docs/developing/android. Nanti bahasa di proposal, bisa disesuaikan.
-yuu — 07/08/2023 7:22 PM
-Image
-yuu — 07/08/2023 7:30 PM
-Image
-yuu — 07/08/2023 7:38 PM
-https://www.ef.com/wwen/epi/regions/asia/indonesia/
-EF EPI 2022 – EF English Proficiency Index – Indonesia
-Image
-yuu — 07/08/2023 8:08 PM
-Image
-yuu — 07/08/2023 8:17 PM
-live recording
-chatgpt, untuk mengoreksi kekurangan(?)
-Boft — 07/08/2023 8:18 PM
-https://marvelapp.com/19ai631j
-Marvel
-bicara-ai
-Marvel Prototype for bicara-ai
-Image
-Abien Affar — 07/08/2023 8:24 PM
-live recording
-chatgpt (yang melakukan gpt terhadap result message video pengguna untuk mencari solusinya misal pacing is too fast jadi ntar kek cari solusi  cara mengatasi ngomong yang terlalu cepat)
-flask run
-yuu — 07/08/2023 8:29 PM
-https://youtu.be/ztrenODVtv0'
-YouTube
-Bicara AI
-LIDM 2023 - Divisi Inovasi Teknologi Pendidikan- 001037 - BicaraAI ...
-Image
-Boft — 07/08/2023 8:31 PM
-https://www.youtube.com/watch?v=zmVU9xHTyiE&ab_channel=AldySyachranie
-YouTube
-Aldy Syachranie
-LIVE Demo Bicara.AI Sprint 7
-Image
-yuu — 07/08/2023 8:42 PM
-Image
-yuu — Today at 10:16 AM
-<template>
-    <ion-page>
-        <ion-header :translucent="true">
-            <ion-toolbar>
-                <button slot="start" v-on:click="open_side()" id="menu">
-                    <span class="material-symbols-rounded menu"> menu </span>
-Expand
-message.txt
-39 KB
-<template>
-    <ion-page>
-        <ion-header :translucent="true">
-            <ion-toolbar>
-                <button slot="start" v-on:click="open_side()" id="menu">
-                    <span class="material-symbols-rounded menu"> menu </span>
-... (14 KB left)
-Expand
-message.txt
-64 KB
-﻿
 <template>
     <ion-page>
         <ion-header :translucent="true">
@@ -308,10 +230,8 @@ message.txt
                         </div>
                     </div>
 
-                    <div class="middle"></div>
                     <!--Result-->
                     <div class="right-side for-desktop">
-                        <!--Result-->
                         <h3>Result</h3>
                         <div>
                             <ion-card>
@@ -366,16 +286,6 @@ message.txt
                                 </ion-card-content>
                             </ion-card>
                         </div>
-
-                       <!--review-->
-                        <h3 class="review1">Review</h3>
-                            <div class="review2">
-                                <ion-card>
-                                    <ion-card-content>
-                                        Great effort in delivering your speech! However, it seems that the pacing is a bit fast, with a rate of 205 words per minute. It is important to maintain a moderate pace to ensure clarity and audience comprehension. Try slowing down a bit, allowing your words to resonate and giving listeners time to process the information effectively. 
-                                    </ion-card-content>
-                                </ion-card>
-                            </div>
                     </div>
                     <div class="for-mobile">
                         <div class="right-side">
@@ -446,19 +356,6 @@ message.txt
                                         </ion-card>
                                     </ion-col>
                                 </ion-row>
-                            </div>
-                            <!-- review for mobile -->
-                            <h3>Review</h3>
-                            <div>
-                                <div class="review2" style="margin-bottom: 100px;">
-                                <ion-card>
-                                    <ion-card-content>
-                                        Great effort in delivering your speech! However, it seems that the pacing is a bit fast, with a rate of 205 words per minute. It is important to maintain a moderate pace to ensure clarity and audience comprehension. Try slowing down a bit, allowing your words to resonate and giving listeners time to process the information effectively. 
-                                    </ion-card-content>
-                                </ion-card>
-                            </div>
-                            <!-- spasi  -->
-                            <div class="spacebottom"></div>
                             </div>
                         </div>
                     </div>
@@ -1046,10 +943,9 @@ ion-item {
 .content {
     width: 100%;
     margin: 0 auto;
-    /* padding-top: 10px; */
+    padding-top: 10px;
     transition: all 0.2 s;
     display: flex;
-    flex-wrap: nowrap;
 }
 
 .content h1 {
@@ -1122,17 +1018,10 @@ h3 {
     position: fixed;
 }
 
-.right-side h3{
-    border-bottom-color: #a7afb1;
-    border-bottom-width: 2px;
-    border-bottom-style: solid;
-    padding: 10px 0px;
-}
-
 .right-side div {
-    /* border-top-color: #a7afb1;
+    border-top-color: #a7afb1;
     border-top-width: 2px;
-    border-top-style: solid; */
+    border-top-style: solid;
     width: 100%;
     margin: 10px;
 }
@@ -1145,7 +1034,7 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    /* padding: 5px; */
+    padding: 5px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -1170,25 +1059,6 @@ h3 {
     margin-right: 15px;
     color: black;
     font-weight: 400;
-}
-
-.review1 {
-    border-top-color: #a7afb1;
-    border-top-width: 2px;
-    border-top-style: solid;
-}
-
-
-.review2 ion-card {
-    width: 45vw;
-    background-color: #3f54d10d;
-}
-
-.review2 ion-card-content{
-    /* width: 45vw; */
-    background-color: #3f54d10d;
-    margin: 0px;
-    border-top: none;
 }
 
 for-mobile {
@@ -1272,12 +1142,8 @@ for-mobile {
         height: 80vh;
     }
 
-    .bottom-left{
-        margin-top: 10px;
-    }
-
     .bottom-left ion-card {
-        margin-top: 10px;
+        margin-top: -3px;
         max-height: 180px;
         padding-top: 5px;
         padding-bottom: 5px;
@@ -1291,19 +1157,15 @@ for-mobile {
     
     .right-side {
         margin-top: 50px;
-        margin-bottom: 50px;
         margin-left: auto;
         width: 100%;
         position: relative;
-        /* border-top-color: #a7afb1;
-        border-top-style: solid;
-        border-top-width: 2px; */
-        height: 30px;
-    }
-    .right-side h3 {
         border-top-color: #a7afb1;
         border-top-style: solid;
         border-top-width: 2px;
+        height: 30px;
+    }
+    .right-side h3 {
         margin-left: 0px;
     }
     .right-side div {
@@ -1314,7 +1176,7 @@ for-mobile {
         border-radius: 10px;
         box-shadow: #000000;
         width: 95%;
-        /* height: 135px; */
+        height: 135px;
         margin-left: 5px;
         margin-right: 5px;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -1323,27 +1185,19 @@ for-mobile {
         color: black;
         font-size: 18px;
         font-weight: 600;
-        /* padding: 5px; */
+        padding: 5px;
         text-align: center;
         word-wrap: normal;
     }
     .right-side ion-card-content {
-        /* border-top-width: 1px;
+        border-top-width: 1px;
         border-top-color: #a7afb1;
-        border-top-style: solid; */
+        border-top-style: solid;
         font-size: 12px;
-        /* margin-left: 10px;
-        margin-right: 10px; */
+        margin-left: 10px;
+        margin-right: 10px;
         color: black;
         font-weight: 400;
-    }
-
-    .review2 ion-card ion-card-content{
-        font-size: 14px;
-    }
-
-    .spacebottom{
-        height: 5px;
     }
 
     .for-desktop {
